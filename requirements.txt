@@ -9,3 +9,5 @@ ipinfo
 python-decouple 
 python-dotenv 
 user-agents
+
+whitenoise
