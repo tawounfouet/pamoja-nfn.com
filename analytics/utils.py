@@ -2,14 +2,19 @@
 
 import os
 import ipinfo
-from dotenv import load_dotenv
+
 
 # Load environment variables from .env file
-load_dotenv()
+#from dotenv import load_dotenv
+#load_dotenv()
+
+from decouple import config
+
 
 
 def get_ip_info(ip_address):
-    access_token = os.getenv('ACCESS_TOKEN')
+    #access_token = os.getenv('ACCESS_TOKEN')
+    access_token = config('ACCESS_TOKEN')
     handler = ipinfo.getHandler(access_token)
     details = handler.getDetails(ip_address)
     
