@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ta+t=13qnrq(+e0&8b9wdvhah)mi=a#ipa64(27yd4myfb2!t)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1' ,'pamoja-nfn-com.onrender.com']
 
 
 # Application definition
