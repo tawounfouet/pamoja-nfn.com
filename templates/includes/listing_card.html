@@ -1,0 +1,59 @@
+{% load static %}
+
+<div class="card listing-card h-100">
+    {% if listing.logo %}
+        <img src="{{ listing.logo }}" class="card-img-top" alt="{{ listing.company_name }}">
+    {% else %}
+        <img src="{% static 'img/default-listing.png' %}" class="card-img-top" alt="Image par défaut">
+    {% endif %}
+    
+    <div class="card-body">
+        <h5 class="card-title">{{ listing.company_name }}</h5>
+        <p class="card-text text-muted">
+            <i class="fas fa-tag"></i> {{ listing.category.name }}
+            {% if listing.subcategory %}
+                > {{ listing.subcategory.name }}
+            {% endif %}
+        </p>
+        
+        <p class="card-text">{{ listing.description|truncatewords:30 }}</p>
+        
+        {% if listing.tags.exists %}
+            <div class="tags mb-2">
+                {% for tag in listing.tags.all %}
+                    <span class="badge bg-secondary">{{ tag.name }}</span>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        <div class="location text-muted">
+            <i class="fas fa-map-marker-alt"></i> {{ listing.location.city }}
+        </div>
+        
+        {% if listing.average_rating %}
+            <div class="rating mt-2">
+                {% for i in "12345"|make_list %}
+                    {% if forloop.counter <= listing.average_rating %}
+                        <i class="fas fa-star text-warning"></i>
+                    {% else %}
+                        <i class="far fa-star"></i>
+                    {% endif %}
+                {% endfor %}
+                <small class="text-muted">({{ listing.reviews.count }} avis)</small>
+            </div>
+        {% endif %}
+    </div>
+    
+    <div class="card-footer">
+        <div class="d-flex justify-content-between align-items-center">
+            <a href="{% url 'listing:detail' listing.id %}" class="btn btn-primary btn-sm">Voir plus</a>
+            {% if user.is_authenticated %}
+                <button class="btn btn-outline-primary btn-sm toggle-favorite" 
+                        data-listing-id="{{ listing.id }}"
+                        data-is-favorite="{{ listing.id|in_favorites:user }}">
+                    <i class="{% if listing.id|in_favorites:user %}fas{% else %}far{% endif %} fa-heart"></i>
+                </button>
+            {% endif %}
+        </div>
+    </div>
+</div> 

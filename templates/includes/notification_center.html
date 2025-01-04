@@ -1,0 +1,73 @@
+{% load static %}
+
+<div class="notification-center" data-notification-center>
+    <div class="notification-toggle">
+        <button class="btn btn-link position-relative" data-notification-toggle>
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge" data-notification-count>
+                {{ unread_count }}
+            </span>
+        </button>
+    </div>
+
+    <div class="notification-dropdown" data-notification-dropdown>
+        <div class="notification-header">
+            <h6 class="mb-0">Notifications</h6>
+            {% if unread_count > 0 %}
+                <button class="btn btn-link btn-sm" data-mark-all-read>
+                    Tout marquer comme lu
+                </button>
+            {% endif %}
+        </div>
+
+        <div class="notification-list" data-notification-list>
+            {% for notification in notifications %}
+                <div class="notification-item {% if not notification.is_read %}unread{% endif %}"
+                     data-notification-id="{{ notification.id }}">
+                    <div class="notification-icon">
+                        {% if notification.type == 'MESSAGE' %}
+                            <i class="fas fa-envelope"></i>
+                        {% elif notification.type == 'COMMENT' %}
+                            <i class="fas fa-comment"></i>
+                        {% elif notification.type == 'LIKE' %}
+                            <i class="fas fa-heart"></i>
+                        {% elif notification.type == 'FOLLOW' %}
+                            <i class="fas fa-user-plus"></i>
+                        {% else %}
+                            <i class="fas fa-bell"></i>
+                        {% endif %}
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-text">
+                            {{ notification.message }}
+                        </div>
+                        <div class="notification-meta">
+                            <span class="notification-time" title="{{ notification.created_at }}">
+                                {{ notification.created_at|timesince }}
+                            </span>
+                        </div>
+                    </div>
+                    {% if not notification.is_read %}
+                        <button class="btn btn-link btn-sm mark-read" 
+                                data-mark-read
+                                title="Marquer comme lu">
+                            <i class="fas fa-check"></i>
+                        </button>
+                    {% endif %}
+                </div>
+            {% empty %}
+                <div class="no-notifications">
+                    <p>Aucune notification</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        {% if has_more %}
+            <div class="notification-footer">
+                <button class="btn btn-link btn-sm w-100" data-load-more>
+                    Voir plus
+                </button>
+            </div>
+        {% endif %}
+    </div>
+</div> 

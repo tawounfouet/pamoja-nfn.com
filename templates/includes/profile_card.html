@@ -1,0 +1,73 @@
+{% load static %}
+
+<div class="profile-card">
+    <div class="profile-header">
+        <div class="profile-cover" 
+             style="background-image: url({% if profile.cover_image %}{{ profile.cover_image.url }}{% else %}{% static 'img/default-cover.jpg' %}{% endif %})">
+        </div>
+        <div class="profile-avatar">
+            {% if profile.profile_image %}
+                <img src="{{ profile.profile_image.url }}" alt="{{ profile.user.username }}" class="rounded-circle">
+            {% else %}
+                <div class="default-avatar">
+                    {{ profile.user.username|make_list|first|upper }}
+                </div>
+            {% endif %}
+            {% if profile.verified %}
+                <span class="verified-badge" title="Profil vérifié">
+                    <i class="fas fa-check-circle"></i>
+                </span>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="profile-body">
+        <h4 class="profile-name">{{ profile.user.get_full_name|default:profile.user.username }}</h4>
+        {% if profile.company_name %}
+            <div class="company-name">{{ profile.company_name }}</div>
+        {% endif %}
+
+        <div class="profile-meta">
+            <div class="location">
+                <i class="fas fa-map-marker-alt"></i> 
+                {{ profile.location|default:"Non spécifié" }}
+            </div>
+            <div class="member-since">
+                <i class="fas fa-calendar"></i> 
+                Membre depuis {{ profile.date_registered|date:"F Y" }}
+            </div>
+        </div>
+
+        {% if profile.bio %}
+            <div class="profile-bio">
+                {{ profile.bio|linebreaks|truncatewords:50 }}
+            </div>
+        {% endif %}
+
+        {% if profile.languages.exists %}
+            <div class="profile-languages">
+                <i class="fas fa-language"></i>
+                {% for language in profile.languages.all %}
+                    <span class="badge bg-light text-dark">{{ language.name }}</span>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="profile-actions">
+            {% if user.is_authenticated and user != profile.user %}
+                <a href="{% url 'messaging:start_conversation' profile.user.username %}" 
+                   class="btn btn-primary btn-sm">
+                    <i class="fas fa-envelope"></i> Message
+                </a>
+                {% if user.is_staff %}
+                    <button class="btn btn-warning btn-sm verify-profile" 
+                            data-profile-id="{{ profile.id }}"
+                            {% if profile.verified %}disabled{% endif %}>
+                        <i class="fas fa-check-circle"></i> 
+                        {% if profile.verified %}Vérifié{% else %}Vérifier{% endif %}
+                    </button>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div> 

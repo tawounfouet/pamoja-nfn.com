@@ -1,0 +1,139 @@
+{% load static %}
+
+<div class="messaging-widget" data-messaging-widget>
+    <div class="messaging-header">
+        <h5>Messages</h5>
+        <div class="messaging-actions">
+            <button class="btn btn-link btn-sm" data-new-conversation>
+                <i class="fas fa-edit"></i> Nouveau message
+            </button>
+        </div>
+    </div>
+
+    <div class="conversation-list">
+        {% for conversation in conversations %}
+            <div class="conversation-item {% if conversation.unread %}unread{% endif %}"
+                 data-conversation-id="{{ conversation.id }}">
+                <div class="conversation-avatar">
+                    <img src="{{ conversation.other_user.profile.profile_image.url|default:'/static/img/default-avatar.png' }}" 
+                         alt="{{ conversation.other_user.username }}">
+                    <span class="online-status {% if conversation.other_user.is_online %}online{% endif %}"></span>
+                </div>
+                <div class="conversation-content">
+                    <div class="conversation-header">
+                        <span class="conversation-name">
+                            {{ conversation.other_user.get_full_name|default:conversation.other_user.username }}
+                        </span>
+                        <span class="conversation-time" title="{{ conversation.last_message.created_at }}">
+                            {{ conversation.last_message.created_at|timesince }}
+                        </span>
+                    </div>
+                    <div class="conversation-preview">
+                        {% if conversation.last_message.sender == user %}
+                            <span class="message-status">
+                                {% if conversation.last_message.is_read %}
+                                    <i class="fas fa-check-double text-primary"></i>
+                                {% else %}
+                                    <i class="fas fa-check"></i>
+                                {% endif %}
+                            </span>
+                        {% endif %}
+                        {{ conversation.last_message.content|truncatechars:50 }}
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="no-conversations">
+                <p>Aucune conversation</p>
+                <button class="btn btn-primary btn-sm" data-new-conversation>
+                    Démarrer une conversation
+                </button>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="message-container d-none">
+        <div class="message-header">
+            <button class="btn btn-link btn-sm back-to-conversations">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="recipient-info">
+                <span class="recipient-name"></span>
+                <span class="typing-indicator d-none">est en train d'écrire...</span>
+            </div>
+            <div class="conversation-menu dropdown">
+                <button class="btn btn-link btn-sm" data-bs-toggle="dropdown">
+                    <i class="fas fa-ellipsis-v"></i>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <button class="dropdown-item text-danger" data-delete-conversation>
+                            <i class="fas fa-trash"></i> Supprimer la conversation
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="message-list" data-message-list>
+            <!-- Les messages seront chargés dynamiquement ici -->
+        </div>
+
+        <form class="message-form" data-message-form>
+            {% csrf_token %}
+            <div class="input-group">
+                <textarea class="form-control" 
+                          placeholder="Votre message..." 
+                          rows="1"
+                          required></textarea>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Template pour les messages -->
+<template id="messageTemplate">
+    <div class="message-item">
+        <div class="message-content">
+            <div class="message-text"></div>
+            <div class="message-meta">
+                <span class="message-time"></span>
+                <span class="message-status"></span>
+            </div>
+        </div>
+    </div>
+</template>
+
+<!-- Modal pour nouvelle conversation -->
+<div class="modal fade" id="newConversationModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Nouveau message</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Destinataire</label>
+                    <select class="form-select" data-recipient-select>
+                        <option value="">Sélectionner un destinataire...</option>
+                    </select>
+                </div>
+                <div class="form-group mt-3">
+                    <label class="form-label">Message</label>
+                    <textarea class="form-control" 
+                              rows="3" 
+                              placeholder="Votre message..."
+                              data-initial-message></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" data-start-conversation>Envoyer</button>
+            </div>
+        </div>
+    </div>
+</div> 

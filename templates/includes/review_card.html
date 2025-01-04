@@ -1,0 +1,69 @@
+<div class="review-card {% if review.is_verified %}verified{% endif %}">
+    <div class="review-header">
+        <div class="reviewer-info">
+            <img src="{{ review.user.profile.profile_image.url|default:'/static/img/default-avatar.png' }}" 
+                 alt="{{ review.user.username }}" 
+                 class="reviewer-avatar">
+            <div class="reviewer-details">
+                <h6 class="reviewer-name">{{ review.user.get_full_name|default:review.user.username }}</h6>
+                <div class="review-date">{{ review.created_at|date:"d/m/Y" }}</div>
+            </div>
+        </div>
+        <div class="review-rating">
+            {% for i in "12345"|make_list %}
+                {% if forloop.counter <= review.rating %}
+                    <i class="fas fa-star text-warning"></i>
+                {% else %}
+                    <i class="far fa-star"></i>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="review-content">
+        {{ review.comment|linebreaks }}
+    </div>
+
+    {% if review.response %}
+        <div class="review-response">
+            <div class="response-header">
+                <i class="fas fa-reply"></i> Réponse du prestataire
+            </div>
+            <div class="response-content">
+                {{ review.response|linebreaks }}
+            </div>
+            <div class="response-date">
+                {{ review.response_date|date:"d/m/Y" }}
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="review-footer">
+        {% if user.is_authenticated %}
+            <div class="review-actions">
+                {% if user == review.listing.profile.user and not review.response %}
+                    <button class="btn btn-sm btn-outline-primary respond-to-review" 
+                            data-review-id="{{ review.id }}">
+                        <i class="fas fa-reply"></i> Répondre
+                    </button>
+                {% endif %}
+                {% if user.is_staff or user == review.user %}
+                    <button class="btn btn-sm btn-outline-danger delete-review" 
+                            data-review-id="{{ review.id }}"
+                            data-confirm="true"
+                            data-confirm-message="Êtes-vous sûr de vouloir supprimer cet avis ?">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                {% endif %}
+            </div>
+        {% endif %}
+        
+        <div class="review-helpful">
+            <button class="btn btn-sm btn-outline-secondary helpful-button {% if review.id in user_helpful_reviews %}active{% endif %}"
+                    data-review-id="{{ review.id }}">
+                <i class="far fa-thumbs-up"></i>
+                <span class="helpful-count">{{ review.helpful_count }}</span>
+            </button>
+        </div>
+    </div>
+</div> 

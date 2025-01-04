@@ -1,0 +1,30 @@
+<div class="notification-item {% if not notification.read %}unread{% endif %}">
+    <div class="notification-icon">
+        {% if notification.notification_type == 'NEW_MESSAGE' %}
+            <i class="fas fa-envelope"></i>
+        {% elif notification.notification_type == 'NEW_REVIEW' %}
+            <i class="fas fa-star"></i>
+        {% elif notification.notification_type == 'NEW_FAVORITE' %}
+            <i class="fas fa-heart"></i>
+        {% else %}
+            <i class="fas fa-bell"></i>
+        {% endif %}
+    </div>
+    
+    <div class="notification-content">
+        <div class="notification-title">{{ notification.title }}</div>
+        <div class="notification-message">{{ notification.message }}</div>
+        <div class="notification-meta">
+            <small class="text-muted">{{ notification.created_at|timesince }}</small>
+        </div>
+    </div>
+    
+    {% if not notification.read %}
+        <form method="post" action="{% url 'notifications:mark_read' notification.id %}" class="d-inline">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-sm btn-link mark-read-btn">
+                <i class="fas fa-check"></i>
+            </button>
+        </form>
+    {% endif %}
+</div> 

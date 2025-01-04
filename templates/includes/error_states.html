@@ -1,0 +1,51 @@
+{% load i18n %}
+
+<!-- État vide -->
+<div class="empty-state {% if items %}d-none{% endif %}">
+    <div class="empty-state-icon">
+        {% if icon_class %}
+            <i class="{{ icon_class }}"></i>
+        {% else %}
+            <i class="fas fa-inbox"></i>
+        {% endif %}
+    </div>
+    <h3 class="empty-state-title">
+        {{ empty_title|default:_("Aucun résultat trouvé") }}
+    </h3>
+    <p class="empty-state-description">
+        {{ empty_description|default:_("Il n'y a rien à afficher pour le moment.") }}
+    </p>
+    {% if empty_action_url %}
+        <a href="{{ empty_action_url }}" class="btn btn-primary">
+            {{ empty_action_text|default:_("Commencer") }}
+        </a>
+    {% endif %}
+</div>
+
+<!-- État d'erreur -->
+<div class="error-state {% if not error %}d-none{% endif %}">
+    <div class="error-state-icon">
+        <i class="fas fa-exclamation-triangle"></i>
+    </div>
+    <h3 class="error-state-title">
+        {{ error_title|default:_("Une erreur est survenue") }}
+    </h3>
+    <p class="error-state-description">
+        {{ error_description|default:_("Impossible de charger le contenu. Veuillez réessayer.") }}
+    </p>
+    {% if error_action %}
+        <button class="btn btn-primary retry-button">
+            {{ error_action_text|default:_("Réessayer") }}
+        </button>
+    {% endif %}
+</div>
+
+<!-- État de chargement -->
+<div class="loading-state {% if not loading %}d-none{% endif %}">
+    <div class="loading-spinner">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Chargement...</span>
+        </div>
+    </div>
+    <p class="loading-text">{{ loading_text|default:_("Chargement en cours...") }}</p>
+</div> 

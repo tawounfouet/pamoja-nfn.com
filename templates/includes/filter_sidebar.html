@@ -1,0 +1,96 @@
+<div class="filter-sidebar">
+    <div class="filter-header">
+        <h5>Filtres</h5>
+        {% if active_filters %}
+            <button class="btn btn-sm btn-link clear-filters">
+                Réinitialiser
+            </button>
+        {% endif %}
+    </div>
+
+    <form method="get" id="filterForm">
+        <!-- Recherche -->
+        <div class="filter-section">
+            <h6>Recherche</h6>
+            <div class="input-group">
+                <input type="text" 
+                       name="q" 
+                       class="form-control" 
+                       value="{{ request.GET.q }}" 
+                       placeholder="Rechercher...">
+                <button class="btn btn-outline-primary" type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Localisation -->
+        <div class="filter-section">
+            <h6>Localisation</h6>
+            <select name="location" class="form-select">
+                <option value="">Toutes les villes</option>
+                {% for city in available_cities %}
+                    <option value="{{ city }}" {% if city == selected_city %}selected{% endif %}>
+                        {{ city }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Tags -->
+        <div class="filter-section">
+            <h6>Tags</h6>
+            <div class="tag-cloud">
+                {% for tag in available_tags %}
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               name="tags" 
+                               value="{{ tag.id }}" 
+                               class="form-check-input"
+                               id="tag_{{ tag.id }}"
+                               {% if tag.id|stringformat:"s" in selected_tags %}checked{% endif %}>
+                        <label class="form-check-label" for="tag_{{ tag.id }}">
+                            {{ tag.name }}
+                            <span class="tag-count">({{ tag.listing_set.count }})</span>
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Note minimale -->
+        <div class="filter-section">
+            <h6>Note minimale</h6>
+            <div class="rating-filter">
+                {% for i in "12345"|make_list %}
+                    <input type="radio" 
+                           name="min_rating" 
+                           value="{{ forloop.counter }}"
+                           id="rating_{{ forloop.counter }}"
+                           {% if forloop.counter == selected_rating %}checked{% endif %}>
+                    <label for="rating_{{ forloop.counter }}">
+                        <i class="fas fa-star"></i>
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Vérification -->
+        <div class="filter-section">
+            <div class="form-check">
+                <input type="checkbox" 
+                       name="verified_only" 
+                       class="form-check-input" 
+                       id="verifiedOnly"
+                       {% if verified_only %}checked{% endif %}>
+                <label class="form-check-label" for="verifiedOnly">
+                    Prestataires vérifiés uniquement
+                </label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">
+            Appliquer les filtres
+        </button>
+    </form>
+</div> 

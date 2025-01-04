@@ -1,0 +1,31 @@
+{% load static %}
+
+<div class="category-navigation">
+    <div class="category-list">
+        {% for category in categories %}
+            <div class="category-item {% if category.id == current_category.id %}active{% endif %}">
+                <a href="{% url 'listing:category' category.slug %}" class="category-link">
+                    {% if category.icon %}
+                        <img src="{{ category.icon.url }}" alt="{{ category.name }}" class="category-icon">
+                    {% else %}
+                        <i class="fas fa-folder"></i>
+                    {% endif %}
+                    <span class="category-name">{{ category.name }}</span>
+                    <span class="category-count">({{ category.get_active_listings_count }})</span>
+                </a>
+                
+                {% if category.subcategories.exists %}
+                    <div class="subcategory-list">
+                        {% for subcategory in category.subcategories.all %}
+                            <a href="{% url 'listing:subcategory' category.slug subcategory.slug %}" 
+                               class="subcategory-link {% if subcategory.id == current_subcategory.id %}active{% endif %}">
+                                {{ subcategory.name }}
+                                <span class="subcategory-count">({{ subcategory.listing_set.count }})</span>
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</div> 

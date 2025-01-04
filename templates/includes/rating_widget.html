@@ -1,0 +1,37 @@
+<div class="rating-widget" data-rating-widget>
+    <div class="rating-stars" data-rating-input>
+        {% for i in "12345"|make_list %}
+            <span class="star {% if i|add:'0' <= current_rating %}active{% endif %}"
+                  data-rating="{{ i }}"
+                  data-bs-toggle="tooltip"
+                  title="{{ i }} étoile{% if i != '1' %}s{% endif %}">
+                <i class="fas fa-star"></i>
+            </span>
+        {% endfor %}
+    </div>
+    
+    {% if show_average %}
+        <div class="rating-average">
+            <span class="average-value">{{ average_rating|floatformat:1 }}</span>
+            <span class="rating-count">({{ rating_count }} avis)</span>
+        </div>
+    {% endif %}
+
+    {% if user.is_authenticated and allow_rating %}
+        <form class="rating-form" method="post" action="{{ rating_url }}" data-rating-form>
+            {% csrf_token %}
+            <input type="hidden" name="rating" value="{{ current_rating }}" data-rating-value>
+            {% if show_comment %}
+                <div class="form-group mt-2">
+                    <textarea name="comment" 
+                             class="form-control" 
+                             rows="3" 
+                             placeholder="Votre avis (optionnel)"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm mt-2">
+                    Envoyer
+                </button>
+            {% endif %}
+        </form>
+    {% endif %}
+</div> 

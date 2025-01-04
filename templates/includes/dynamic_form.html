@@ -1,0 +1,93 @@
+{% load static %}
+
+<div class="dynamic-form" data-dynamic-form>
+    <form method="post" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        
+        <div class="form-steps" data-form-steps>
+            {% for step in form_steps %}
+                <div class="form-step {% if forloop.first %}active{% endif %}" 
+                     data-step="{{ forloop.counter }}">
+                    <div class="step-header">
+                        <h4>{{ step.title }}</h4>
+                        <p class="step-description">{{ step.description }}</p>
+                    </div>
+
+                    <div class="step-content">
+                        {% for field in step.fields %}
+                            <div class="form-group" data-field-group="{{ field.name }}">
+                                <label class="form-label" for="{{ field.id_for_label }}">
+                                    {{ field.label }}
+                                    {% if field.field.required %}
+                                        <span class="required">*</span>
+                                    {% endif %}
+                                </label>
+
+                                {% if field.field.widget.input_type == 'file' %}
+                                    <div class="file-upload-wrapper">
+                                        <div class="file-upload-preview">
+                                            <img src="#" alt="" class="preview-image d-none">
+                                        </div>
+                                        <div class="file-upload-input">
+                                            {{ field }}
+                                            <div class="file-upload-placeholder">
+                                                <i class="fas fa-cloud-upload-alt"></i>
+                                                <span>Glissez un fichier ou cliquez pour sélectionner</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% elif field.field.widget.input_type == 'select' %}
+                                    <div class="select-wrapper">
+                                        {{ field }}
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                {% else %}
+                                    {{ field }}
+                                {% endif %}
+
+                                <div class="invalid-feedback"></div>
+                                {% if field.help_text %}
+                                    <div class="form-text">{{ field.help_text }}</div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="step-footer">
+                        {% if not forloop.first %}
+                            <button type="button" class="btn btn-outline-primary prev-step">
+                                <i class="fas fa-arrow-left"></i> Précédent
+                            </button>
+                        {% endif %}
+                        
+                        {% if forloop.last %}
+                            <button type="submit" class="btn btn-primary">
+                                Envoyer <i class="fas fa-paper-plane"></i>
+                            </button>
+                        {% else %}
+                            <button type="button" class="btn btn-primary next-step">
+                                Suivant <i class="fas fa-arrow-right"></i>
+                            </button>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="form-progress" data-form-progress>
+            {% for step in form_steps %}
+                <div class="progress-step {% if forloop.first %}active{% endif %}"
+                     data-step="{{ forloop.counter }}">
+                    <div class="progress-indicator">
+                        <span class="progress-number">{{ forloop.counter }}</span>
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <span class="progress-label">{{ step.title }}</span>
+                </div>
+                {% if not forloop.last %}
+                    <div class="progress-line"></div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </form>
+</div> 

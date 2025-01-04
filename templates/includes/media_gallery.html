@@ -1,0 +1,74 @@
+{% load static %}
+
+<div class="media-gallery" id="mediaGallery">
+    <div class="gallery-grid">
+        {% for media in media_items %}
+            <div class="gallery-item" data-media-id="{{ media.id }}">
+                {% if media.type == 'IMG' %}
+                    <img src="{{ media.file.url }}" 
+                         alt="{{ media.title }}"
+                         class="gallery-image"
+                         data-bs-toggle="modal"
+                         data-bs-target="#mediaModal"
+                         data-media-url="{{ media.file.url }}"
+                         data-media-title="{{ media.title }}"
+                         data-media-description="{{ media.description }}">
+                {% elif media.type == 'VID' %}
+                    <div class="video-thumbnail"
+                         data-bs-toggle="modal"
+                         data-bs-target="#mediaModal"
+                         data-media-url="{{ media.file.url }}"
+                         data-media-type="video"
+                         data-media-title="{{ media.title }}">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                {% elif media.type == 'DOC' %}
+                    <div class="document-thumbnail"
+                         onclick="window.open('{{ media.file.url }}', '_blank')">
+                        <i class="fas fa-file-alt"></i>
+                        <span>{{ media.title }}</span>
+                    </div>
+                {% endif %}
+                
+                {% if user.is_staff or user == media.listing.profile.user %}
+                    <div class="gallery-item-actions">
+                        <button class="btn btn-sm btn-danger delete-media" 
+                                data-media-id="{{ media.id }}"
+                                data-confirm="true"
+                                data-confirm-message="Supprimer ce média ?">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        {% if media.type == 'IMG' %}
+                            <button class="btn btn-sm btn-primary set-primary" 
+                                    data-media-id="{{ media.id }}"
+                                    {% if media.is_primary %}disabled{% endif %}>
+                                <i class="fas fa-star"></i>
+                            </button>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        {% empty %}
+            <div class="no-media">
+                <i class="fas fa-images"></i>
+                <p>Aucun média disponible</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Modal pour afficher les médias -->
+<div class="modal fade" id="mediaModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="media-container"></div>
+                <p class="media-description mt-3"></p>
+            </div>
+        </div>
+    </div>
+</div> 
