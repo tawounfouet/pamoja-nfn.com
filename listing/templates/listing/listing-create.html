@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load business_hours_filters %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">Create/Update Listing</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Listing Details</h4>
+            </div>
+            <div class="card-body">
+                {{ form.as_p }}
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Business Hours</h4>
+            </div>
+            <div class="card-body">
+                {{ business_hours_formset.management_form }}
+                {% for business_hours_form in business_hours_formset %}
+                    <div class="row">
+                        {% for day in "monday,tuesday,wednesday,thursday,friday,saturday,sunday"|split:"," %}
+                            <div class="col-md-6 mb-3">
+                                <div class="card">
+                                    <div class="card-header">
+                                        {{ day|title }}
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-check mb-2">
+                                            {{ business_hours_form|get_field:day|add:"_closed" }}
+                                            <label class="form-check-label">
+                                                Closed
+                                            </label>
+                                        </div>
+                                        <div class="row hours-inputs">
+                                            <div class="col">
+                                                <label>Opening Time</label>
+                                                {{ business_hours_form|get_field:day|add:"_open" }}
+                                            </div>
+                                            <div class="col">
+                                                <label>Closing Time</label>
+                                                {{ business_hours_form|get_field:day|add:"_close" }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+
+{% block extra_js %}
+<script>
+document.querySelectorAll('[id$="-closed"]').forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+        const dayInputs = this.closest('.card-body').querySelector('.hours-inputs');
+        dayInputs.style.display = this.checked ? 'none' : 'flex';
+    });
+});
+</script>
+{% endblock %}
+{% endblock %}

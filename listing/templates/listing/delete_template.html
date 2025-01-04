@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete "{{object}}" {% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <h2 class="mb-4">Delete {{object}}</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4> "{{object}}" Details</h4>
+            </div>
+            <div class="card-body">
+                <p>Are you sure you want to delete the  <strong> "{{object}}" </strong>?</p>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-danger">Delete</button>
+        {% comment %} <a href="{% url 'listing' listing.slug %}" class="btn btn-secondary">Cancel</a> {% endcomment %}
+        <a href="{% url 'listings' %}" class="btn btn-secondary">Cancel</a>
+
+    </form>
+
+</div>
+
+{% endblock %}
+
