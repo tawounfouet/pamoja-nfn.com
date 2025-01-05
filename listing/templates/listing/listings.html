@@ -56,7 +56,7 @@
                     <td>
                         {% comment %} add listing {% endcomment %}
 
-                        <a href="{% url 'create-listing' %}" class="btn btn-sm btn-success">Add</a>
+                        {% comment %} <a href="{% url 'create-listing' %}" class="btn btn-sm btn-success">Add</a> {% endcomment %}
                         <a href="{% url 'listing' listing.slug %}" class="btn btn-sm btn-info">View</a>
                     
                         <a href="{% url 'update-listing' listing.slug %}" class="btn btn-sm btn-warning">Edit</a>

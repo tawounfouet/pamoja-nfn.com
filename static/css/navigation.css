@@ -1,0 +1,129 @@
+/* Category Navigation */
+.category-navigation {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.category-item {
+    border-bottom: 1px solid #eee;
+}
+
+.category-item:last-child {
+    border-bottom: none;
+}
+
+.category-link {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.category-link:hover,
+.category-link.active {
+    background-color: #f8f9fa;
+    color: var(--primary-color);
+}
+
+.category-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.75rem;
+}
+
+.category-name {
+    flex: 1;
+}
+
+.category-count {
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+.subcategory-list {
+    padding-left: 2.5rem;
+    background: #f8f9fa;
+}
+
+.subcategory-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.subcategory-link:hover,
+.subcategory-link.active {
+    color: var(--primary-color);
+}
+
+/* Filter Sidebar */
+.filter-sidebar {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+}
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.filter-section {
+    margin-bottom: 1.5rem;
+}
+
+.filter-section h6 {
+    margin-bottom: 0.75rem;
+    color: var(--secondary-color);
+}
+
+.tag-cloud {
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.tag-count {
+    color: #6c757d;
+    font-size: 0.8rem;
+}
+
+.rating-filter {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.rating-filter input[type="radio"] {
+    display: none;
+}
+
+.rating-filter label {
+    cursor: pointer;
+    color: #ccc;
+}
+
+.rating-filter input[type="radio"]:checked ~ label,
+.rating-filter label:hover,
+.rating-filter label:hover ~ label {
+    color: #ffc107;
+}
+
+.clear-filters {
+    font-size: 0.875rem;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.clear-filters:hover {
+    text-decoration: underline;
+} 

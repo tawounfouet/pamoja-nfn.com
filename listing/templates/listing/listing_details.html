@@ -32,7 +32,7 @@
             {% if listing.tags.all %}
                 <p><strong>Tags:</strong>
                     {% for tag in listing.tags.all %}
-                        <span class="badge bg-primary">{{ tag.name }}</span>
+                        <span class="badge bg-custom-primary">{{ tag.name }}</span>
                     {% endfor %}
                 </p>
             {% endif %}

@@ -1,0 +1,69 @@
+/* Listing Card */
+.listing-card {
+    transition: transform 0.2s;
+}
+
+.listing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.listing-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.listing-card .tags .badge {
+    margin-right: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+/* Notifications */
+.notification-item {
+    display: flex;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+    transition: background-color 0.2s;
+}
+
+.notification-item.unread {
+    background-color: #f8f9fa;
+}
+
+.notification-icon {
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    color: var(--primary-color);
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-title {
+    font-weight: bold;
+}
+
+.mark-read-btn {
+    color: var(--primary-color);
+    padding: 0;
+}
+
+.mark-read-btn:hover {
+    color: var(--secondary-color);
+}
+
+/* Pagination */
+.pagination {
+    margin-top: 2rem;
+}
+
+.page-link {
+    color: var(--primary-color);
+}
+
+.page-item.active .page-link {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+} 
