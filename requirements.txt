@@ -1,13 +1,16 @@
 asgiref==3.8.1
 Django==5.1.4
-gunicorn==23.0.0
-packaging==24.2
+pillow==11.1.0
 sqlparse==0.5.3
-typing_extensions==4.12.2
 
-ipinfo
-python-decouple 
-python-dotenv 
-user-agents
-#whitenoise
-whitenoise
+django-taggit
+python-decouple
+dj-database-url
+#python-dotenv
+psycopg2-binary
+django-admin-interface
+django-model-utils
+django-phonenumber-field
+django-countries
+#django-phonenumber-field[phonenumbers]
+phonenumbers
