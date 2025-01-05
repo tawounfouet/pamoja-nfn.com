@@ -9,43 +9,66 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# pip install python-decouple
+from decouple import config
+
+from datetime import timedelta
+
+# pip install dj-database-url
+import dj_database_url
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ta+t=13qnrq(+e0&8b9wdvhah)mi=a#ipa64(27yd4myfb2!t)'
+SECRET_KEY = 'django-insecure-(x5_^%xb^0f^3f0e_2$i!!8gup^+sruewtd_y)zg$em$*(mfgt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1' ,'pamoja-nfn-com.onrender.com']
+ALLOWED_HOSTS = []
+
 
 # Application definition
+
 INSTALLED_APPS = [
+    # For Custom Admin Interface
+    'admin_interface',
+    'colorfield',
+    #----------------#
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Third-party apps
+    'taggit',
+    'phonenumber_field',
+    'django_countries',
     
-    'authentication',
-    'analytics',
-    'users',
+    "authentication",
+    "location",
+    "messaging",
+    "favorites",
+    "listing",
+    "search",
+    'pages',
+
+    "users",
+   
+   
 ]
 
-
-
-
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',    # Whitenoise middleware for staticfiles
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -53,9 +76,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-        # Created 
-    'analytics.middleware.VisitorLoggingMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -63,7 +83,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,13 +102,33 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
+# Load environment variables from the .env file
+# pip install python-dotenv
+
+# from dotenv import load_dotenv
+# load_dotenv()
+
+
+# Database configuration
+DATABASE_URL = config(
+    'DATABASE_URL',
+    default=f'sqlite:///{BASE_DIR}/db.sqlite3'
+)
+
+DATABASES = {
+    'default': dj_database_url.parse(
+        DATABASE_URL,
+        conn_max_age=600,
+        conn_health_checks=True
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -125,13 +165,39 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+#STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+#STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / "assets"
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+# Media files (Images, Videos, etc)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+# MEDIA_URL = '/uploads/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+# Custom User Model
 AUTH_USER_MODEL = 'authentication.User'
+
+
+# Make tags case insensitive
+TAGGIT_CASE_INSENSITIVE = True
+
+# # Configure tag string parsing
+# TAGGIT_TAGS_FROM_STRING = 'custom_tags.tag_splitter'  # Your custom parsing function
+
+# # Configure tag string representation
+# TAGGIT_STRING_FROM_TAGS = 'custom_tags.tag_joiner'    # Your custom joining function
+
+# Configuration pour phonenumber_field
+PHONENUMBER_DB_FORMAT = "E164"     # Format de stockage en base
