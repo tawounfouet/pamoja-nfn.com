@@ -1,0 +1,401 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load phone_filters %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <!-- Colonne de gauche - Informations principales -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    {% if profile.profile_image %}
+                        <img src="{{ profile.profile_image.url }}" class="rounded-circle img-fluid mb-3" alt="{{ profile.full_name }}" style="max-width: 150px;">
+                    {% else %}
+                        <img src="https://ui-avatars.com/api/?name={{ profile.full_name }}&background=random&color=fff" class="rounded-circle mb-3" alt="Default avatar" style="width: 150px; height: 150px; object-fit: cover;">
+                    {% endif %}
+                    
+                    <h3 class="card-title">{{ profile.full_name }}</h3>
+                    
+                    <!-- Badges de statut -->
+                    <div class="mb-3">
+                        {% if profile.verified %}
+                            <span class="badge verified-badge">Vérifié</span>
+                        {% endif %}
+                        <span class="badge reputation-badge">{{ profile.reputation_level|title }}</span>
+                        {% if profile.is_recently_active %}
+                            <span class="badge active-badge">Actif</span>
+                        {% endif %}
+                    </div>
+
+                    <!-- Barre de progression du profil -->
+                    <div class="progress mb-3">
+                        <div class="progress-bar {% if profile.completion_percentage < 50 %}low-progress{% else %}custom-progress{% endif %}" 
+                             role="progressbar" 
+                             style="width: {{ profile.completion_percentage }}%">
+                            {{ profile.completion_percentage }}% Complet
+                        </div>
+                    </div>
+
+                    <!-- Score de réputation -->
+                    <p class="text-muted">
+                        <i class="fas fa-star text-accent"></i> Score: {{ profile.reputation_score }}
+                    </p>
+
+                    <!-- Date d'inscription -->
+                    <p class="text-muted">
+                        <i class="fas fa-calendar text-accent"></i> Membre depuis {{ profile.profile_age }} jours
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Colonne de droite - Détails -->
+        <div class="col-md-8">
+            <!-- Bio -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">À propos</h5>
+                    <p class="card-text">{{ profile.bio|linebreaks|default:"Aucune biographie disponible." }}</p>
+                </div>
+            </div>
+
+            <!-- Langues -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">Langues</h5>
+                    <div class="d-flex flex-wrap gap-2">
+                        {% for language in profile.languages.all %}
+                            <span class="badge language-badge">{{ language.name }}</span>
+                        {% empty %}
+                            <p class="text-muted">Aucune langue spécifiée</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Informations de contact -->
+            {% if profile.contact_infos %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Contact</h5>
+                    <ul class="list-unstyled contact-list">
+                        <li>
+                            <i class="fas fa-globe"></i>
+                            {{ profile.contact_infos.country.name }}
+                        </li>
+                        {% if profile.contact_infos.mobile_phone %}
+                            <li>
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:{{ profile.contact_infos.mobile_phone }}" class="phone-link">
+                                    {{ profile.contact_infos.mobile_phone|phone_format }}
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if profile.contact_infos.whatsapp_number %}
+                            <li>
+                                <a href="https://wa.me/{{ profile.contact_infos.whatsapp_number|cut:'+' }}?text=Bonjour, je vous contacte via Pamoja où j'ai vu votre profil. {{ request.user.first_name|default:request.user.username }}"
+                                   class="whatsapp-link"
+                                   target="_blank">
+                                    <i class="fab fa-whatsapp"></i> 
+                                    {{ profile.contact_infos.whatsapp_number|phone_format }}
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if profile.contact_infos.contact_email %}
+                            <li>
+                                <a href="mailto:{{ profile.contact_infos.contact_email }}" class="email-link">
+                                    <i class="fas fa-envelope"></i> {{ profile.contact_infos.contact_email }}
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                    <p class="text-muted">
+                        <small>Méthode de contact préférée : {{ profile.contact_infos.get_preferred_contact_display }}</small>
+                    </p>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Réseaux sociaux -->
+            {% with social_presence=profile.get_social_presence %}
+            {% if social_presence %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Réseaux sociaux</h5>
+                    <div class="social-links d-flex gap-3">
+                        {% if social_presence.facebook %}
+                            <a href="{{ social_presence.facebook }}" class="social-link facebook" target="_blank" title="Facebook">
+                                <i class="fab fa-facebook fa-2x"></i>
+                            </a>
+                        {% endif %}
+                        {% if social_presence.instagram %}
+                            <a href="{{ social_presence.instagram }}" class="social-link instagram" target="_blank" title="Instagram">
+                                <i class="fab fa-instagram fa-2x"></i>
+                            </a>
+                        {% endif %}
+                        {% if social_presence.twitter %}
+                            <a href="{{ social_presence.twitter }}" class="social-link twitter" target="_blank" title="Twitter">
+                                <i class="fab fa-twitter fa-2x"></i>
+                            </a>
+                        {% endif %}
+                        {% if social_presence.linkedin %}
+                            <a href="{{ social_presence.linkedin }}" class="social-link linkedin" target="_blank" title="LinkedIn">
+                                <i class="fab fa-linkedin fa-2x"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endwith %}
+
+            <!-- Informations de vérification -->
+            {% if profile.verified %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Vérification</h5>
+                    <p>
+                        Vérifié le {{ profile.verification_date|date:"d/m/Y" }}
+                        {% if profile.verification_status.verified_by %}
+                            par {{ profile.verification_status.verified_by }}
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+
+<style>
+    :root {
+        --primary-color: #56311F;
+        --primary-rgb: 86, 49, 31;
+        --secondary-color: #B06D42;
+        --accent-color: #C19875;
+        --dark-color: rgb(41, 26, 13);
+        --danger-color: #dc3545;
+    }
+
+    .card {
+        transition: transform 0.2s;
+        border-color: var(--accent-color);
+    }
+
+    .badge {
+        font-size: 0.9em;
+        padding: 8px 12px;
+    }
+
+    .verified-badge {
+        background-color: var(--secondary-color);
+        color: white;
+    }
+
+    .reputation-badge {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    .active-badge {
+        background-color: var(--accent-color);
+        color: var(--dark-color);
+    }
+
+    .language-badge {
+        background-color: var(--dark-color);
+        color: var(--accent-color);
+    }
+
+    .progress {
+        height: 25px;
+        background-color: rgba(var(--primary-rgb), 0.1);
+    }
+
+    .custom-progress {
+        background-color: var(--secondary-color);
+        transition: width 0.3s ease;
+    }
+
+    .low-progress {
+        background-color: var(--danger-color);
+        transition: width 0.3s ease;
+    }
+
+    .text-primary {
+        color: var(--primary-color) !important;
+    }
+
+    .text-accent {
+        color: var(--accent-color);
+    }
+
+    .card-title {
+        border-bottom: 2px solid var(--accent-color);
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Style pour les icônes dans les listes */
+    .list-unstyled i {
+        color: var(--accent-color);
+        width: 24px;
+        text-align: center;
+        margin-right: 8px;
+    }
+
+    /* Style pour les liens sociaux */
+    .social-links a {
+        color: var(--dark-color);
+        transition: color 0.3s;
+    }
+    .social-links a:hover {
+        color: var(--primary-color);
+    }
+
+    /* Animation de la barre de progression */
+    .progress-bar {
+        transition: width 1s ease-in-out;
+    }
+
+    /* Style pour les cartes au survol */
+    .card:hover {
+        box-shadow: 0 5px 15px rgba(var(--primary-rgb), 0.2);
+    }
+
+    /* Style pour les alertes et messages */
+    .alert {
+        border-left: 4px solid var(--primary-color);
+    }
+
+    /* Style pour les éléments de contact */
+    .contact-info li {
+        margin-bottom: 0.5rem;
+        padding: 0.5rem;
+        border-radius: 4px;
+        background-color: rgba(var(--primary-rgb), 0.05);
+    }
+
+    /* Style pour le lien WhatsApp */
+    .whatsapp-link {
+        color: #25D366;  /* Couleur officielle WhatsApp */
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    
+    .whatsapp-link:hover {
+        color: #128C7E;  /* Version plus foncée pour le hover */
+        text-decoration: none;
+    }
+    
+    .whatsapp-link i {
+        color: #25D366;
+    }
+    
+    .whatsapp-link:hover i {
+        color: #128C7E;
+    }
+
+    /* Style pour les contacts */
+    .contact-list li {
+        margin-bottom: 1rem;
+        padding: 0.75rem;
+        border-radius: 8px;
+        background-color: rgba(var(--primary-rgb), 0.05);
+        transition: all 0.3s ease;
+    }
+
+    .contact-list li:hover {
+        background-color: rgba(var(--primary-rgb), 0.1);
+    }
+
+    .country-flag {
+        font-size: 1.2em;
+        margin-right: 10px;
+    }
+
+    .phone-link {
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .phone-link:hover {
+        color: var(--secondary-color);
+    }
+
+    .email-link {
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .email-link:hover {
+        color: var(--secondary-color);
+    }
+
+    /* Style pour les réseaux sociaux */
+    .social-link {
+        transition: all 0.3s ease;
+        margin: 0 10px;
+    }
+
+    .social-link.facebook {
+        color: #1877f2;
+        opacity: 0.8;
+    }
+
+    .social-link.facebook:hover {
+        color: #1877f2;
+        opacity: 0.8;
+    }
+
+    .social-link.instagram {
+        color: #e4405f;
+        opacity: 0.8;
+    }
+
+    .social-link.instagram:hover {
+        color: #e4405f;
+        opacity: 0.8;
+    }
+
+    .social-link.twitter {
+        color: #1da1f2;
+        opacity: 0.8;
+    }
+
+    .social-link.twitter:hover {
+        color: #1da1f2;
+        opacity: 0.8;
+    }
+
+    .social-link.linkedin {
+        color: #0077b5;
+        opacity: 0.8;
+    }
+
+    .social-link.linkedin:hover {
+        color: #0077b5;
+        opacity: 0.8;
+    }
+
+    /* Style pour WhatsApp */
+    .whatsapp-link {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #25D366;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    
+    .whatsapp-link:hover {
+        color: #128C7E;
+    }
+</style>
+{% endblock %}

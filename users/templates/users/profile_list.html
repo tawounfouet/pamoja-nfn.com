@@ -1,0 +1,262 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- En-tête avec filtres et recherche -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h1 class="mb-3">Annuaire des membres</h1>
+        </div>
+        <div class="col-md-4">
+            <form method="get" class="d-flex gap-2">
+                <input type="search" name="q" class="form-control" placeholder="Rechercher..." value="{{ request.GET.q }}">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Filtres -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <form method="get" class="row g-3">
+                        <div class="col-md-3">
+                            <label class="form-label">Langue</label>
+                            <select name="language" class="form-select">
+                                <option value="">Toutes les langues</option>
+                                {% for lang in languages %}
+                                    <option value="{{ lang.code }}" {% if request.GET.language == lang.code %}selected{% endif %}>
+                                        {{ lang.name }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Statut</label>
+                            <select name="status" class="form-select">
+                                <option value="">Tous les statuts</option>
+                                <option value="verified" {% if request.GET.status == 'verified' %}selected{% endif %}>Vérifié</option>
+                                <option value="unverified" {% if request.GET.status == 'unverified' %}selected{% endif %}>Non vérifié</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Niveau</label>
+                            <select name="level" class="form-select">
+                                <option value="">Tous les niveaux</option>
+                                <option value="expert" {% if request.GET.level == 'expert' %}selected{% endif %}>Expert</option>
+                                <option value="advanced" {% if request.GET.level == 'advanced' %}selected{% endif %}>Avancé</option>
+                                <option value="intermediate" {% if request.GET.level == 'intermediate' %}selected{% endif %}>Intermédiaire</option>
+                                <option value="beginner" {% if request.GET.level == 'beginner' %}selected{% endif %}>Débutant</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 d-flex align-items-end">
+                            <button type="submit" class="btn btn-primary w-100">Filtrer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Liste des profils -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for profile in profiles %}
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <!-- Image de profil -->
+                    {% if profile.profile_image %}
+                        <img src="{{ profile.profile_image.url }}" class="rounded-circle mb-3" alt="{{ profile.full_name }}" style="width: 100px; height: 100px; object-fit: cover;">
+                    {% else %}
+                        {% comment %} <img src="https://api.dicebear.com/7.x/shapes/svg?seed={{ profile.user.username }}" class="rounded-circle mb-3" alt="Default avatar" style="width: 100px; height: 100px; object-fit: cover;"> {% endcomment %}
+                        <img src="https://ui-avatars.com/api/?name={{ profile.full_name }}&background=random&color=fff" class="rounded-circle mb-3" alt="Default avatar" style="width: 100px; height: 100px; object-fit: cover;">
+                    {% endif %}
+
+                    <!-- Nom et badges -->
+                    <h5 class="card-title mb-2">{{ profile.full_name }}</h5>
+                    <div class="mb-3">
+                        {% if profile.verified %}
+                            <span class="badge verified-badge">Vérifié</span>
+                        {% endif %}
+                        <span class="badge reputation-badge">{{ profile.reputation_level|title }}</span>
+                        {% if profile.is_recently_active %}
+                            <span class="badge active-badge">Actif</span>
+                        {% endif %}
+                    </div>
+
+                    <!-- Langues -->
+                    <div class="mb-3">
+                        {% for language in profile.languages.all|slice:":3" %}
+                            <span class="badge language-badge">{{ language.name }}</span>
+                        {% endfor %}
+                        {% if profile.languages.count > 3 %}
+                            <span class="badge language-badge">+{{ profile.languages.count|add:"-3" }}</span>
+                        {% endif %}
+                    </div>
+
+                    <!-- Bio courte -->
+                    <p class="card-text text-muted small">
+                        {{ profile.bio|truncatewords:20 }}
+                    </p>
+
+                    <!-- Barre de progression -->
+                    <div class="progress mb-3" style="height: 5px;">
+                        <div class="progress-bar custom-progress" role="progressbar" style="width: {{ profile.completion_percentage }}%"></div>
+                    </div>
+
+                    <!-- Liens -->
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'profile-detail' profile.id %}" class="btn btn-outline-custom">
+                            Voir le profil
+                        </a>
+                        {% if user.is_authenticated and user == profile.user %}
+                        <a href="{% url 'profile-update' profile.id %}" class="btn btn-outline-accent">
+                            Modifier
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="card-footer text-muted text-center">
+                    <small>
+                        <i class="fas fa-calendar"></i> Membre depuis {{ profile.profile_age }} jours
+                    </small>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info text-center">
+                Aucun profil ne correspond à vos critères de recherche.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if is_paginated %}
+    <nav class="mt-4">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
+                        <i class="fas fa-angle-double-left"></i>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
+                        <i class="fas fa-angle-left"></i>
+                    </a>
+                </li>
+            {% endif %}
+
+            <li class="page-item active">
+                <span class="page-link">
+                    Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}
+                </span>
+            </li>
+
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
+                        <i class="fas fa-angle-double-right"></i>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --primary-color: #56311F;
+        --primary-rgb: 86, 49, 31;
+        --secondary-color: #B06D42;
+        --accent-color: #C19875;
+        --dark-color: rgb(41, 26, 13);
+    }
+
+    .card {
+        transition: transform 0.2s;
+        border-color: var(--accent-color);
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(var(--primary-rgb), 0.2);
+    }
+
+    .badge {
+        font-size: 0.8em;
+        padding: 5px 10px;
+    }
+
+    .verified-badge {
+        background-color: var(--secondary-color);
+        color: white;
+    }
+
+    .reputation-badge {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    .active-badge {
+        background-color: var(--accent-color);
+        color: var(--dark-color);
+    }
+
+    .language-badge {
+        background-color: var(--dark-color);
+        color: var(--accent-color);
+    }
+
+    .progress {
+        background-color: rgba(var(--primary-rgb), 0.1);
+    }
+
+    .custom-progress {
+        background-color: var(--secondary-color);
+    }
+
+    .btn-outline-custom {
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+    .btn-outline-custom:hover {
+        color: white;
+        background-color: var(--primary-color);
+    }
+
+    .btn-outline-accent {
+        color: var(--accent-color);
+        border-color: var(--accent-color);
+    }
+    .btn-outline-accent:hover {
+        color: var(--dark-color);
+        background-color: var(--accent-color);
+    }
+
+    .page-link {
+        color: var(--primary-color);
+    }
+    .page-link:hover {
+        color: var(--secondary-color);
+    }
+    .page-item.active .page-link {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+</style>
+{% endblock %}

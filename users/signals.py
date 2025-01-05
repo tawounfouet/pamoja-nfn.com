@@ -5,7 +5,7 @@ from django.conf import settings
 from django.utils import timezone
 
 from authentication.models import User
-from .models import Profile, Notification
+from .models import Profile, Notification, NotificationType
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -25,15 +25,15 @@ def handle_profile_update(sender, instance, created, **kwargs):
         cache.delete_many(cache_keys)
 
         # Vérifier les changements importants
-        if instance.tracker.has_changed('verified'):
-            if instance.verified:
-                Notification.create_notification(
-                    user=instance.user,
-                    notification_type='PROFILE_VERIFIED',
-                    title="Profil vérifié",
-                    message="Votre profil a été vérifié avec succès !",
-                    priority=2
-                )
+        if instance.tracker.has_changed('verified') and instance.verified:
+            # Créer une notification quand le profil est vérifié
+            Notification.create_notification(
+                user=instance.user,
+                notification_type=NotificationType.PROFILE_VERIFIED,
+                title="Profil vérifié",
+                message="Votre profil a été vérifié avec succès.",
+                related_object=instance
+            )
 
 @receiver(post_save, sender=Notification)
 def handle_notification_creation(sender, instance, created, **kwargs):
