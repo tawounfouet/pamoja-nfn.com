@@ -29,7 +29,12 @@ db.sqlite3-journal
 #static/*
 #media/.gitkeep
 #static/.gitkeep
-assets/
+
+# Only ignore assets folder in project root
+/assets/
+
+
+#assets/
 
 
 # Environment

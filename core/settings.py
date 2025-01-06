@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     "favorites",
     "listing",
     "search",
+    "theme",
     'pages',
 
     "users",

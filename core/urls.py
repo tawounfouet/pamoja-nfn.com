@@ -25,8 +25,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', include('pages.urls')),
+    path('theme/', include('theme.urls')),
     path('listing/', include('listing.urls')),
     path('users/', include('users.urls')),
+
 
 ]
 

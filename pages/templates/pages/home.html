@@ -12,7 +12,7 @@
         <div class="row align-items-center">
             <div class="col-lg-6 hero-content">
                 <h1 class="display-4 fw-bold mb-4">
-                    <span class="gradient-text">Bienvenue sur Pamoja</span>
+                    <span class="gradient-text typing-text">Bienvenue sur Pamoja</span>
                 </h1>
                 <p class="lead mb-4">
                     Connectez-vous avec la communauté africaine, partagez vos compétences 
@@ -20,8 +20,8 @@
                 </p>
                 <div class="d-flex gap-3 flex-wrap justify-content-center justify-content-lg-start">
                     {% if not user.is_authenticated %}
-                        <a href="{% url 'register' %}" class="btn btn-primary btn-lg">Rejoindre la communauté</a>
-                        <a href="{% url 'login' %}" class="btn btn-outline-primary btn-lg">Se connecter</a>
+                        <a href="#" class="btn btn-primary btn-lg">Rejoindre la communauté</a>
+                        <a href="#" class="btn btn-outline-primary btn-lg">Se connecter</a>
                     {% else %}
                         <a href="{% url 'profile-list' %}" class="btn btn-primary btn-lg">Explorer les profils</a>
                         <a href="{% url 'create-listing' %}" class="btn btn-outline-primary btn-lg">Créer une annonce</a>
@@ -532,6 +532,40 @@
         0% { transform: scale(1); }
         50% { transform: scale(1.05); }
         100% { transform: scale(1); }
+    }
+
+    /* Typing Animation */
+    .typing-text {
+        display: block;
+        width: fit-content;
+        position: relative;
+        border-right: 2px solid var(--primary-color);
+        white-space: nowrap;
+        overflow: hidden;
+        animation: typing 3s steps(20),
+                   cursor .4s step-end infinite alternate,
+                   hideCursor 1s 2s forwards;
+    }
+
+    @keyframes typing {
+        from { width: 0 }
+        to { width: 100% }
+    }
+
+    @keyframes cursor {
+        50% { border-color: transparent }
+    }
+
+    @keyframes hideCursor {
+        to {
+            border-right-color: transparent;
+        }
+    }
+
+    @media (max-width: 991.98px) {
+        .typing-text {
+            margin: 0 auto;
+        }
     }
 </style>
 {% endblock %}
