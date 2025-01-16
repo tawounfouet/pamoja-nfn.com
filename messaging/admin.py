@@ -13,7 +13,7 @@ class AttachmentInline(admin.TabularInline):
     fields = ('file', 'file_name', 'file_type', 'uploaded_at')
     readonly_fields = ('uploaded_at',)
 
-@admin.register(Conversation)
+#@admin.register(Conversation)
 class ConversationAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'created_at', 'updated_at')
     list_filter = ('created_at', 'updated_at')
@@ -21,7 +21,7 @@ class ConversationAdmin(admin.ModelAdmin):
     inlines = [MessageInline]
     filter_horizontal = ('participants',)
 
-@admin.register(Message)
+#@admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
     list_display = ('sender', 'conversation', 'content', 'status', 'created_at')
     list_filter = ('status', 'created_at')
@@ -40,7 +40,7 @@ class MessageAdmin(admin.ModelAdmin):
             message.mark_as_delivered()
     mark_as_delivered.short_description = "Marquer comme délivré"
 
-@admin.register(MessageAttachment)
+#@admin.register(MessageAttachment)
 class MessageAttachmentAdmin(admin.ModelAdmin):
     list_display = ('file_name', 'file_type', 'message', 'uploaded_at')
     list_filter = ('file_type', 'uploaded_at')

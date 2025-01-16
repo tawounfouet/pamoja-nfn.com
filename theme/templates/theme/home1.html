@@ -14,7 +14,7 @@
       <link href="{% static 'theme/assets/libs/tiny-slider/dist/tiny-slider.css' %}" rel="stylesheet" />
 
       <!-- Favicon icon-->
-      <link rel="shortcut icon" type="image/x-icon" href="{% static 'theme/assets/images/favicon/favicon.ico' %}" />
+      <link rel="shortcut icon" type="image/x-icon" href="{% static 'theme/assets/images/logo/pamoja-icon.png' %}" />
 
       <!-- Libs CSS -->
       <link href="{% static 'theme/assets/libs/bootstrap-icons/font/bootstrap-icons.min.css' %}" rel="stylesheet" />
@@ -28,13 +28,17 @@
    <body>
       <!-- navbar -->
       <div class="border-bottom">
-         <div class="bg-light py-1">
-            <div class="container">
-               <div class="row">
-                  <div class="col-md-6 col-12 text-center text-md-start"><span>Super Value Deals - Save more with coupons</span></div>
+         <!-- <div class="bg-light py-1"> -->
+            <div class="py-1" style="background-color: #56311E;">
+               <div class="container">
+                  <div class="row">
+                  <div class="col-md-6 col-12 text-center text-md-start">
+                      <span class="text-white">Le référencement intuitif - Avec Pamoja</span>
+                     <!-- <span>Bienvenue sur Pamoja -  Le référencement intuitif</span> -->
+                  </div>
                   <div class="col-6 text-end d-none d-md-block">
                      <div class="dropdown selectBox">
-                        <a class="dropdown-toggle selectValue text-reset" href="javascript:void(0)" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="dropdown-toggle selectValue text-white" href="javascript:void(0)" data-bs-toggle="dropdown" aria-expanded="false">
                            <span class="me-2">
                               <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                  <g clip-path="url(#selectedlang)">
@@ -52,6 +56,23 @@
                                     </clipPath>
                                  </defs>
                               </svg>
+
+                              <!-- <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                 <g clip-path="url(#selectedlang)">
+                                    <path d="M0 0.5H16V12.5H0V0.5Z" fill="#012169" />
+                                    <path d="M1.875 0.5L7.975 5.025L14.05 0.5H16V2.05L10 6.525L16 10.975V12.5H14L8 8.025L2.025 12.5H0V11L5.975 6.55L0 2.1V0.5H1.875Z" fill="white" />
+                                    <path
+                                       d="M10.6 7.525L16 11.5V12.5L9.225 7.525H10.6ZM6 8.025L6.15 8.9L1.35 12.5H0L6 8.025ZM16 0.5V0.575L9.775 5.275L9.825 4.175L14.75 0.5H16ZM0 0.5L5.975 4.9H4.475L0 1.55V0.5Z"
+                                       fill="#C8102E" />
+                                    <path d="M6.025 0.5V12.5H10.025V0.5H6.025ZM0 4.5V8.5H16V4.5H0Z" fill="white" />
+                                    <path d="M0 5.325V7.725H16V5.325H0ZM6.825 0.5V12.5H9.225V0.5H6.825Z" fill="#C8102E" />
+                                 </g>
+                                 <defs>
+                                    <clipPath id="selectedlang">
+                                       <rect width="16" height="12" fill="white" transform="translate(0 0.5)" />
+                                    </clipPath>
+                                 </defs>
+                              </svg> -->
                            </span>
                            English
                         </a>
@@ -110,18 +131,18 @@
                <div class="row w-100 align-items-center gx-lg-2 gx-0">
                   <div class="col-xxl-2 col-lg-3 col-md-6 col-5">
                      <a class="navbar-brand d-none d-lg-block" href="./index.html">
-                        <img src="{% static 'theme/assets/images/logo/freshcart-logo.svg' %}" alt="eCommerce HTML Template" />
+                        <img src="{% static 'theme/assets/images/logo/pamoja-logo.svg' %}" alt="eCommerce HTML Template" />
                      </a>
                      <div class="d-flex justify-content-between w-100 d-lg-none">
                         <a class="navbar-brand" href="./index.html">
-                           <img src="{% static 'theme/assets/images/logo/freshcart-logo.svg' %}" alt="eCommerce HTML Template" />
+                           <img src="{% static 'theme/assets/images/logo/pamoja-logo.svg' %}" alt="eCommerce HTML Template" />
                         </a>
                      </div>
                   </div>
                   <div class="col-xxl-5 col-lg-5 d-none d-lg-block">
                      <form action="#">
                         <div class="input-group">
-                           <input class="form-control rounded" type="search" placeholder="Search for products" />
+                           <input class="form-control rounded" type="search" placeholder="Rechercher un professionnel, un commerce ..." />
                            <span class="input-group-append">
                               <button class="btn bg-white border border-start-0 ms-n10 rounded-0 rounded-end" type="button">
                                  <svg
@@ -152,7 +173,7 @@
                   </div>
                   <div class="col-lg-2 col-xxl-2 text-end col-md-6 col-7">
                      <div class="list-inline">
-                        <div class="list-inline-item me-5">
+                        {% comment %} <div class="list-inline-item me-5">
                            <a href="./pages/shop-wishlist.html" class="text-muted position-relative">
                               <svg
                                  xmlns="http://www.w3.org/2000/svg"
@@ -167,12 +188,12 @@
                                  class="feather feather-heart">
                                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                               </svg>
-                              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
                                  5
                                  <span class="visually-hidden">unread messages</span>
-                              </span>
+                              </span> 
                            </a>
-                        </div>
+                        </div> {% endcomment %}
                         <div class="list-inline-item me-5">
                            <a href="#!" class="text-muted" data-bs-toggle="modal" data-bs-target="#userModal">
                               <svg
@@ -194,24 +215,22 @@
                         <div class="list-inline-item me-5 me-lg-0">
                            <a class="text-muted position-relative" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" href="#offcanvasExample" role="button" aria-controls="offcanvasRight">
                               <svg
-                                 xmlns="http://www.w3.org/2000/svg"
-                                 width="20"
-                                 height="20"
-                                 viewBox="0 0 24 24"
-                                 fill="none"
-                                 stroke="currentColor"
-                                 stroke-width="2"
-                                 stroke-linecap="round"
-                                 stroke-linejoin="round"
-                                 class="feather feather-shopping-bag">
-                                 <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                                 <line x1="3" y1="6" x2="21" y2="6"></line>
-                                 <path d="M16 10a4 4 0 0 1-8 0"></path>
-                              </svg>
-                              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="feather feather-heart">
+                              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                           </svg>
+                              {% comment %} <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
                                  1
                                  <span class="visually-hidden">unread messages</span>
-                              </span>
+                              </span> {% endcomment %}
                            </a>
                         </div>
                         <div class="list-inline-item d-inline-block d-lg-none">
@@ -239,7 +258,7 @@
             <div class="container">
                <div class="offcanvas offcanvas-start" tabindex="-1" id="navbar-default" aria-labelledby="navbar-defaultLabel">
                   <div class="offcanvas-header pb-1">
-                     <a href="./index.html"><img src="{% static 'theme/assets/images/logo/freshcart-logo.svg' %}" alt="eCommerce HTML Template" /></a>
+                     <a href="./index.html"><img src="{% static 'theme/assets/images/logo/pamoja-logo.svg' %}" alt="eCommerce HTML Template" /></a>
                      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                   </div>
                   <div class="offcanvas-body">
@@ -300,18 +319,21 @@
                                  <rect x="3" y="14" width="7" height="7"></rect>
                               </svg>
                            </span>
-                           All Departments
+                           Nos Catégories
                         </a>
                         <div class="collapse mt-2" id="collapseExample">
                            <div class="card card-body">
                               <ul class="mb-0 list-unstyled">
-                                 <li><a class="dropdown-item" href="./pages/shop-grid.html">Dairy, Bread & Eggs</a></li>
+                                {% for category in categories %}
+                                    <li><a class="dropdown-item" href="./pages/shop-grid.html">{{ category.name }}</a></li>
+                                {% endfor %}
+                                 {% comment %} <li><a class="dropdown-item" href="./pages/shop-grid.html">Dairy, Bread & Eggs</a></li>
                                  <li><a class="dropdown-item" href="./pages/shop-grid.html">Snacks & Munchies</a></li>
                                  <li><a class="dropdown-item" href="./pages/shop-grid.html">Fruits & Vegetables</a></li>
                                  <li><a class="dropdown-item" href="./pages/shop-grid.html">Cold Drinks & Juices</a></li>
                                  <li><a class="dropdown-item" href="./pages/shop-grid.html">Breakfast & Instant Food</a></li>
                                  <li><a class="dropdown-item" href="./pages/shop-grid.html">Bakery & Biscuits</a></li>
-                                 <li><a class="dropdown-item" href="./pages/shop-grid.html">Chicken, Meat & Fish</a></li>
+                                 <li><a class="dropdown-item" href="./pages/shop-grid.html">Chicken, Meat & Fish</a></li> {% endcomment %}
                               </ul>
                            </div>
                         </div>
@@ -336,25 +358,29 @@
                                  <rect x="3" y="14" width="7" height="7"></rect>
                               </svg>
                            </span>
-                           All Departments
+                           Nos Catégories
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                           <li><a class="dropdown-item" href="./pages/shop-grid.html">Dairy, Bread & Eggs</a></li>
+                            {% for category in categories %}
+                                <li><a class="dropdown-item" href="./pages/shop-grid.html">{{ category.name }}</a></li>
+                            {% endfor %}
+                           {% comment %} <li><a class="dropdown-item" href="./pages/shop-grid.html">Dairy, Bread & Eggs</a></li>
                            <li><a class="dropdown-item" href="./pages/shop-grid.html">Snacks & Munchies</a></li>
                            <li><a class="dropdown-item" href="./pages/shop-grid.html">Fruits & Vegetables</a></li>
                            <li><a class="dropdown-item" href="./pages/shop-grid.html">Cold Drinks & Juices</a></li>
                            <li><a class="dropdown-item" href="./pages/shop-grid.html">Breakfast & Instant Food</a></li>
                            <li><a class="dropdown-item" href="./pages/shop-grid.html">Bakery & Biscuits</a></li>
-                           <li><a class="dropdown-item" href="./pages/shop-grid.html">Chicken, Meat & Fish</a></li>
+                           <li><a class="dropdown-item" href="./pages/shop-grid.html">Chicken, Meat & Fish</a></li> {% endcomment %}
                         </ul>
                      </div>
                      <div>
                         <ul class="navbar-nav align-items-center">
                            <li class="nav-item dropdown w-100 w-lg-auto">
-                              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Home</a>
+                           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Accueil</a>
+                           <!-- <a class="nav-link" href="./dashboard/index.html">Accueil</a> -->
                               <ul class="dropdown-menu">
-                                 <li><a class="dropdown-item" href="./index.html">Home 1</a></li>
-                                 <li><a class="dropdown-item" href="./pages/index-2.html">Home 2</a></li>
+                                 <li><a class="dropdown-item" href="{% url 'index' %}">Home 1</a></li>
+                                 <li><a class="dropdown-item" href="{% url 'home1' %}">Home 2</a></li>
                                  <li><a class="dropdown-item" href="./pages/index-3.html">Home 3</a></li>
                                  <li><a class="dropdown-item" href="./pages/index-4.html">Home 4</a></li>
                                  <li>
@@ -362,7 +388,7 @@
                                  </li>
                               </ul>
                            </li>
-                           <li class="nav-item dropdown w-100 w-lg-auto">
+                           <!-- <li class="nav-item dropdown w-100 w-lg-auto">
                               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                               <ul class="dropdown-menu">
                                  <li><a class="dropdown-item" href="./pages/shop-grid.html">Shop Grid - Filter</a></li>
@@ -376,17 +402,17 @@
                                  <li><a class="dropdown-item" href="./pages/shop-cart.html">Shop Cart</a></li>
                                  <li><a class="dropdown-item" href="./pages/shop-checkout.html">Shop Checkout</a></li>
                               </ul>
-                           </li>
-                           <li class="nav-item dropdown w-100 w-lg-auto">
+                           </li> -->
+                           <!-- <li class="nav-item dropdown w-100 w-lg-auto">
                               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Stores</a>
                               <ul class="dropdown-menu">
                                  <li><a class="dropdown-item" href="./pages/store-list.html">Store List</a></li>
                                  <li><a class="dropdown-item" href="./pages/store-grid.html">Store Grid</a></li>
                                  <li><a class="dropdown-item" href="./pages/store-single.html">Store Single</a></li>
                               </ul>
-                           </li>
+                           </li> -->
                            <li class="nav-item dropdown w-100 w-lg-auto dropdown-fullwidth">
-                              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mega menu</a>
+                              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Sous-Catégories</a>
                               <div class="dropdown-menu pb-0">
                                  <div class="row p-2 p-lg-4">
                                     <div class="col-lg-3 col-12 mb-4 mb-lg-0">
@@ -450,7 +476,7 @@
                               </ul>
                            </li>
                            <li class="nav-item dropdown w-100 w-lg-auto">
-                              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+                              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Compte</a>
                               <ul class="dropdown-menu">
                                  <li><a class="dropdown-item" href="./pages/signin.html">Sign in</a></li>
                                  <li><a class="dropdown-item" href="./pages/signup.html">Signup</a></li>
@@ -510,6 +536,8 @@
             </div>
          </nav>
       </div>
+
+
 
       <!-- Modal -->
       <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
@@ -1094,7 +1122,850 @@
          </div>
       </div>
      
+      
+
+
+   <main>
+        <!-- Hero Section -->
+        <section class="hero-section pb-5">
+            <div class="container pt-4 pt-lg-0">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 hero-content">
+                        <h1 class="display-4 fw-bold mb-4">
+                            <span class="gradient-text typing-text">Bienvenue sur Pamoja</span>
+                        </h1>
+                        <p class="lead mb-4">
+                            Connectez-vous avec la communauté africaine, partagez vos compétences 
+                            et développez votre réseau professionnel.
+                        </p>
+                        <div class="d-flex gap-3 flex-wrap justify-content-center justify-content-lg-start">
+                            {% if not user.is_authenticated %}
+                                <a href="#" class="btn btn-primary btn-lg">Rejoindre la communauté</a>
+                                <a href="#" class="btn btn-outline-primary btn-lg">Se connecter</a>
+                            {% else %}
+                                <a href="{% url 'profile-list' %}" class="btn btn-primary btn-lg">Explorer les profils</a>
+                                <a href="{% url 'create-listing' %}" class="btn btn-outline-primary btn-lg">Créer une annonce</a>
+                            {% endif %}
+                        </div>
+                        <div class="search-box mt-5">
+                            <form method="GET" class="d-flex gap-2">
+                                <div class="input-group">
+                                    <input type="text" 
+                                        class="form-control form-control-lg" 
+                                        placeholder="Trouver le professionnel qu'il vous faut ..."
+                                        name="q"
+                                        value="{{ search_results.query|default:'' }}"
+                                        aria-label="Recherche">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        {% if search_results %}
+                        <div class="search-results mt-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title mb-4">Résultats pour "{{ search_results.query }}"</h5>
+                                    
+                                    {% if search_results.profiles %}
+                                    <div class="profiles-results mb-4">
+                                        <h6 class="text-muted mb-3">Professionnels ({{ search_results.total_profiles }})</h6>
+                                        <div class="list-group">
+                                            {% for profile in search_results.profiles %}
+                                            <a href="{% url 'profile-detail' profile.id %}" class="list-group-item list-group-item-action">
+                                                <div class="d-flex align-items-center">
+                                                    {% if profile.profile_image %}
+                                                        <img src="{{ profile.profile_image.url }}" class="rounded-circle me-3" style="width: 40px; height: 40px; object-fit: cover;">
+                                                    {% else %}
+                                                        <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                                                            {{ profile.user.first_name|first|upper }}
+                                                        </div>
+                                                    {% endif %}
+                                                    <div>
+                                                        <h6 class="mb-0">{{ profile.full_name }}</h6>
+                                                        <small class="text-muted">{{ profile.primary_language.name }}</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    {% endif %}
+
+                                    {% if search_results.listings %}
+                                    <div class="listings-results">
+                                        <h6 class="text-muted mb-3">Annonces ({{ search_results.total_listings }})</h6>
+                                        <div class="list-group">
+                                            {% for listing in search_results.listings %}
+                                            <a href="{% url 'listing' listing.id %}" class="list-group-item list-group-item-action">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <h6 class="mb-0">{{ listing.title }}</h6>
+                                                        <small class="text-muted">{{ listing.category.name }}</small>
+                                                    </div>
+                                                    <span class="badge bg-primary">{{ listing.status }}</span>
+                                                </div>
+                                            </a>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    {% endif %}
+
+                                    {% if not search_results.profiles and not search_results.listings %}
+                                    <p class="text-center text-muted">Aucun résultat trouvé pour "{{ search_results.query }}"</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-lg-6 hero-image">
+                        <img src="{% static 'images/questions-amico-2.svg' %}" alt="Seeking for a professional? or looking for a business?" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Features Section -->
+        {% comment %} <section class="features-section content-section py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-5">Pourquoi choisir Pamoja ?</h2>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="feature-card card h-100 border-0 shadow-sm">
+                            <div class="card-body text-center">
+                                <div class="feature-icon mb-3">
+                                    <i class="fas fa-users fa-3x text-primary"></i>
+                                </div>
+                                <h3 class="h5 mb-3">Communauté Authentique</h3>
+                                <p class="text-muted">
+                                    Rejoignez une communauté de professionnels africains vérifiés 
+                                    et partageant les mêmes valeurs.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-card card h-100 border-0 shadow-sm">
+                            <div class="card-body text-center">
+                                <div class="feature-icon mb-3">
+                                    <i class="fas fa-handshake fa-3x text-primary"></i>
+                                </div>
+                                <h3 class="h5 mb-3">Opportunités Professionnelles</h3>
+                                <p class="text-muted">
+                                    Découvrez des opportunités uniques et développez votre réseau 
+                                    professionnel en Afrique.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-card card h-100 border-0 shadow-sm">
+                            <div class="card-body text-center">
+                                <div class="feature-icon mb-3">
+                                    <i class="fas fa-globe-africa fa-3x text-primary"></i>
+                                </div>
+                                <h3 class="h5 mb-3">Connexions Panafricaines</h3>
+                                <p class="text-muted">
+                                    Créez des liens durables avec des professionnels de toute l'Afrique 
+                                    et de la diaspora.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> {% endcomment %}
+
+        <!-- Latest Listings Section -->
+        {% comment %} <section class="listings-section py-5">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2>Dernières Annonces</h2>
+                    <a href="{% url 'listings' %}" class="btn btn-outline-primary">Voir toutes les annonces</a>
+                </div>
+                <div class="row g-4">
+                    {% for listing in latest_listings %}
+                    <div class="col-md-4">
+                        <div class="card h-100 listing-card">
+                            {% if listing.image %}
+                                <img src="{{ listing.image.url }}" class="card-img-top" alt="{{ listing.title }}">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ listing.title }}</h5>
+                                <p class="card-text text-muted">{{ listing.description|truncatewords:20 }}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="badge bg-primary">{{ listing.category }}</span>
+                                    <small class="text-muted">{{ listing.created_at|timesince }}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section> {% endcomment %}
+
+        <!-- Community Stats Section -->
+        {% comment %} <section class="stats-section py-5 bg-primary text-white">
+            <div class="container">
+                <div class="row text-center g-4">
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <h3 class="display-4 fw-bold">
+                                <span class="stat-number" data-value="{{ total_users }}">0</span>
+                            </h3>
+                            <p class="mb-0">Membres</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <h3 class="display-4 fw-bold">{{ total_listings }}</h3>
+                            <p class="mb-0">Annonces</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <h3 class="display-4 fw-bold">{{ total_countries }}</h3>
+                            <p class="mb-0">Pays</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <h3 class="display-4 fw-bold">{{ verified_users }}</h3>
+                            <p class="mb-0">Profils Vérifiés</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> {% endcomment %}
+
+        <!-- Featured Members Section -->
+        {% comment %} <section class="members-section py-5">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2>Membres Mis en Avant</h2>
+                    <a href="{% url 'profile-list' %}" class="btn btn-outline-primary">Voir tous les membres</a>
+                </div>
+                <div class="row g-4">
+                    {% for profile in featured_profiles %}
+                    <div class="col-md-3">
+                        <div class="card h-100 member-card">
+                            <div class="card-body text-center">
+                                {% if profile.profile_image %}
+                                    <img src="{{ profile.profile_image.url }}" class="rounded-circle mb-3" alt="{{ profile.full_name }}" style="width: 100px; height: 100px; object-fit: cover;">
+                                {% else %}
+                                    <img src="https://ui-avatars.com/api/?name={{ profile.full_name }}&background=random&color=fff" class="rounded-circle mb-3" alt="Default avatar" style="width: 100px; height: 100px; object-fit: cover;">
+                                {% endif %}
+                                <h5 class="card-title">{{ profile.full_name }}</h5>
+                                <p class="text-muted mb-2">{{ profile.primary_language.name }}</p>
+                                {% if profile.verified %}
+                                    <span class="badge verified-badge">Vérifié</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section> {% endcomment %}
+
+        <style>
+            :root {
+                --primary-color: #56311F;
+                --primary-rgb: 86, 49, 31;
+                --secondary-color: #B06D42;
+                --accent-color: #C19875;
+                --dark-color: rgb(41, 26, 13);
+            }
+
+            /* Hero Section */
+            .hero-section {
+                background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.05) 0%, rgba(var(--primary-rgb), 0.1) 100%);
+                min-height: 600px;
+                display: flex;
+                align-items: center;
+                width: 100%;
+            }
+
+            /* Search Box Styles */
+            .search-box {
+                max-width: 90%;
+                margin: 0;
+            }
+
+            .search-box .form-control {
+                border: 2px solid rgba(var(--primary-rgb), 0.1);
+                padding: 0.8rem 1.5rem;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 6px rgba(var(--primary-rgb), 0.05);
+            }
+
+            .search-box .form-control:focus {
+                border-color: var(--accent-color);
+                box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.1);
+            }
+
+            .search-box .btn {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            @media (max-width: 991.98px) {
+                .search-box {
+                    width: 100%;
+                    margin: 0 auto;
+                    max-width: 90%;
+                }
+                
+                .search-box .input-group {
+                    width: 100%;
+                }
+                
+                .hero-content {
+                    text-align: center;
+                    margin-bottom: 2rem;
+                    padding: 3rem 0;
+                }
+            }
+
+            /* Feature Cards */
+            .feature-card {
+                transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+                opacity: 0;
+                transform: translateY(30px);
+                background: white;
+                overflow: hidden;
+                position: relative;
+            }
+
+            .feature-card::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 5px;
+                box-shadow: 0 5px 15px rgba(var(--primary-rgb), 0.3);
+                opacity: 0;
+                transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            }
+
+            .feature-card:hover {
+                transform: translateY(-10px);
+            }
+
+            .feature-card:hover::after {
+                opacity: 1;
+            }
+
+            .feature-card.animate {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .feature-icon {
+                color: var(--primary-color);
+                transition: all 0.3s ease;
+                transform: scale(1);
+            }
+
+            .feature-card:hover .feature-icon {
+                transform: scale(1.2);
+                color: var(--secondary-color);
+            }
+
+            .feature-card:hover h3 {
+                color: var(--primary-color);
+            }
+
+            /* Listing Cards */
+            .listing-card {
+                transition: transform 0.3s ease;
+                border-color: var(--accent-color);
+            }
+
+            .listing-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 5px 15px rgba(var(--primary-rgb), 0.1);
+            }
+
+            /* Stats Section */
+            .stats-section {
+                background-color: var(--primary-color);
+            }
+
+            .stat-card {
+                padding: 2rem;
+                border-radius: 10px;
+                background: rgba(255, 255, 255, 0.1);
+            }
+
+            /* Member Cards */
+            .member-card {
+                transition: transform 0.3s ease;
+                border-color: var(--accent-color);
+            }
+
+            .member-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 5px 15px rgba(var(--primary-rgb), 0.1);
+            }
+
+            .verified-badge {
+                background-color: var(--secondary-color);
+                color: white;
+            }
+
+            /* Buttons */
+            .btn-primary {
+                background-color: var(--primary-color);
+                border-color: var(--primary-color);
+            }
+
+            .btn-primary:hover {
+                background-color: var(--secondary-color);
+                border-color: var(--secondary-color);
+            }
+
+            .btn-outline-primary {
+                color: var(--primary-color);
+                border-color: var(--primary-color);
+            }
+
+            .btn-outline-primary:hover {
+                background-color: var(--primary-color);
+                border-color: var(--primary-color);
+            }
+
+            .content-section {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+
+            .main-content {
+                padding: 0 !important;
+            }
+
+            /* Animations */
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes float {
+                0% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }
+                100% { transform: translateY(0px); }
+            }
+
+            /* Hero Section Animations */
+            .hero-content {
+                animation: fadeInUp 1s ease-out;
+            }
+
+            @media (max-width: 991.98px) {
+                .hero-content {
+                    text-align: center;
+                    margin-bottom: 2rem;
+                    padding: 3rem 0;
+                }
+                
+                .hero-content .lead {
+                    margin-left: auto;
+                    margin-right: auto;
+                    max-width: 600px;
+                }
+
+                .hero-image img {
+                    max-width: 80%;
+                    margin: 0 auto;
+                    display: block;
+                }
+
+                .hero-section {
+                    min-height: auto;
+                    padding: 2rem 0;
+                }
+            }
+
+            .hero-image {
+                animation: float 6s ease-in-out infinite;
+            }
+
+            /* Feature Cards Animation */
+            .feature-card {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 0.6s ease-out;
+            }
+
+            .feature-card.animate {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* Stats Counter Animation */
+            .stat-number {
+                display: inline-block;
+                opacity: 0;
+            }
+
+            .stat-number.animate {
+                opacity: 1;
+            }
+
+            /* Member Cards Hover Effect */
+            .member-card {
+                transition: all 0.3s ease;
+            }
+
+            .member-card:hover {
+                transform: translateY(-10px) scale(1.02);
+                box-shadow: 0 15px 30px rgba(var(--primary-rgb), 0.15);
+            }
+
+            /* Gradient Text Effect */
+            .gradient-text {
+                background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            /* Pulse Effect for CTA Buttons */
+            .btn-primary.pulse {
+                animation: pulse 2s infinite;
+            }
+
+            @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+                100% { transform: scale(1); }
+            }
+
+            /* Typing Animation */
+            .typing-text {
+                display: block;
+                width: fit-content;
+                position: relative;
+                border-right: 2px solid var(--primary-color);
+                white-space: nowrap;
+                overflow: hidden;
+                animation: typing 3s steps(20),
+                        cursor .4s step-end infinite alternate,
+                        hideCursor 1s 2s forwards;
+            }
+
+            @keyframes typing {
+                from { width: 0 }
+                to { width: 100% }
+            }
+
+            @keyframes cursor {
+                50% { border-color: transparent }
+            }
+
+            @keyframes hideCursor {
+                to {
+                    border-right-color: transparent;
+                }
+            }
+
+            @media (max-width: 991.98px) {
+                .typing-text {
+                    margin: 0 auto;
+                }
+            }
+        </style>
+
+        <script>
+            // Intersection Observer pour les animations au scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Observer les feature cards
+            document.querySelectorAll('.feature-card').forEach((card, index) => {
+                observer.observe(card);
+                // Ajouter un délai progressif pour chaque carte
+                card.style.transitionDelay = `${index * 200}ms`;
+            });
+
+            // Animation des statistiques
+            function animateValue(obj, start, end, duration) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    obj.innerHTML = Math.floor(progress * (end - start) + start);
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+
+            // Observer pour les stats
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const endValue = parseInt(el.getAttribute('data-value'));
+                        animateValue(el, 0, endValue, 2000);
+                        el.classList.add('animate');
+                        statsObserver.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            // Observer les stats
+            document.querySelectorAll('.stat-number').forEach(stat => {
+                statsObserver.observe(stat);
+            });
+
+            // Effet de parallaxe léger pour la hero section
+            window.addEventListener('scroll', () => {
+                const scroll = window.pageYOffset;
+                document.querySelector('.hero-image').style.transform = 
+                    `translateY(${scroll * 0.15}px)`;
+            });
+
+            // Animation du CTA principal après un délai
+            setTimeout(() => {
+                document.querySelector('.btn-primary').classList.add('pulse');
+            }, 2000);
+        </script>
+
+
+
+
+
+
+      <!-- Category Section Start-->
+      <section class="mb-lg-10 mt-lg-14 my-8">
+         <div class="container">
+            <div class="row">
+               <div class="col-12 mb-6">
+                  <h3 class="mb-0">Featured Categories</h3>
+               </div>
+            </div>
+            <div class="category-slider">
+               <div class="item">
+                  <a href="../pages/shop-grid.html" class="text-decoration-none text-inherit">
+                     <div class="card card-product mb-lg-4">
+                        <div class="card-body text-center py-8">
+                           <img src="{% static 'theme/assets/images/category/category-dairy-bread-eggs.jpg' %}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid" />
+                           <div class="text-truncate">Dairy, Bread & Eggs</div>
+                        </div>
+                     </div>
+                  </a>
+               </div>
+
+
+               <div class="item">
+                  <a href="../pages/shop-grid.html" class="text-decoration-none text-inherit">
+                     <div class="card card-product mb-lg-4">
+                        <div class="card-body text-center py-8">
+                           <img src="{% static 'theme/assets/images/category/category-snack-munchies.jpg' %}" alt="Grocery Ecommerce Template" class="mb-3" />
+                           <div class="text-truncate">Snack & Munchies</div>
+                        </div>
+                     </div>
+                  </a>
+               </div>
+               <div class="item">
+                  <a href="../pages/shop-grid.html" class="text-decoration-none text-inherit">
+                     <div class="card card-product mb-lg-4">
+                        <div class="card-body text-center py-8">
+                           <img src="{% static 'theme/assets/images/category/category-bakery-biscuits.jpg' %}" alt="Grocery Ecommerce Template" class="mb-3" />
+                           <div class="text-truncate">Bakery & Biscuits</div>
+                        </div>
+                     </div>
+                  </a>
+               </div>
+               <div class="item">
+                  <a href="../pages/shop-grid.html" class="text-decoration-none text-inherit">
+                     <div class="card card-product mb-lg-4">
+                        <div class="card-body text-center py-8">
+                           <img src="{% static 'theme/assets/images/category/category-instant-food.jpg' %}" alt="Grocery Ecommerce Template" class="mb-3" />
+                           <div class="text-truncate">Instant Food</div>
+                        </div>
+                     </div>
+                  </a>
+               </div>
+               <div class="item">
+                  <a href="../pages/shop-grid.html" class="text-decoration-none text-inherit">
+                     <div class="card card-product mb-lg-4">
+                        <div class="card-body text-center py-8">
+                           <img src="{% static 'theme/assets/images/category/category-tea-coffee-drinks.jpg' %}" alt="Grocery Ecommerce Template" class="mb-3" />
+                           <div class="text-truncate">Tea, Coffee & Drinks</div>
+                        </div>
+                     </div>
+                  </a>
+               </div>
+               <div class="item">
+                  <a href="../pages/shop-grid.html" class="text-decoration-none text-inherit">
+                     <div class="card card-product mb-lg-4">
+                        <div class="card-body text-center py-8">
+                           <img src="{% static 'theme/assets/images/category/category-atta-rice-dal.jpg' %}" alt="Grocery Ecommerce Template" class="mb-3" />
+                           <div class="text-truncate">Atta, Rice & Dal</div>
+                        </div>
+                     </div>
+                  </a>
+               </div>
+
+               <div class="item">
+                  <a href="../pages/shop-grid.html" class="text-decoration-none text-inherit">
+                     <div class="card card-product mb-lg-4">
+                        <div class="card-body text-center py-8">
+                           <img src="{% static 'theme/assets/images/category/category-baby-care.jpg' %}" alt="Grocery Ecommerce Template" class="mb-3" />
+                           <div class="text-truncate">Baby Care</div>
+                        </div>
+                     </div>
+                  </a>
+               </div>
+               <div class="item">
+                  <a href="../pages/shop-grid.html" class="text-decoration-none text-inherit">
+                     <div class="card card-product mb-lg-4">
+                        <div class="card-body text-center py-8">
+                           <img src="{% static 'theme/assets/images/category/category-chicken-meat-fish.jpg' %}" alt="Grocery Ecommerce Template" class="mb-3" />
+                           <div class="text-truncate">Chicken, Meat & Fish</div>
+                        </div>
+                     </div>
+                  </a>
+               </div>
+               <div class="item">
+                  <a href="../pages/shop-grid.html" class="text-decoration-none text-inherit">
+                     <div class="card card-product mb-lg-4">
+                        <div class="card-body text-center py-8">
+                           <img src="{% static 'theme/assets/images/category/category-cleaning-essentials.jpg' %}" alt="Grocery Ecommerce Template" class="mb-3" />
+                           <div class="text-truncate">Cleaning Essentials</div>
+                        </div>
+                     </div>
+                  </a>
+               </div>
+               <div class="item">
+                  <a href="../pages/shop-grid.html" class="text-decoration-none text-inherit">
+                     <div class="card card-product mb-lg-4">
+                        <div class="card-body text-center py-8">
+                           <img src="{% static 'theme/assets/images/category/category-pet-care.jpg' %}" alt="Grocery Ecommerce Template" class="mb-3" />
+                           <div class="text-truncate">Pet Care</div>
+                        </div>
+                     </div>
+                  </a>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Category Section End-->
+
+    
+
  
+   </main>
+
+       <!-- footer -->
+       <footer class="footer" style="background-color: #C19875;">
+         <!-- <div class="container"> -->
+
+          <div class="container" >
+           
+            <!-- <div class="border-top py-4">
+               <div class="row align-items-center">
+                  <div class="col-lg-5 text-lg-start text-center mb-2 mb-lg-0">
+                     <ul class="list-inline mb-0">
+                        <li class="list-inline-item text-dark">Plateforme de Payment</li>
+                        <li class="list-inline-item">
+                           <a href="#!"><img src="{% static 'theme/assets/images/payment/amazonpay.svg' %}" alt="" /></a>
+                        </li>
+                        <li class="list-inline-item">
+                           <a href="#!"><img src="{% static 'theme/assets/images/payment/american-express.svg' %}" alt="" /></a>
+                        </li>
+                        <li class="list-inline-item">
+                           <a href="#!"><img src="{% static 'theme/assets/images/payment/mastercard.svg' %}" alt="" /></a>
+                        </li>
+                        <li class="list-inline-item">
+                           <a href="#!"><img src="{% static 'theme/assets/images/payment/paypal.svg' %}" alt="" /></a>
+                        </li>
+                        <li class="list-inline-item">
+                           <a href="#!"><img src="{% static 'theme/assets/images/payment/visa.svg' %}" alt="" /></a>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="col-lg-7 mt-4 mt-md-0">
+                     <ul class="list-inline mb-0 text-lg-end text-center">
+                        <li class="list-inline-item mb-2 mb-md-0 text-dark"></li>
+                        <li class="list-inline-item ms-4">
+                           <a href="#!"><img src="{% static 'theme/assets/images/appbutton/appstore-btn.svg' %}" alt="" style="width: 140px" /></a>
+                        </li>
+                        <li class="list-inline-item">
+                           <a href="#!"><img src="{% static 'theme/assets/images/appbutton/googleplay-btn.svg' %}" alt="" style="width: 140px" /></a>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div> -->
+
+            <div class="border-top py-4">
+               <div class="row align-items-center">
+                  <div class="col-md-6">
+                     <span class="small text-white-50">&copy; <script>document.write(new Date().getFullYear())</script> Pamoja. Tous droits réservés | Developed by <a href="https://portfolio.awounfouet.com/">Thomas AWOUNFOUET</a>.</span>
+                        <!-- © 
+                        <span id="copyright">
+                           <script>
+                              document.getElementById("copyright").appendChild(document.createTextNode(new Date().getFullYear()));
+                           </script>
+                        </span>
+                        Pamoja. Tous droits réservés | Developed by
+                        <a href="https://portfolio.awounfouet.com/">Thomas AWOUNFOUET</a>
+                        .
+                     </span> -->
+                  </div>
+                  <div class="col-md-6">
+                      <ul class="list-inline text-md-end mb-0 small mt-3 mt-md-0">
+                        <li class="list-inline-item text-white">Suivez-nous sur </li>
+                        <li class="list-inline-item me-1">
+                           <a href="#!" class="btn btn-xs btn-social btn-icon text-white">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-facebook" viewBox="0 0 16 16">
+                               <path
+                                 d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
+                             </svg>
+                           </a>
+                        </li>
+                        <li class="list-inline-item me-1">
+                           <a href="#!" class="btn btn-xs btn-social btn-icon text-white">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-twitter" viewBox="0 0 16 16">
+                               <path
+                                 d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+                             </svg>
+                           </a>
+                        </li>
+                        <li class="list-inline-item">
+                           <a href="#!" class="btn btn-xs btn-social btn-icon text-white">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-instagram" viewBox="0 0 16 16">
+                               <path
+                                 d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
+                             </svg>
+                           </a>
+                        </li>
+                      </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </footer>
 
       <!-- Javascript-->
 

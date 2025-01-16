@@ -14,3 +14,13 @@ django-phonenumber-field
 django-countries
 #django-phonenumber-field[phonenumbers]
 phonenumbers
+
+# social auth and login
+django-allauth
+#django-allauth[google,facebook]
+requests
+jwt
+PyJWT
+cryptography
+#django-allauth[crypto]
+#pip install django-allauth[google,facebook]

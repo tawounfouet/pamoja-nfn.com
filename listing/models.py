@@ -37,7 +37,7 @@ class Category(models.Model):
 
     
     class Meta:
-        verbose_name_plural = "categories"
+        verbose_name_plural = "1. Categories"
         ordering = ['name']
 
     def save(self, *args, **kwargs):
@@ -58,7 +58,7 @@ class SubCategory(models.Model):
     description = models.TextField(default="", blank=True, null=True)
 
     class Meta:
-        verbose_name_plural = "sub categories"
+        verbose_name_plural = "2. Sous-categories"
         unique_together = ['category', 'name']
         ordering = ['category', 'name']
 
@@ -108,6 +108,10 @@ class TaggedListing(GenericTaggedItemBase):
 
 
 class ContactInformation(models.Model):
+
+    class Meta:
+        verbose_name_plural = "6. Informations de contact"
+
     listing = models.OneToOneField('Listing', on_delete=models.CASCADE, related_name='contact_details')
     
     # Phone numbers
@@ -129,6 +133,10 @@ class ContactInformation(models.Model):
     )
 
 class SocialMediaLinks(models.Model):
+
+    class Meta:
+        verbose_name_plural = "7. Réseaux sociaux"
+
     listing = models.OneToOneField('Listing', on_delete=models.CASCADE, related_name='social_media')
     facebook = models.URLField(blank=True, null=True, default=None)
     instagram = models.URLField(blank=True, null=True, default=None)
@@ -137,6 +145,10 @@ class SocialMediaLinks(models.Model):
 
 
 class BusinessHours(models.Model):
+
+    class Meta:
+        verbose_name_plural = "8. Horaires d'ouverture"
+
     listing = models.OneToOneField('Listing', on_delete=models.CASCADE, related_name='operating_hours')
     
     # Monday
@@ -289,6 +301,7 @@ class Listing(models.Model):
 
 
     class Meta:
+        verbose_name_plural = "3. Annonces"
         indexes = [
             models.Index(fields=['category']),
             models.Index(fields=['subcategory']),
@@ -354,6 +367,9 @@ class Listing(models.Model):
         return f"{self.company_name or self.profile.user.username} - {self.category.name}"
 
 class Review(models.Model):
+
+    # class Meta:
+    #     verbose_name_plural = "4. Avis"
     class ModerationStatus(models.TextChoices):
         PENDING = 'PEN', 'En attente'
         APPROVED = 'APP', 'Approuvé'
@@ -375,6 +391,7 @@ class Review(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
+        verbose_name_plural = "4. Avis"
         unique_together = ['user', 'listing']
         indexes = [
             models.Index(fields=['moderation_status']),
@@ -392,6 +409,10 @@ class Review(models.Model):
         return f"Avis de {self.user.username} sur {self.listing}"
 
 class Media(models.Model):
+
+    # class Meta:
+    #     verbose_name_plural = "9. Médias"
+
     class Types(models.TextChoices):
         IMAGE = 'IMG', 'Image'
         DOCUMENT = 'DOC', 'Document'
@@ -406,7 +427,7 @@ class Media(models.Model):
     is_primary = models.BooleanField(default=False)
 
     class Meta:
-        verbose_name_plural = "media"
+        verbose_name_plural = "9. Medias"
         ordering = ['-is_primary', '-uploaded_at']
 
     def __str__(self):
@@ -431,7 +452,7 @@ class Analytics(models.Model):
         self.save(update_fields=['engagement_metrics', 'last_updated'])
 
     class Meta:
-        verbose_name_plural = "analytics"
+        verbose_name_plural = "5. Statistiques"
 
     def __str__(self):
         return f"Analytics pour {self.listing}"

@@ -14,6 +14,7 @@ class Language(models.Model):
     code = models.CharField(max_length=2, unique=True)
 
     class Meta:
+        verbose_name_plural = "3. Langues"
         ordering = ['name']
 
     def __str__(self):
@@ -64,10 +65,15 @@ class ContactInfos(models.Model):
         return f"Contacts de {self.profile.user.username}"
 
     class Meta:
-        verbose_name = "Informations de contact"
-        verbose_name_plural = "Informations de contact"
+        verbose_name = "2. Informations de contact"
+        verbose_name_plural = "2. Informations de contact"
 
 class Socialinks(models.Model):
+
+    class Meta:
+        #verbose_name = "3. Liens sociaux"
+        verbose_name_plural = "3. Liens sociaux"
+
     profile = models.OneToOneField('Profile', on_delete=models.CASCADE, related_name='social_links')
     facebook = models.URLField(blank=True, null=True, default=None)
     instagram = models.URLField(blank=True, null=True, default=None)
@@ -75,6 +81,10 @@ class Socialinks(models.Model):
     linkedin = models.URLField(blank=True, null=True, default=None)
 
 class Profile(models.Model):
+
+    class Meta:
+        verbose_name_plural = "1. Profiles utilisateurs"
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(blank=True)
     profile_image = models.ImageField(upload_to="profile_images", null=True, blank=True)
