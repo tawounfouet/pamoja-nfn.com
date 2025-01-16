@@ -28,7 +28,8 @@ urlpatterns = [
     path('theme/', include('theme.urls')),
     path('listing/', include('listing.urls')),
     path('users/', include('users.urls')),
-
+    # url for django-allauth
+    path('accounts/', include('allauth.urls')),
 
 ]
 

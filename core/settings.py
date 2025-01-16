@@ -66,7 +66,16 @@ INSTALLED_APPS = [
 
     "users",
    
-   
+    # Django Allauth
+    'django.contrib.sites',  # Obligatoire pour django-allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.linkedin_oauth2',
+    
 ]
 
 MIDDLEWARE = [
@@ -77,6 +86,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',  # middleware
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -92,6 +102,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                
+                # Custom context processors for listing app / categories & subcategories
+                'listing.context_processors.categories_processor',
+
             ],
         },
     },
@@ -202,3 +216,84 @@ TAGGIT_CASE_INSENSITIVE = True
 
 # Configuration pour phonenumber_field
 PHONENUMBER_DB_FORMAT = "E164"     # Format de stockage en base
+
+# Configuration Django Allauth
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1
+
+# Paramètres de configuration Allauth
+ACCOUNT_AUTHENTICATION_METHOD = 'email'  # Utiliser l'email pour l'authentification
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # ou 'optional' ou 'none'
+ACCOUNT_USERNAME_REQUIRED = False
+LOGIN_REDIRECT_URL = '/'  # Redirection après connexion
+LOGOUT_REDIRECT_URL = '/'  # Redirection après déconnexion
+
+# Configuration email (à adapter selon votre configuration)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Pour le développement
+
+# Configuration des providers sociaux
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': config('GOOGLE_CLIENT_ID'),
+            'secret': config('GOOGLE_SECRET'),
+            'key': ''
+        },
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    },
+    'facebook': {
+        'APP': {
+            'client_id': config('FACEBOOK_CLIENT_ID'),
+            'secret': config('FACEBOOK_SECRET'),
+            'key': ''
+        },
+        'METHOD': 'oauth2',
+        'SCOPE': ['email', 'public_profile'],
+        'VERSION': 'v15.0'
+    },
+    'github': {
+        'APP': {
+            'client_id': config('GITHUB_CLIENT_ID'),
+            'secret': config('GITHUB_SECRET'),
+            'key': ''
+            
+        },
+        'SCOPE': [
+            'user',
+            'repo',
+            'read:org',
+        ],
+    },
+    'linkedin_oauth2': {
+        'APP': {
+            'client_id': config('LINKEDIN_CLIENT_ID'),
+            'secret': config('LINKEDIN_SECRET'),
+            'key': ''
+        },
+        'SCOPE': ['r_liteprofile', 'r_emailaddress'],
+        'PROFILE_FIELDS': [
+            'id',
+            'first-name',
+            'last-name',
+            'email-address',
+            'picture-url',
+            'public-profile-url',
+        ]
+    }
+}
+
+
+# j'aimerais afficer les clefs dans la console pour les tester
+print(f"Clef Google : {config('GOOGLE_CLIENT_ID')}")
+print(f"Secret Google : {config('GOOGLE_SECRET')}")
