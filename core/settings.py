@@ -31,7 +31,7 @@ import dj_database_url
 SECRET_KEY = 'django-insecure-(x5_^%xb^0f^3f0e_2$i!!8gup^+sruewtd_y)zg$em$*(mfgt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -119,25 +119,20 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+# Configuration de la base de données
+if DEBUG:
+    # Base de données de développement
+    DATABASE_URL = config(
+        'DEV_DATABASE_URL',
+        default= 'sqlite:///' + str(BASE_DIR / 'db.sqlite3')
+    )
+else:
+    # Base de données de production
+    DATABASE_URL = config(
+        'PROD_DATABASE_URL',
+        default= ''
+    )
 
-# Load environment variables from the .env file
-# pip install python-dotenv
-
-# from dotenv import load_dotenv
-# load_dotenv()
-
-
-# Database configuration
-DATABASE_URL = config(
-    'DATABASE_URL',
-    default=f'sqlite:///{BASE_DIR}/db.sqlite3'
-)
 
 DATABASES = {
     'default': dj_database_url.parse(
@@ -301,5 +296,5 @@ SOCIALACCOUNT_PROVIDERS = {
 
 
 # j'aimerais afficer les clefs dans la console pour les tester
-print(f"Clef Google : {config('GOOGLE_CLIENT_ID')}")
-print(f"Secret Google : {config('GOOGLE_SECRET')}")
+# print(f"Clef Google : {config('GOOGLE_CLIENT_ID')}")
+# print(f"Secret Google : {config('GOOGLE_SECRET')}")
