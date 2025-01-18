@@ -33,7 +33,7 @@ SECRET_KEY = 'django-insecure-(x5_^%xb^0f^3f0e_2$i!!8gup^+sruewtd_y)zg$em$*(mfgt
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -117,12 +117,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+     'default': {
+         'ENGINE': 'django.db.backends.sqlite3',
+         'NAME': BASE_DIR / 'db.sqlite3',
+     }
+ }
 
 # Load environment variables from the .env file
 # pip install python-dotenv
@@ -132,18 +132,18 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 
 # Database configuration
-DATABASE_URL = config(
-    'DATABASE_URL',
-    default=f'sqlite:///{BASE_DIR}/db.sqlite3'
-)
+#DATABASE_URL = config(
+#    'DATABASE_URL',
+#    default=f'sqlite:///{BASE_DIR}/db.sqlite3'
+#)
 
-DATABASES = {
-    'default': dj_database_url.parse(
-        DATABASE_URL,
-        conn_max_age=600,
-        conn_health_checks=True
-    )
-}
+#DATABASES = {
+#    'default': dj_database_url.parse(
+#        DATABASE_URL,
+#        conn_max_age=600,
+#        conn_health_checks=True
+#    )
+#}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
