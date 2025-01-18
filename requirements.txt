@@ -24,3 +24,5 @@ PyJWT
 cryptography
 #django-allauth[crypto]
 #pip install django-allauth[google,facebook]
+
+whitenoise
