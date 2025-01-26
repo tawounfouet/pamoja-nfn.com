@@ -1,0 +1,434 @@
+[
+{
+  "model": "listing.category",
+  "pk": 1,
+  "fields": {
+    "name": "Medécin",
+    "slug": "medecin",
+    "description": "",
+    "image": ""
+  }
+},
+{
+  "model": "listing.category",
+  "pk": 2,
+  "fields": {
+    "name": "Beauté",
+    "slug": "beaute",
+    "description": "",
+    "image": ""
+  }
+},
+{
+  "model": "listing.category",
+  "pk": 3,
+  "fields": {
+    "name": "Littérature",
+    "slug": "litterature",
+    "description": "",
+    "image": ""
+  }
+},
+{
+  "model": "listing.category",
+  "pk": 4,
+  "fields": {
+    "name": "Jeux",
+    "slug": "jeux",
+    "description": "",
+    "image": ""
+  }
+},
+{
+  "model": "listing.category",
+  "pk": 5,
+  "fields": {
+    "name": "Prêt-à-porter",
+    "slug": "pret-a-porter",
+    "description": "",
+    "image": ""
+  }
+},
+{
+  "model": "listing.category",
+  "pk": 6,
+  "fields": {
+    "name": "Activités Enfant",
+    "slug": "activites-enfant",
+    "description": "",
+    "image": ""
+  }
+},
+{
+  "model": "listing.category",
+  "pk": 7,
+  "fields": {
+    "name": "Avocats",
+    "slug": "avocats",
+    "description": "",
+    "image": ""
+  }
+},
+{
+  "model": "listing.category",
+  "pk": 8,
+  "fields": {
+    "name": "Alimentation",
+    "slug": "alimentation",
+    "description": "",
+    "image": ""
+  }
+},
+{
+  "model": "listing.category",
+  "pk": 9,
+  "fields": {
+    "name": "E-Commerce",
+    "slug": "e-commerce",
+    "description": "",
+    "image": ""
+  }
+},
+{
+  "model": "listing.category",
+  "pk": 10,
+  "fields": {
+    "name": "Prestation",
+    "slug": "prestation",
+    "description": "",
+    "image": ""
+  }
+},
+{
+  "model": "listing.category",
+  "pk": 11,
+  "fields": {
+    "name": "Pamoja Home",
+    "slug": "pamoja-home",
+    "description": "",
+    "image": ""
+  }
+},
+{
+  "model": "listing.category",
+  "pk": 12,
+  "fields": {
+    "name": "Artisans",
+    "slug": "artisans",
+    "description": "",
+    "image": ""
+  }
+},
+{
+  "model": "listing.subcategory",
+  "pk": 1,
+  "fields": {
+    "category": 1,
+    "name": "Psychologue",
+    "slug": "psychologue",
+    "description": ""
+  }
+},
+{
+  "model": "listing.subcategory",
+  "pk": 2,
+  "fields": {
+    "category": 2,
+    "name": "Cosmétiques",
+    "slug": "cosmetiques",
+    "description": ""
+  }
+},
+{
+  "model": "listing.subcategory",
+  "pk": 3,
+  "fields": {
+    "category": 2,
+    "name": "Parfumerie",
+    "slug": "parfumerie",
+    "description": ""
+  }
+},
+{
+  "model": "listing.subcategory",
+  "pk": 4,
+  "fields": {
+    "category": 2,
+    "name": "Skincare",
+    "slug": "skincare",
+    "description": ""
+  }
+},
+{
+  "model": "listing.subcategory",
+  "pk": 5,
+  "fields": {
+    "category": 2,
+    "name": "Cheveux",
+    "slug": "cheveux",
+    "description": ""
+  }
+},
+{
+  "model": "listing.customtag",
+  "pk": 1,
+  "fields": {
+    "name": "medecin",
+    "slug": "medecin"
+  }
+},
+{
+  "model": "listing.customtag",
+  "pk": 2,
+  "fields": {
+    "name": "psychologue",
+    "slug": "psychologue"
+  }
+},
+{
+  "model": "listing.customtag",
+  "pk": 3,
+  "fields": {
+    "name": "testTag",
+    "slug": "testtag"
+  }
+},
+{
+  "model": "listing.customtag",
+  "pk": 4,
+  "fields": {
+    "name": "sante",
+    "slug": "sante"
+  }
+},
+{
+  "model": "listing.customtag",
+  "pk": 5,
+  "fields": {
+    "name": "psy",
+    "slug": "psy"
+  }
+},
+{
+  "model": "listing.taggedlisting",
+  "pk": 1,
+  "fields": {
+    "content_type": 16,
+    "object_id": 1,
+    "tag": 1
+  }
+},
+{
+  "model": "listing.taggedlisting",
+  "pk": 2,
+  "fields": {
+    "content_type": 21,
+    "object_id": 2,
+    "tag": 2
+  }
+},
+{
+  "model": "listing.taggedlisting",
+  "pk": 3,
+  "fields": {
+    "content_type": 16,
+    "object_id": 5,
+    "tag": 3
+  }
+},
+{
+  "model": "listing.taggedlisting",
+  "pk": 4,
+  "fields": {
+    "content_type": 16,
+    "object_id": 5,
+    "tag": 4
+  }
+},
+{
+  "model": "listing.taggedlisting",
+  "pk": 5,
+  "fields": {
+    "content_type": 16,
+    "object_id": 5,
+    "tag": 5
+  }
+},
+{
+  "model": "listing.contactinformation",
+  "pk": 1,
+  "fields": {
+    "listing": 5,
+    "mobile_phone": "06 68 95 74 68",
+    "whatsapp_number": null,
+    "contact_email": "test@example.com",
+    "preferred_contact": "email"
+  }
+},
+{
+  "model": "listing.businesshours",
+  "pk": 1,
+  "fields": {
+    "listing": 5,
+    "monday_open": "09:00:00",
+    "monday_close": "18:00:00",
+    "monday_closed": false,
+    "tuesday_open": "09:00:00",
+    "tuesday_close": "18:00:00",
+    "tuesday_closed": false,
+    "wednesday_open": "09:00:00",
+    "wednesday_close": "18:00:00",
+    "wednesday_closed": false,
+    "thursday_open": "09:00:00",
+    "thursday_close": "18:00:00",
+    "thursday_closed": false,
+    "friday_open": "09:00:00",
+    "friday_close": "18:00:00",
+    "friday_closed": false,
+    "saturday_open": null,
+    "saturday_close": null,
+    "saturday_closed": true,
+    "sunday_open": null,
+    "sunday_close": null,
+    "sunday_closed": true
+  }
+},
+{
+  "model": "listing.listing",
+  "pk": 1,
+  "fields": {
+    "profile": 1,
+    "owner": "Pamoja",
+    "category": 1,
+    "subcategory": 1,
+    "type": "IND",
+    "title": "Dr Valenne GRESHAM",
+    "company_name": null,
+    "location": 1,
+    "description": "",
+    "logo": "",
+    "created_at": "2025-01-04T18:23:40.149Z",
+    "updated_at": "2025-01-04T18:23:40.149Z",
+    "website_url": null,
+    "status": "PEN",
+    "average_rating": "0.00",
+    "search_vector": "",
+    "slug": "dr-valenne-gresham-1406b"
+  }
+},
+{
+  "model": "listing.listing",
+  "pk": 2,
+  "fields": {
+    "profile": 1,
+    "owner": "Pamoja",
+    "category": 1,
+    "subcategory": 1,
+    "type": "IND",
+    "title": "Dr Magali ALONZEAU",
+    "company_name": null,
+    "location": 1,
+    "description": "",
+    "logo": "",
+    "created_at": "2025-01-04T18:24:41.555Z",
+    "updated_at": "2025-01-04T18:24:41.555Z",
+    "website_url": null,
+    "status": "PEN",
+    "average_rating": "0.00",
+    "search_vector": "",
+    "slug": "dr-magali-alonzeau-18612"
+  }
+},
+{
+  "model": "listing.listing",
+  "pk": 3,
+  "fields": {
+    "profile": 1,
+    "owner": "Pamoja",
+    "category": 1,
+    "subcategory": 1,
+    "type": "IND",
+    "title": "Dr Nicole ANDLAUER",
+    "company_name": null,
+    "location": 1,
+    "description": "",
+    "logo": "",
+    "created_at": "2025-01-04T18:26:15.151Z",
+    "updated_at": "2025-01-04T18:26:15.151Z",
+    "website_url": null,
+    "status": "PEN",
+    "average_rating": "0.00",
+    "search_vector": "",
+    "slug": "dr-nicole-andlauer-bfeb7"
+  }
+},
+{
+  "model": "listing.listing",
+  "pk": 4,
+  "fields": {
+    "profile": 1,
+    "owner": "Pamoja",
+    "category": 1,
+    "subcategory": 1,
+    "type": "IND",
+    "title": "Dr Morgane CIUPA",
+    "company_name": null,
+    "location": 1,
+    "description": "",
+    "logo": "",
+    "created_at": "2025-01-04T18:27:56.621Z",
+    "updated_at": "2025-01-04T18:27:56.621Z",
+    "website_url": null,
+    "status": "PEN",
+    "average_rating": "0.00",
+    "search_vector": "",
+    "slug": "dr-morgane-ciupa-3f98d"
+  }
+},
+{
+  "model": "listing.listing",
+  "pk": 5,
+  "fields": {
+    "profile": 1,
+    "owner": "Pamoja",
+    "category": 1,
+    "subcategory": 1,
+    "type": "IND",
+    "title": "Dr Inès TEIXIRA",
+    "company_name": null,
+    "location": 1,
+    "description": "",
+    "logo": "",
+    "created_at": "2025-01-04T18:31:05.965Z",
+    "updated_at": "2025-01-04T20:47:00.085Z",
+    "website_url": null,
+    "status": "PEN",
+    "average_rating": "0.00",
+    "search_vector": "",
+    "slug": "dr-ines-teixira-568c3"
+  }
+},
+{
+  "model": "listing.listing",
+  "pk": 7,
+  "fields": {
+    "profile": 1,
+    "owner": "Pamoja",
+    "category": 1,
+    "subcategory": 1,
+    "type": "IND",
+    "title": "Thomas AWONFOUET",
+    "company_name": "Groupe AWF",
+    "location": 1,
+    "description": "",
+    "logo": "",
+    "created_at": "2025-01-04T21:36:09.806Z",
+    "updated_at": "2025-01-13T20:36:50.050Z",
+    "website_url": null,
+    "status": "PEN",
+    "average_rating": "0.00",
+    "search_vector": "",
+    "slug": "thomas-awonfouet-d4326"
+  }
+}
+]

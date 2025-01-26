@@ -120,20 +120,20 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 # Configuration de la base de données
-if DEBUG:
-    # Base de données de développement
-    DATABASE_URL = config(
-        'DEV_DATABASE_URL',
-        default= 'sqlite:///' + str(BASE_DIR / 'db.sqlite3')
-    )
-else:
-    # Base de données de production
-    DATABASE_URL = config(
-        'PROD_DATABASE_URL',
-        default= ''
-    )
+# if DEBUG:
+#     # Base de données de développement
+#     DATABASE_URL = config(
+#         'DEV_DATABASE_URL',
+#         default= 'sqlite:///' + str(BASE_DIR / 'db.sqlite3')
+#     )
+# else:
+#     # Base de données de production
+#     DATABASE_URL = config(
+#         'PROD_DATABASE_URL',
+#         default= ''
+#     )
 
-
+DATABASE_URL='sqlite:///db.sqlite3'
 DATABASES = {
     'default': dj_database_url.parse(
         DATABASE_URL,
