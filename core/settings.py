@@ -233,7 +233,7 @@ SITE_ID = 1
 # Paramètres de configuration Allauth
 ACCOUNT_AUTHENTICATION_METHOD = 'email'  # Utiliser l'email pour l'authentification
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # ou 'optional' ou 'none'
+#ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # ou 'optional' ou 'none'
 ACCOUNT_USERNAME_REQUIRED = False
 LOGIN_REDIRECT_URL = '/'  # Redirection après connexion
 LOGOUT_REDIRECT_URL = '/'  # Redirection après déconnexion
