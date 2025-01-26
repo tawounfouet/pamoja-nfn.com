@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load account %}
+
+{% block head_title %}{% trans "Vérification de l'adresse e-mail" %}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-center mb-4">{% trans "Vérifiez votre e-mail" %}</h1>
+                    
+                    <p class="text-center text-muted mb-4">
+                        {% blocktrans %}Un e-mail de confirmation a été envoyé à votre adresse e-mail. 
+                        Veuillez suivre le lien fourni pour finaliser le processus de vérification.{% endblocktrans %}
+                    </p>
+                    
+                    <p class="text-center text-muted">
+                        {% blocktrans %}Si vous ne recevez pas l'e-mail dans quelques minutes, 
+                        veuillez vérifier votre dossier spam.{% endblocktrans %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
