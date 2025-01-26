@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.postgres.search import SearchVectorField
+# from django.contrib.postgres.search import SearchVectorField
 from django.contrib.postgres.indexes import GinIndex
 from django.conf import settings
 from django.contrib.contenttypes.fields import GenericForeignKey
@@ -12,16 +12,25 @@ class SearchDocument(models.Model):
     
     title = models.CharField(max_length=255)
     content = models.TextField()
-    search_vector = SearchVectorField(null=True)
+    #search_vector = SearchVectorField(null=True)
+    
+    # Replace tsvector field with text field
+    search_text = models.TextField(null=True, blank=True)
+    # Remove search_vector field if it exists
     
     # Métadonnées pour améliorer la recherche
     tags = models.JSONField(default=list)
     location = models.JSONField(null=True)
     last_updated = models.DateTimeField(auto_now=True)
 
+    # class Meta:
+    #     indexes = [
+    #         GinIndex(fields=['search_vector']),
+    #     ]
+
     class Meta:
         indexes = [
-            GinIndex(fields=['search_vector']),
+            models.Index(fields=['title', 'content']),
         ]
 
 class SearchHistory(models.Model):

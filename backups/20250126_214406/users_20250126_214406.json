@@ -1,0 +1,199 @@
+[
+{
+  "model": "users.contactinfos",
+  "pk": 1,
+  "fields": {
+    "profile": 1,
+    "country": "FR",
+    "mobile_phone": "+33612345678",
+    "whatsapp_number": "+33668957467",
+    "contact_email": "thomas.awounfouet@gmail.com",
+    "preferred_contact": "whatsapp"
+  }
+},
+{
+  "model": "users.socialinks",
+  "pk": 1,
+  "fields": {
+    "profile": 1,
+    "facebook": null,
+    "instagram": null,
+    "twitter": null,
+    "linkedin": null
+  }
+},
+{
+  "model": "users.profile",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in leo mi. Duis gravida, justo ac facilisis condimentum, lacus purus feugiat diam, eget elementum quam est nec orci. Etiam semper eleifend est, ac vestibulum nisl imperdiet ut. Donec tempus elit nisl, a vestibulum lacus pellentesque porttitor. Morbi id suscipit libero. Praesent cursus dignissim dolor. Aliquam enim lacus, maximus at massa sed, venenatis consequat eros. Nam in molestie ipsum. Vivamus aliquet posuere sapien.",
+    "profile_image": "profile_images/thomas-bot-dj.jpg",
+    "date_registered": "2025-01-04T18:21:19.856Z",
+    "verified": false,
+    "verification_date": null,
+    "verified_by": 1,
+    "location": 1,
+    "last_active": "2025-01-06T19:28:55.925Z",
+    "reputation_score": 0,
+    "is_public": true,
+    "languages": []
+  }
+},
+{
+  "model": "users.profile",
+  "pk": 2,
+  "fields": {
+    "user": 2,
+    "bio": "",
+    "profile_image": "",
+    "date_registered": "2025-01-04T22:19:37.110Z",
+    "verified": true,
+    "verification_date": null,
+    "verified_by": 1,
+    "location": 1,
+    "last_active": "2025-01-05T09:13:02.944Z",
+    "reputation_score": 0,
+    "is_public": true,
+    "languages": []
+  }
+},
+{
+  "model": "users.profile",
+  "pk": 3,
+  "fields": {
+    "user": 3,
+    "bio": "",
+    "profile_image": "",
+    "date_registered": "2025-01-05T09:17:16.781Z",
+    "verified": false,
+    "verification_date": null,
+    "verified_by": null,
+    "location": 1,
+    "last_active": "2025-01-05T09:17:45.310Z",
+    "reputation_score": 0,
+    "is_public": true,
+    "languages": []
+  }
+},
+{
+  "model": "users.profile",
+  "pk": 4,
+  "fields": {
+    "user": 4,
+    "bio": "",
+    "profile_image": "",
+    "date_registered": "2025-01-05T09:31:45.986Z",
+    "verified": false,
+    "verification_date": null,
+    "verified_by": null,
+    "location": null,
+    "last_active": "2025-01-05T09:31:45.986Z",
+    "reputation_score": 0,
+    "is_public": true,
+    "languages": []
+  }
+},
+{
+  "model": "users.profile",
+  "pk": 5,
+  "fields": {
+    "user": 5,
+    "bio": "",
+    "profile_image": "",
+    "date_registered": "2025-01-05T09:34:24.413Z",
+    "verified": false,
+    "verification_date": null,
+    "verified_by": null,
+    "location": null,
+    "last_active": "2025-01-05T09:34:24.413Z",
+    "reputation_score": 0,
+    "is_public": true,
+    "languages": []
+  }
+},
+{
+  "model": "users.profile",
+  "pk": 6,
+  "fields": {
+    "user": 6,
+    "bio": "",
+    "profile_image": "",
+    "date_registered": "2025-01-16T17:08:51.035Z",
+    "verified": true,
+    "verification_date": null,
+    "verified_by": 1,
+    "location": 1,
+    "last_active": "2025-01-16T17:36:06.906Z",
+    "reputation_score": 0,
+    "is_public": true,
+    "languages": []
+  }
+},
+{
+  "model": "users.profile",
+  "pk": 7,
+  "fields": {
+    "user": 7,
+    "bio": "",
+    "profile_image": "",
+    "date_registered": "2025-01-16T17:28:52.077Z",
+    "verified": false,
+    "verification_date": null,
+    "verified_by": null,
+    "location": null,
+    "last_active": "2025-01-16T17:28:52.077Z",
+    "reputation_score": 0,
+    "is_public": true,
+    "languages": []
+  }
+},
+{
+  "model": "users.notification",
+  "pk": 1,
+  "fields": {
+    "user": 2,
+    "title": "Profil vérifié",
+    "message": "Votre profil a été vérifié avec succès.",
+    "read": false,
+    "created_at": "2025-01-05T09:13:03.026Z",
+    "notification_type": "PROFILE_VERIFIED",
+    "related_object_type": 28,
+    "related_object_id": 2,
+    "is_email_sent": false,
+    "priority": 0
+  }
+},
+{
+  "model": "users.notification",
+  "pk": 2,
+  "fields": {
+    "user": 1,
+    "title": "Profil vérifié",
+    "message": "Votre profil a été vérifié avec succès.",
+    "read": false,
+    "created_at": "2025-01-05T09:14:37.910Z",
+    "notification_type": "PROFILE_VERIFIED",
+    "related_object_type": 28,
+    "related_object_id": 1,
+    "is_email_sent": false,
+    "priority": 0
+  }
+},
+{
+  "model": "users.notification",
+  "pk": 3,
+  "fields": {
+    "user": 6,
+    "title": "Profil vérifié",
+    "message": "Votre profil a été vérifié avec succès.",
+    "read": false,
+    "created_at": "2025-01-16T17:36:06.987Z",
+    "notification_type": "PROFILE_VERIFIED",
+    "related_object_type": 28,
+    "related_object_id": 6,
+    "is_email_sent": false,
+    "priority": 0
+  }
+}
+]
