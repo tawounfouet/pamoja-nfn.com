@@ -1,0 +1,61 @@
+{% comment %} {% extends "socialaccount/base_entrance.html" %}
+{% load i18n %} {% endcomment %}
+
+{% extends "base.html" %}
+{% load i18n %}
+{% load account socialaccount %}
+
+{% load allauth %}
+
+{% block head_title %}
+    {% trans "Inscription" %}
+{% endblock head_title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    {% element h1 %}
+                        <h1 class="text-center mb-4">{% trans "Inscription" %}</h1>
+                    {% endelement %}
+                    
+                    <p class="text-center text-muted mb-4">
+                        {% blocktrans with provider_name=account.get_provider.name site_name=site.name %}
+                        Vous êtes sur le point d'utiliser votre compte {{provider_name}} pour vous connecter à {{site_name}}. Pour finaliser, veuillez compléter le formulaire suivant :
+                        {% endblocktrans %}
+                    </p>
+
+                    {% url 'socialaccount_signup' as action_url %}
+                    {% element form form=form method="post" action=action_url %}
+                        {% slot body %}
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                {% element fields form=form %}
+                                    {% comment %}Les champs seront stylisés avec les classes Bootstrap par défaut{% endcomment %}
+                                {% endelement %}
+                            </div>
+                            {% if redirect_field_value %}
+                                <input type="hidden"
+                                       name="{{ redirect_field_name }}"
+                                       value="{{ redirect_field_value }}" />
+                            {% endif %}
+                        {% endslot %}
+                        
+                        {% slot actions %}
+                            <div class="d-grid gap-2">
+                                {% element button type="submit" %}
+                                    <button class="btn btn-primary">
+                                        {% trans "S'inscrire" %}
+                                    </button>
+                                {% endelement %}
+                            </div>
+                        {% endslot %}
+                    {% endelement %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

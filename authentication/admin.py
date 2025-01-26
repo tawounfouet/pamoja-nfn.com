@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext_lazy as _
 from .models import User
 
-#@admin.register(User)
+@admin.register(User)
 class CustomUserAdmin(UserAdmin):
     list_display = (
         'email', 'username', 'first_name', 'last_name', 

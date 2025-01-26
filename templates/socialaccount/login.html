@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load account socialaccount %}
+{% load allauth %}
+
+{% block head_title %}
+    {% trans "Connexion" %}
+{% endblock head_title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    {% if process == "connect" %}
+                        {% element h1 %}
+                            <h1 class="text-center mb-4">
+                                {% blocktrans with provider.name as provider %}Connecter {{ provider }}{% endblocktrans %}
+                            </h1>
+                        {% endelement %}
+                        <p class="text-center text-muted mb-4">
+                            {% blocktrans with provider.name as provider %}
+                            Vous êtes sur le point de connecter un nouveau compte tiers depuis {{ provider }}.
+                            {% endblocktrans %}
+                        </p>
+                    {% else %}
+                        {% element h1 %}
+                            <h1 class="text-center mb-4">
+                                {% blocktrans with provider.name as provider %}Connexion via {{ provider }}{% endblocktrans %}
+                            </h1>
+                        {% endelement %}
+                        <p class="text-center text-muted mb-4">
+                            {% blocktrans with provider.name as provider %}
+                            Vous êtes sur le point de vous connecter en utilisant un compte tiers depuis {{ provider }}.
+                            {% endblocktrans %}
+                        </p>
+                    {% endif %}
+
+                    {% element form method="post" no_visible_fields=True %}
+                        {% slot actions %}
+                            {% csrf_token %}
+                            <div class="d-grid gap-2">
+                                {% element button type="submit" %}
+                                    <button class="btn btn-primary">
+                                        {% trans "Continuer" %}
+                                    </button>
+                                {% endelement %}
+                            </div>
+                        {% endslot %}
+                    {% endelement %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

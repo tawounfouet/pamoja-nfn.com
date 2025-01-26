@@ -16,12 +16,15 @@ django-countries
 phonenumbers
 
 # social auth and login
-django-allauth
+#django-allauth
+django-allauth==0.61.1
+
 #django-allauth[google,facebook]
 requests
-jwt
-PyJWT
-cryptography
+#jwt
+PyJWT==2.8.0  # Remove plain 'jwt'
+cryptography==41.0.7
+#cryptography
 #django-allauth[crypto]
 #pip install django-allauth[google,facebook]
 

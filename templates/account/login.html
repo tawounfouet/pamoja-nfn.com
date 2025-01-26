@@ -27,7 +27,7 @@
 
                     {% if socialaccount_providers %}
                     <div class="social-login mb-4">
-                        <p class="text-center">{% trans "Connexion avec:" %}</p>
+                        {% comment %} <p class="text-center">{% trans "Connexion avec:" %}</p> {% endcomment %}
                         <div class="d-grid gap-2">
                             {% for provider in socialaccount_providers %}
                                 {% if provider.id == 'google' %}
@@ -62,11 +62,11 @@
                     </div>
                     {% endif %}
 
-                    <div class="separator">
+                    {% comment %} <div class="separator">
                         <span>ou</span>
-                    </div>
+                    </div> {% endcomment %}
 
-                    <form class="login" method="POST" action="{% url 'account_login' %}">
+                    {% comment %} <form class="login" method="POST" action="{% url 'account_login' %}">
                         {% csrf_token %}
                         
                         {% if form.errors %}
@@ -101,7 +101,7 @@
                         <div class="mt-3 text-center">
                             <a href="{% url 'account_reset_password' %}">{% trans "Mot de passe oublié?" %}</a>
                         </div>
-                    </form>
+                    </form> {% endcomment %}
 
                     <div class="mt-3 text-center">
                         <p>{% trans "Pas encore de compte?" %} <a href="{% url 'account_signup' %}">{% trans "S'inscrire" %}</a></p>
