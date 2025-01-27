@@ -597,7 +597,7 @@
             <div>
                <!-- alert -->
                <div class="alert alert-danger p-2" role="alert">
-                  You’ve got FREE delivery. Start
+                  You've got FREE delivery. Start
                   <a href="#!" class="alert-link">checkout now!</a>
                </div>
                <ul class="list-group list-group-flush">
@@ -1227,6 +1227,74 @@
             </div>
         </section>
 
+          <!-- Category Section End-->
+      
+      <section class="category-section content-section py-5">
+         <div class="container">
+            <div class="row">
+               <div class="col-12 col-md-6 mb-3 mb-lg-0">
+                  <div>
+                     <div class="py-10 px-8 rounded position-relative" style="background: url({% static 'theme/assets/images/banner/alimentation.png' %}) no-repeat; background-size: cover; background-position: center">
+                        <!-- Overlay semi-transparent -->
+                        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-25 rounded"></div>
+                        <!-- Contenu centré -->
+                        <div class="position-relative text-center">
+                           <p class="fw-bold mb-4 text-white h3">Alimentation</p>
+                           {% comment %} <a href="#!" class="btn btn-light">Voir</a> {% endcomment %}
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-12 col-md-6">
+                  <div>
+                     <div class="py-10 px-8 rounded position-relative" style="background: url({% static 'theme/assets/images/banner/cheveux.png' %}) no-repeat; background-size: cover; background-position: center">
+                        <!-- Overlay semi-transparent -->
+                        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-25 rounded"></div>
+                        <!-- Contenu centré -->
+                        <div class="position-relative text-center">
+                           <p class="fw-bold mb-4 text-white h3">Cheveux</p>
+                           {% comment %} <a href="#!" class="btn btn-light">Voir</a> {% endcomment %}
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <section class="category-section content-section py-1">
+         <div class="container">
+            <div class="row">
+               <div class="col-12 col-md-6 mb-3 mb-lg-0">
+                  <div>
+                     <div class="py-10 px-8 rounded position-relative" style="background: url({% static 'theme/assets/images/banner/avocats.jpeg' %}) no-repeat; background-size: cover; background-position: center">
+                        <!-- Overlay semi-transparent -->
+                        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-25 rounded"></div>
+                        <!-- Contenu centré -->
+                        <div class="position-relative text-center">
+                           <p class="fw-bold mb-4 text-white h3">Avocats</p>
+                           {% comment %} <a href="#!" class="btn btn-light">Voir</a> {% endcomment %}
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-12 col-md-6">
+                  <div>
+                     <div class="py-10 px-8 rounded position-relative" style="background: url({% static 'theme/assets/images/banner/medecins.png' %}) no-repeat; background-size: cover; background-position: center">
+                        <!-- Overlay semi-transparent -->
+                        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-25 rounded"></div>
+                        <!-- Contenu centré -->
+                        <div class="position-relative text-center">
+                           <p class="fw-bold mb-4 text-white h3">Médecins</p>
+                           {% comment %} <a href="#!" class="btn btn-light">Voir</a> {% endcomment %}
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
         <!-- Key Features Section -->
         {% comment %} <section class="features-section content-section py-5 bg-light">
             <div class="container">
@@ -1759,23 +1827,37 @@
          <div class="container">
             <div class="row">
                <div class="col-12 mb-6">
-                  <h3 class="mb-0">Featured Categories</h3>
+                  <h3 class="mb-0">Toutes les catégories</h3>
                </div>
             </div>
             <div class="category-slider">
+               {% for category in categories %}
                <div class="item">
-                  <a href="../pages/shop-grid.html" class="text-decoration-none text-inherit">
+                  <a href="#" class="text-decoration-none text-inherit">
+                     <div class="card card-product mb-lg-4">
+                        <div class="card-body text-center py-8">
+                           {% if category.image %}
+                              <img src="{{ category.image.url }}" alt="{{ category.name }}" class="mb-3 img-fluid" />
+                           {% else %}
+                              <img src="{% static 'theme/assets/images/category/category-dairy-bread-eggs.jpg' %}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid" />
+                           {% endif %}
+                           <div class="text-truncate">{{ category.name }}</div>
+                        </div>
+                     </div>
+                  </a>
+                  {% comment %} <a href="../pages/shop-grid.html" class="text-decoration-none text-inherit">
                      <div class="card card-product mb-lg-4">
                         <div class="card-body text-center py-8">
                            <img src="{% static 'theme/assets/images/category/category-dairy-bread-eggs.jpg' %}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid" />
                            <div class="text-truncate">Dairy, Bread & Eggs</div>
                         </div>
                      </div>
-                  </a>
+                  </a> {% endcomment %}
                </div>
+               {% endfor %}
 
 
-               <div class="item">
+               {% comment %} <div class="item">
                   <a href="../pages/shop-grid.html" class="text-decoration-none text-inherit">
                      <div class="card card-product mb-lg-4">
                         <div class="card-body text-center py-8">
@@ -1865,7 +1947,8 @@
                         </div>
                      </div>
                   </a>
-               </div>
+               </div> {% endcomment %}
+
             </div>
          </div>
       </section>
