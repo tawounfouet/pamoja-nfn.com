@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" data-bs-theme="light" data-pwa="true">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
+
+    <!-- SEO Meta Tags -->
+    <title>Finder | City Guide - Listings with Side Filters</title>
+    <meta name="description" content="Finder - Directory & Listings Bootstrap HTML Template">
+    <meta name="keywords" content="directory, listings, search, car dealer, real estate, city guide, business listings, medical directories, event listings, e-commerce, market, multipurpose, ui kit, light and dark mode, bootstrap, html5, css3, javascript, gallery, slider, mobile, pwa">
+    <meta name="author" content="Createx Studio">
+
+    <!-- Webmanifest + Favicon / App icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/png" href="{% static 'listing/assets/app-icons/icon-32x32.png' %}" sizes="32x32">
+    <link rel="apple-touch-icon" href="{% static 'listing/assets/app-icons/icon-180x180.png' %}">
+
+    <!-- Theme switcher (color modes) -->
+    <script src="{% static 'listing/assets/js/theme-switcher.js' %}"></script>
+
+    <!-- Preloaded local web font (Inter) -->
+    <link rel="preload" href="{% static 'listing/assets/fonts/inter-variable-latin.woff2' %}" as="font" type="font/woff2" crossorigin>
+
+    <!-- Font icons -->
+    <link rel="preload" href="{% static 'listing/assets/icons/finder-icons.woff2' %}" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="{% static 'listing/assets/icons/finder-icons.min.css' %}">
+
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="{% static 'listing/assets/vendor/choices.js/public/assets/styles/choices.min.css' %}">
+    <link rel="stylesheet" href="{% static 'listing/assets/vendor/nouislider/dist/nouislider.min.css' %}">
+    <link rel="stylesheet" href="{% static 'listing/assets/vendor/flatpickr/dist/flatpickr.min.css' %}">
+    <link rel="stylesheet" href="{% static 'listing/assets/vendor/leaflet/dist/leaflet.css' %}">
+
+    <!-- Bootstrap + Theme styles -->
+    <link rel="preload" href="{% static 'listing/assets/css/theme.min.css' %}" as="style">
+    <link rel="preload" href="{% static 'listing/assets/css/theme.rtl.min.css' %}" as="style">
+    <link rel="stylesheet" href="{% static 'listing/assets/css/theme.min.css' %}" id="theme-styles">
+  </head>
+
+
+  <!-- Body -->
+  <body>
+
+    <!-- Map offcanvas -->
+    {% comment %} {% include 'layout/finder/components/map-offcanvas.html' %} {% endcomment %}
+    
+  
+
+
+    <!-- Navigation bar (Page header) -->
+  
+
+
+    <!-- Page content -->
+    <main class="content-wrapper">
+      <div class="container pt-4 pb-5 mb-xxl-3">
+
+        <!-- Breadcrumb -->
+       
+
+
+        <!-- Filter sidebar + Listings grid view -->
+        <div class="row pb-2 pb-sm-3 pb-md-4 pb-lg-5">
+
+          <!-- Filter sidebar that turns into offcanvas on screens < 992px wide (lg breakpoint) -->
+         {% include 'layout/finder-city/sidebar.html' %}
+
+
+          <!-- Listings grid -->
+          <div class="col-lg-9">
+
+            <!-- Sort selector + Map view toggle -->
+            <div class="d-flex align-items-center gap-4 pb-3 mb-2 mb-xl-3">
+              <div class="fs-sm text-nowrap d-none d-md-inline">Showing 116 results</div>
+
+              <!-- Sort selector -->
+               {% include 'layout/finder-city/components/sort-selector.html' %}
+              
+
+              <!-- Map view toggle -->
+
+            </div>
+
+            <!-- All Listings -->
+             {% comment %} {% include 'layout/finder/listings.html' %} {% endcomment %}
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-2 row-cols-xl-3 g-4 g-sm-3 g-lg-4">
+
+              <!-- Start Listing -->
+               {% for listing in listings %}
+              <div class="col">
+                <article class="card h-100 hover-effect-scale hover-effect-opacity bg-transparent">
+                  <div class="card-img-top position-relative bg-body-tertiary overflow-hidden">
+                    <div class="ratio hover-effect-target" style="--fn-aspect-ratio: calc(198 / 304 * 100%)">
+                      {% if listing.logo %}
+                        <img src="{{ listing.logo.url }}" alt="Image">
+                      {% else %}
+                        <img src="{% static 'listing/assets/img/listings/city-guide/v1/01.jpg' %}" alt="Image">
+                      {% endif %}
+                      {% comment %} <img src="{% static 'listing/assets/img/listings/city-guide/v1/01.jpg' %}" alt="Image"> {% endcomment %}
+                    </div>
+                    <div class="position-absolute top-0 end-0 z-2 hover-effect-target opacity-0 pt-1 pt-sm-0 pe-1 pe-sm-0 mt-2 mt-sm-3 me-2 me-sm-3">
+                      <button type="button" class="btn btn-sm btn-icon btn-light bg-light border-0 rounded-circle animate-pulse" aria-label="Add to wishlist">
+                        <i class="fi-heart animate-target fs-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body pt-3 pb-2 px-3">
+                    <span class="badge text-body-emphasis bg-secondary-subtle text-decoration-none mb-2">{{ listing.subcategory.name }}</span>
+                    <h3 class="h5 pt-1 mb-2">
+                      <a class="hover-effect-underline stretched-link" href="single-entry-city-guide.html">{{listing.title }}</a>
+                    </h3>
+                    <p class="fs-sm mb-0">Discover fascinating animals and a fun-filled adventure for the whole family.</p>
+                  </div>
+                  <div class="card-footer bg-transparent border-0 pt-0 pb-3 px-3">
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="d-flex align-items-center gap-1">
+                        <i class="fi-star-filled text-warning"></i>
+                        <span class="fs-sm text-secondary-emphasis">4.6</span>
+                        <span class="fs-xs text-body-secondary align-self-end">(7523)</span>
+                      </div>
+                      <div class="d-flex align-items-center gap-1 min-w-0 fs-sm">
+                        <i class="fi-map-pin"></i>
+                        <span class="text-truncate">3.2 km from center</span>
+                      </div>
+                    </div>
+                    {% comment %} <div class="h6 pt-3 mb-0">$20</div> {% endcomment %}
+                  </div>
+                </article>
+              </div>
+              {% endfor %}
+              <!-- End Listing -->
+              
+          
+            </div>
+           
+
+            <!-- Pagination -->
+            {% include 'layout/finder-city/components/pagination.html' %}
+           
+
+          </div>
+        </div>
+      </div>
+    </main>
+
+
+    <!-- Page footer -->
+
+
+
+    <!-- Filter sidebar offcanvas toggle that is visible on screens < 992px wide (lg breakpoint) -->
+  
+
+
+    <!-- Back to top button -->
+   
+
+
+
+    <!-- Vendor scripts -->
+    <script src="{% static 'listing/assets/vendor/choices.js/public/assets/scripts/choices.min.js' %}"></script>
+    <script src="{% static 'listing/assets/vendor/nouislider/dist/nouislider.min.js' %}"></script>
+    <script src="{% static 'listing/assets/vendor/flatpickr/dist/flatpickr.min.js' %}"></script>
+    <script src="{% static 'listing/assets/vendor/leaflet/dist/leaflet.js' %}"></script>
+
+    <!-- Bootstrap + Theme scripts -->
+    <script src="{% static 'listing/assets/js/theme.min.js' %}"></script>
+  </body>
+</html>

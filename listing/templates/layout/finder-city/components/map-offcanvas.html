@@ -1,0 +1,21 @@
+{% load static %}
+
+<div class="offcanvas offcanvas-top h-100" id="map" tabindex="-1">
+    <div class="offcanvas-header justify-content-between border-bottom py-3">
+      <h5 class="offcanvas-title py-1">View on the map</h5>
+      <div class="d-flex align-items-center py-1">
+        <span class="fs-xs ms-auto me-2">[ESC]</span>
+        <button class="btn-close ms-0" type="button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+    </div>
+    <div class="offcanvas-body position-relative">
+
+      <!-- In order to make the map look like in the demo site add following property "tileLayer": "https://api.maptiler.com/maps/pastel/{z}/{x}/{y}.png?key=YOUR_MAPTILER_API_KEY", "tileSize": 512 and "zoomOffset": -1 to [data-map] attribute -->
+      <div class="position-absolute top-0 start-0 w-100 h-100 bg-body-tertiary" data-map='{
+        "zoom": 15,
+        "templates": {
+          "popup": "<div class=\"card hover-effect-scale bg-transparent border-0\" data-bs-theme=\"light\"><div class=\"card-img-top position-relative bg-body-tertiary overflow-hidden\"><div class=\"ratio\" style=\"--fn-aspect-ratio: calc(128 / 280 * 100%)\"></div><img src=\"{{image}}\" class=\"hover-effect-target position-absolute top-0 start-0 w-100 h-100 object-fit-cover\" alt=\"Image\"></div><div class=\"card-body pt-3 pb-1 px-3\"><span class=\"badge text-body-emphasis bg-secondary-subtle text-decoration-none mb-2\">{{category}}</span><h3 class=\"fs-lg mb-2\"><a class=\"hover-effect-underline stretched-link text-dark-emphasis\" href=\"single-entry-city-guide.html\">{{title}}</a></h3></div><div class=\"card-footer bg-transparent border-0 pt-0 pb-3 px-3\"><div class=\"d-flex align-items-center gap-3\"><div class=\"d-flex align-items-center gap-1\"><i class=\"fi-star-filled text-warning\"></i><span class=\"fs-sm text-secondary-emphasis\">{{rating}}</span><span class=\"fs-xs text-body-secondary align-self-end\">({{reviews}})</span></div><div class=\"d-flex align-items-center gap-1 min-w-0 fs-sm\"><i class=\"fi-map-pin\"></i><span class=\"text-truncate\">{{fromCenter}} km from center</span></div></div><div class=\"h6 pt-3 mb-0\">${{price}}</div></div></div>"
+        }
+      }' data-map-markers="{% static 'listing/assets/json/map-city-guide.json' %}"></div>
+    </div>
+</div>

@@ -417,3 +417,37 @@ http://localhost:8000/admin/
 2. Implémenter une API REST documentée
 3. Prévoir une stratégie de backup
 4. Planifier la scalabilité
+
+
+
+## Django Import-Export
+
+```sh
+# https://django-import-export.readthedocs.io/en/latest/installation.html 
+
+pip install django-import-export
+
+
+#1. Ajouter 'import_export' à INSTALLED_APPS
+# settings.py
+INSTALLED_APPS = (
+    ...
+    'import_export',
+)
+
+#2. Créer une ressource pour le modèle
+# admin.py
+#from import_export import resources
+from import_export.admin import ImportExportModelAdmin
+from .models import Listing
+
+
+python manage.py collectstatic
+
+
+
+from import_export.admin import ImportExportModelAdmin
+
+class ListingResource(resources.ModelResource):
+    class Meta:
+        model = Listing

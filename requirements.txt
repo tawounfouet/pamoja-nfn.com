@@ -29,3 +29,10 @@ cryptography==41.0.7
 #pip install django-allauth[google,facebook]
 
 whitenoise
+
+
+# django import export
+#pip install django-import-export
+django-import-export
+
+# pip install -r requirements.txt

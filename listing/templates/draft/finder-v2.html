@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" data-bs-theme="light" data-pwa="true">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
+
+    <!-- SEO Meta Tags -->
+    <title>Finder | City Guide - Listings with Side Filters</title>
+    <meta name="description" content="Finder - Directory & Listings Bootstrap HTML Template">
+    <meta name="keywords" content="directory, listings, search, car dealer, real estate, city guide, business listings, medical directories, event listings, e-commerce, market, multipurpose, ui kit, light and dark mode, bootstrap, html5, css3, javascript, gallery, slider, mobile, pwa">
+    <meta name="author" content="Createx Studio">
+
+    <!-- Webmanifest + Favicon / App icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/png" href="{% static 'listing/assets/app-icons/icon-32x32.png' %}" sizes="32x32">
+    <link rel="apple-touch-icon" href="{% static 'listing/assets/app-icons/icon-180x180.png' %}">
+
+    <!-- Theme switcher (color modes) -->
+    <script src="{% static 'listing/assets/js/theme-switcher.js' %}"></script>
+
+    <!-- Preloaded local web font (Inter) -->
+    <link rel="preload" href="{% static 'listing/assets/fonts/inter-variable-latin.woff2' %}" as="font" type="font/woff2" crossorigin>
+
+    <!-- Font icons -->
+    <link rel="preload" href="{% static 'listing/assets/icons/finder-icons.woff2' %}" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="{% static 'listing/assets/icons/finder-icons.min.css' %}">
+
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="{% static 'listing/assets/vendor/choices.js/public/assets/styles/choices.min.css' %}">
+    <link rel="stylesheet" href="{% static 'listing/assets/vendor/nouislider/dist/nouislider.min.css' %}">
+    <link rel="stylesheet" href="{% static 'listing/assets/vendor/flatpickr/dist/flatpickr.min.css' %}">
+    <link rel="stylesheet" href="{% static 'listing/assets/vendor/leaflet/dist/leaflet.css' %}">
+
+    <!-- Bootstrap + Theme styles -->
+    <link rel="preload" href="{% static 'listing/assets/css/theme.min.css' %}" as="style">
+    <link rel="preload" href="{% static 'listing/assets/css/theme.rtl.min.css' %}" as="style">
+    <link rel="stylesheet" href="{% static 'listing/assets/css/theme.min.css' %}" id="theme-styles">
+  </head>
+
+
+  <!-- Body -->
+  <body>
+
+    <!-- Map offcanvas -->
+     {% include 'layout/finder/components/map-offcanvas.html' %}
+  
+
+
+    <!-- Navigation bar (Page header) -->
+    {% include 'layout/finder/header.html' %}
+   
+
+
+    <!-- Page content -->
+    <main class="content-wrapper">
+      <div class="container pt-4 pb-5 mb-xxl-3">
+
+        <!-- Breadcrumb -->
+         {% include 'layout/finder/components/breadcrumb.html' %}
+       
+
+
+        <!-- Filter sidebar + Listings grid view -->
+        <div class="row pb-2 pb-sm-3 pb-md-4 pb-lg-5">
+
+          <!-- Filter sidebar that turns into offcanvas on screens < 992px wide (lg breakpoint) -->
+         {% include 'layout/finder/sidebar.html' %}
+
+
+          <!-- Listings grid -->
+          <div class="col-lg-9">
+
+            <!-- Sort selector + Map view toggle -->
+            <div class="d-flex align-items-center gap-4 pb-3 mb-2 mb-xl-3">
+              <div class="fs-sm text-nowrap d-none d-md-inline">Showing 116 results</div>
+
+              <!-- Sort selector -->
+               {% include 'layout/finder/components/sort-selector.html' %}
+              
+
+              <!-- Map view toggle -->
+               {% include 'layout/finder/components/map-view.html' %}
+
+            </div>
+
+            <!-- All Listings -->
+             {% include 'layout/finder/listings.html' %}
+           
+
+            <!-- Pagination -->
+            {% include 'layout/finder/components/pagination.html' %}
+           
+
+          </div>
+        </div>
+      </div>
+    </main>
+
+
+    <!-- Page footer -->
+    {% include 'layout/finder/footer.html' %}
+   
+
+
+    <!-- Filter sidebar offcanvas toggle that is visible on screens < 992px wide (lg breakpoint) -->
+    {% include 'layout/finder/components/sidebar-offcanvas-toggle.html' %}
+
+
+    <!-- Back to top button -->
+    {% include 'layout/finder/components/back-to-top-button.html' %}
+
+
+
+    <!-- Vendor scripts -->
+    <script src="{% static 'listing/assets/vendor/choices.js/public/assets/scripts/choices.min.js' %}"></script>
+    <script src="{% static 'listing/assets/vendor/nouislider/dist/nouislider.min.js' %}"></script>
+    <script src="{% static 'listing/assets/vendor/flatpickr/dist/flatpickr.min.js' %}"></script>
+    <script src="{% static 'listing/assets/vendor/leaflet/dist/leaflet.js' %}"></script>
+
+    <!-- Bootstrap + Theme scripts -->
+    <script src="{% static 'listing/assets/js/theme.min.js' %}"></script>
+  </body>
+</html>

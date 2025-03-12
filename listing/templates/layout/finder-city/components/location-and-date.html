@@ -1,0 +1,30 @@
+<div class="pb-4 mb-2 mb-xl-3">
+    <h4 class="h6">Location and date</h4>
+    <div class="vstack gap-3">
+      <div class="position-relative">
+        <i class="fi-map-pin position-absolute top-50 start-0 translate-middle-y z-1 ms-3"></i>
+        <select class="form-select form-icon-start rounded-pill" data-select='{
+          "classNames": {
+            "containerInner": ["form-select", "form-icon-start", "rounded-pill"]
+          },
+          "searchEnabled": true
+        }' aria-label="Location select">
+          <option value="">Any location</option>
+          <option value="Paris">Paris</option>
+          <option value="Rome">Rome</option>
+          <option value="Barcelona" selected>Barcelona</option>
+          <option value="London">London</option>
+          <option value="Amsterdam">Amsterdam</option>
+          <option value="Berlin">Berlin</option>
+          <option value="Prague">Prague</option>
+          <option value="Venice">Venice</option>
+          <option value="Vienna">Vienna</option>
+          <option value="Florence">Florence</option>
+        </select>
+      </div>
+      <div class="position-relative">
+        <i class="fi-calendar position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+        <input type="text" class="form-control form-icon-start rounded-pill" data-datepicker='{"dateFormat": "F j, Y"}' placeholder="Choose date">
+      </div>
+    </div>
+</div>

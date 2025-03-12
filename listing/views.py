@@ -3,7 +3,59 @@ from django.shortcuts import get_object_or_404, redirect
 
 # Create your views here.
 from .models import Listing
-from .forms import ListingForm, BusinessHoursFormSet
+from .forms import ListingForm # BusinessHoursFormSet
+
+
+
+def finderPeoples(request):
+
+
+    person_list_category_slug = ['medecin', 'avocat']
+
+    #filter just listing with category in person_list_category_slug
+    listings = Listing.objects.filter(category__slug__in=person_list_category_slug)
+
+
+    context = {
+        'listings': listings
+    }
+  
+    return render(request, 'listing/finder/finder-doctors.html', context)
+
+
+
+
+def finderPeopleDetail(request, slug):
+    listing = get_object_or_404(Listing, slug=slug)
+    tags = listing.tags.all()
+    context = {
+        'listing': listing,
+        'tags': tags
+    }
+    return render(request, 'listing/finder/finder-people-detail.html', context)
+
+
+
+def finderListings(request):
+
+
+    person_list_category_slug = ['medecin', 'avocat']
+
+    #filter listing excluding those with category in person_list_category_slug
+    listings = Listing.objects.exclude(category__slug__in=person_list_category_slug)
+    
+
+    context = {
+        'listings': listings
+    }
+  
+    return render(request, 'listing/finder/finder-city.html', context)
+
+
+
+
+
+
 
 def listings(request):
     listings = Listing.objects.all()
@@ -83,21 +135,21 @@ def deleteListing2(request, slug):
 def createListing2(request):
     if request.method == 'POST':
         form = ListingForm(request.POST, request.FILES)
-        business_hours_formset = BusinessHoursFormSet(request.POST)
+        #business_hours_formset = BusinessHoursFormSet(request.POST)
         
-        if form.is_valid() and business_hours_formset.is_valid():
-            listing = form.save()
-            business_hours = business_hours_formset.save(commit=False)
-            for bh in business_hours:
-                bh.listing = listing
-                bh.save()
-            return redirect('listings')
+        # if form.is_valid() and business_hours_formset.is_valid():
+        #     listing = form.save()
+        #     business_hours = business_hours_formset.save(commit=False)
+        #     for bh in business_hours:
+        #         bh.listing = listing
+        #         bh.save()
+        #     return redirect('listings')
     else:
         form = ListingForm()
-        business_hours_formset = BusinessHoursFormSet()
+        #business_hours_formset = BusinessHoursFormSet()
 
     context = {
         'form': form,
-        'business_hours_formset': business_hours_formset,
+        #'business_hours_formset': business_hours_formset,
     }
     return render(request, 'listing/listing-create.html', context)

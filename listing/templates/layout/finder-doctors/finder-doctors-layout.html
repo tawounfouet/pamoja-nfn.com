@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" data-bs-theme="light" data-pwa="true">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
+
+    <!-- SEO Meta Tags -->
+    <title>Finder | Doctors - Listings Grid View</title>
+    <meta name="description" content="Finder - Directory & Listings Bootstrap HTML Template">
+    <meta name="keywords" content="directory, listings, search, car dealer, real estate, city guide, business listings, medical directories, event listings, e-commerce, market, multipurpose, ui kit, light and dark mode, bootstrap, html5, css3, javascript, gallery, slider, mobile, pwa">
+    <meta name="author" content="Createx Studio">
+
+    <!-- Webmanifest + Favicon / App icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/png" href="{% static 'listing/assets/app-icons/icon-32x32.png' %}" sizes="32x32">
+    <link rel="apple-touch-icon" href="{% static 'listing/assets/app-icons/icon-180x180.png' %}">
+
+    <!-- Theme switcher (color modes) -->
+    <script src="{% static 'listing/assets/js/theme-switcher.js' %}"></script>
+
+    <!-- Preloaded local web font (Inter) -->
+    <link rel="preload" href="{% static 'listing/assets/fonts/inter-variable-latin.woff2' %}" as="font" type="font/woff2" crossorigin>
+
+    <!-- Font icons -->
+    <link rel="preload" href="{% static 'listing/assets/icons/finder-icons.woff2' %}" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="{% static 'listing/assets/icons/finder-icons.min.css' %}">
+
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="{% static 'listing/assets/vendor/choices.js/public/assets/styles/choices.min.css' %}">
+
+    <!-- Bootstrap + Theme styles -->
+    <link rel="preload" href="{% static 'listing/assets/css/theme.min.css' %}" as="style">
+    <link rel="preload" href="{% static 'listing/assets/css/theme.rtl.min.css' %}" as="style">
+    <link rel="stylesheet" href="{% static 'listing/assets/css/theme.min.css' %}" id="theme-styles">
+  </head>
+
+
+  <!-- Body -->
+  <body class="bg-body-tertiary">
+
+ 
+
+
+
+    <!-- Page content -->
+    <main class="content-wrapper">
+      <div class="container pt-4 pb-5 mb-xxl-3">
+
+   
+
+        <!-- Filters -->
+        {% comment %} <div class="row align-items-center g-3 gx-xl-4 mb-3 mb-sm-4">
+          <div class="col-md-5 col-lg-3">
+            <div class="position-relative">
+              <i class="fi-search position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+              <input type="search" class="form-control form-icon-start bg-transparent" value="Physician" placeholder="Search doctor">
+            </div>
+          </div>
+          <div class="col-sm-7 col-md-4 col-lg-3 col-xl-2">
+            <div class="position-relative">
+              <i class="fi-map-pin position-absolute top-50 start-0 translate-middle-y z-1 ms-3"></i>
+              <select class="form-select form-icon-start bg-transparent" data-select='{
+                "classNames": {
+                  "containerInner": ["form-select", "form-icon-start", "bg-transparent"]
+                },
+                "searchEnabled": true
+              }' aria-label="Car location select">
+                <option value="">Any location</option>
+                <option value="New York">New York</option>
+                <option value="Los Angeles">Los Angeles</option>
+                <option value="Chicago" selected>Chicago</option>
+                <option value="Houston">Houston</option>
+                <option value="Phoenix">Phoenix</option>
+                <option value="Philadelphia">Philadelphia</option>
+                <option value="San Antonio">San Antonio</option>
+                <option value="San Diego">San Diego</option>
+                <option value="Dallas">Dallas</option>
+                <option value="San Jose">San Jose</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-5 col-md-3 col-lg-2">
+            <div class="position-relative">
+              <i class="fi-navigation position-absolute top-50 start-0 translate-middle-y z-1 ms-3"></i>
+              <select class="form-select form-icon-start bg-transparent" data-select='{
+                "classNames": {
+                  "containerInner": ["form-select", "form-icon-start", "bg-transparent"]
+                }
+              }' aria-label="Location radius select">
+                <option value="">Any radius</option>
+                <option value="5 mi" selected>5 mi</option>
+                <option value="10 mi">10 mi</option>
+                <option value="20 mi">20 mi</option>
+                <option value="30 mi">30 mi</option>
+                <option value="40 mi">40 mi</option>
+                <option value="50 mi">50 mi</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-4 d-flex gap-4">
+            <div class="form-check form-switch mb-0">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input">
+                Online
+              </label>
+            </div>
+            <div class="form-check form-switch mb-0">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input">
+                Visit clinic
+              </label>
+            </div>
+          </div>
+        </div> {% endcomment %}
+
+        <!-- Sort selector + View switcher -->
+        {% comment %} <div class="d-flex align-items-center gap-2 gap-sm-3 mb-3 mb-sm-4">
+          <div class="fs-sm text-nowrap"><span class="d-none d-sm-inline">Showing </span>73 results</div>
+          <div class="fs-sm fw-semibold text-dark-emphasis ms-auto d-none d-sm-inline">Sort by:</div>
+          <div class="position-relative ms-auto ms-sm-0" style="width: 140px">
+            <i class="fi-sort position-absolute top-50 start-0 translate-middle-y z-2"></i>
+            <select class="form-select bg-transparent border-0 rounded-0 ps-4 pe-1" data-select='{
+              "removeItemButton": false,
+              "classNames": {
+                "containerInner": ["form-select", "bg-transparent", "border-0", "rounded-0", "ps-4", "pe-1"]
+              }
+            }'>
+            <option value="Popular">Popular</option>
+            <option value="Rating">Rating</option>
+            <option value="Price asc">Price asc</option>
+            <option value="Price desc">Price desc</option>
+            </select>
+          </div>
+          <div class="nav ms-n2">
+            <a class="nav-link fs-xl text-body-secondary py-0 px-2 active pe-none" href="listings-grid-doctors.html" aria-label="Grid view">
+              <i class="fi-grid"></i>
+            </a>
+            <a class="nav-link fs-xl text-body-secondary py-0 px-2" href="listings-list-doctors.html" aria-label="List view">
+              <i class="fi-list"></i>
+            </a>
+          </div>
+        </div> {% endcomment %}
+
+
+        <!-- Listings grid views -->
+        <div class="row row-cols-1 row-cols-lg-2 g-4">
+        {% for listing in listings %}
+          <!-- Listing -->
+          <div class="col">
+            <article class="card h-100 border-0 z-1">
+              <div class="card-body position-relative d-flex">
+                <div class="flex-shrink-0">
+                  <div class="d-md-none" style="width: 48px"></div>
+                  <div class="d-none d-sm-block d-xl-none" style="width: 100px"></div>
+                  <div class="d-none d-xl-block" style="width: 150px"></div>
+                  <div class="ratio" style="--fn-aspect-ratio: calc(164 / 150 * 100%)">
+                    {% if listing.logo %}
+                        <img src="{{ listing.logo.url }}" class="bg-body-secondary rounded" alt="Image">
+                    {% else %}
+                        <img src="{% static 'listing/assets/img/listings/doctors/08.jpg' %}" class="bg-body-secondary rounded" alt="Image">
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="w-100 ps-sm-4">
+                  <div class="d-flex flex-wrap align-items-center justify-content-between ms-3 ms-sm-0 mb-2">
+                    <h3 class="h5 me-2 mb-0">
+                      <a class="hover-effect-underline stretched-link" href="{% url 'finder_people_detail' listing.slug %}">{{ listing.title }}</a>
+                    </h3>
+                    <div class="d-flex align-items-center gap-1">
+                      <i class="fi-star-filled text-warning"></i>
+                      <span class="fs-sm text-secondary-emphasis">4.8</span>
+                      <span class="fs-xs text-body-secondary align-self-end">(63)</span>
+                    </div>
+                  </div>
+                  <div class="h6 fs-sm ms-3 ms-sm-0 mb-0">{{ listing.subcategory.name }}</div>
+                  <ul class="list-unstyled flex-row flex-wrap align-items-center gap-3 pt-3 ms-n5 ms-sm-0 mb-3">
+                    <li class="badge text-bg-info d-inline-flex align-items-center me-n1">
+                      Verified
+                      <i class="fi-shield ms-1"></i>
+                    </li>
+                    <li class="d-flex align-items-center fs-sm">
+                      <i class="fi-award fs-base me-1"></i>
+                      7 years experience
+                    </li>
+                    <li class="d-flex align-items-center fs-sm">
+                      <i class="fi-baby fs-base me-1"></i>
+                      Children
+                    </li>
+                  </ul>
+                  <p class="fs-sm ms-n5 ms-sm-0">Dr. Davis is highly respected in her field, known for her innovative treatment plans and her ability to connect with young patients and their families.</p>
+              
+                </div>
+              </div>
+              <div class="card-footer bg-transparent border-0 pt-0 p-4">
+
+            
+              </div>
+              <span class="position-absolute top-0 start-0 w-100 h-100 bg-white rounded shadow z-n1 d-none-dark"></span>
+              <span class="position-absolute top-0 start-0 w-100 h-100 bg-body-tertiary rounded z-n1 d-none d-block-dark"></span>
+            </article>
+          </div>
+        {% endfor %}
+
+
+
+
+        <!-- Pagination -->
+        <nav class="pt-3 mt-3 mt-lg-4 mb-2 mb-sm-3 mb-md-4 mb-lg-5" aria-label="Listings pagination">
+          <ul class="pagination pagination-lg justify-content-center">
+            <li class="page-item active" aria-current="page">
+              <span class="page-link">
+                1
+                <span class="visually-hidden">(current)</span>
+              </span>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#!">2</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#!">3</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#!">4</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#!">5</a>
+            </li>
+            <li class="page-item">
+              <span class="page-link px-2 pe-none">...</span>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#!">8</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </main>
+
+
+
+
+
+
+    <!-- Vendor scripts -->
+    <script src="{% static 'listing/assets/vendor/choices.js/public/assets/scripts/choices.min.js' %}"></script>
+
+    <!-- Bootstrap + Theme scripts -->
+    <script src="{% static 'listing/assets/js/theme.min.js' %}"></script>
+  </body>
+</html>

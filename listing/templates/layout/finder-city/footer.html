@@ -1,0 +1,143 @@
+{% load static %}
+
+<footer class="footer bg-body border-top pt-5" data-bs-theme="dark">
+    <div class="container pt-sm-2 pt-md-3 pt-lg-4">
+      <div class="accordion row pb-5 mb-sm-2 mb-md-3 mb-lg-4" id="footerLinks">
+
+        <!-- Logo + Contacts -->
+        <div class="col-sm-5 col-md-4 col-lg-3">
+          <a class="d-inline-flex align-items-center text-dark-emphasis text-decoration-none mb-4" href="home-city-guide.html">
+            <span class="flex-shrink-0 text-primary rtl-flip me-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="35" height="34"><path d="M34.5 16.894v10.731c0 3.506-2.869 6.375-6.375 6.375H17.5h-.85C7.725 33.575.5 26.138.5 17c0-9.35 7.65-17 17-17s17 7.544 17 16.894z" fill="currentColor"/><g fill-rule="evenodd"><path d="M17.5 13.258c-3.101 0-5.655 2.554-5.655 5.655s2.554 5.655 5.655 5.655 5.655-2.554 5.655-5.655-2.554-5.655-5.655-5.655zm-9.433 5.655c0-5.187 4.246-9.433 9.433-9.433s9.433 4.246 9.433 9.433a9.36 9.36 0 0 1-1.569 5.192l2.397 2.397a1.89 1.89 0 0 1 0 2.671 1.89 1.89 0 0 1-2.671 0l-2.397-2.397a9.36 9.36 0 0 1-5.192 1.569c-5.187 0-9.433-4.246-9.433-9.433z" fill="#000" fill-opacity=".05"/><g fill="#fff"><path d="M17.394 10.153c-3.723 0-6.741 3.018-6.741 6.741s3.018 6.741 6.741 6.741 6.741-3.018 6.741-6.741-3.018-6.741-6.741-6.741zM7.347 16.894A10.05 10.05 0 0 1 17.394 6.847 10.05 10.05 0 0 1 27.44 16.894 10.05 10.05 0 0 1 17.394 26.94 10.05 10.05 0 0 1 7.347 16.894z"/><path d="M23.025 22.525c.645-.645 1.692-.645 2.337 0l3.188 3.188c.645.645.645 1.692 0 2.337s-1.692.645-2.337 0l-3.187-3.187c-.645-.646-.645-1.692 0-2.337z"/></g></g><path d="M23.662 14.663c2.112 0 3.825-1.713 3.825-3.825s-1.713-3.825-3.825-3.825-3.825 1.713-3.825 3.825 1.713 3.825 3.825 3.825z" fill="#fff"/><path fill-rule="evenodd" d="M23.663 8.429a2.41 2.41 0 0 0-2.408 2.408 2.41 2.41 0 0 0 2.408 2.408 2.41 2.41 0 0 0 2.408-2.408 2.41 2.41 0 0 0-2.408-2.408zm-5.242 2.408c0-2.895 2.347-5.242 5.242-5.242s5.242 2.347 5.242 5.242-2.347 5.242-5.242 5.242-5.242-2.347-5.242-5.242z" fill="currentColor"/></svg>
+            </span>
+            <span class="fs-4 fw-semibold">Finder</span>
+          </a>
+          <ul class="list-unstyled gap-3">
+            <li>
+              <div class="position-relative d-flex align-items-center">
+                <i class="fi-mail fs-lg text-body me-2"></i>
+                <a class="text-dark-emphasis text-decoration-none hover-effect-underline stretched-link" href="mailto:contact@example.com">contact@example.com</a>
+              </div>
+            </li>
+            <li>
+              <div class="position-relative d-flex align-items-center">
+                <i class="fi-phone-call fs-lg text-body me-2"></i>
+                <a class="text-dark-emphasis text-decoration-none hover-effect-underline stretched-link" href="tel:+15053753082">+1&nbsp;50&nbsp;537&nbsp;53&nbsp;082</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Columns with links that are turned into accordion on screens < 500px wide (sm breakpoint) -->
+        <div class="accordion-item col-sm-4 col-lg-3 border-0">
+          <h6 class="accordion-header" id="quickLinksHeading">
+            <span class="h5 d-none d-sm-block">Quick links</span>
+            <button type="button" class="accordion-button collapsed py-3 d-sm-none" data-bs-toggle="collapse" data-bs-target="#quickLinks" aria-expanded="false" aria-controls="quickLinks">Quick links</button>
+          </h6>
+          <div class="accordion-collapse collapse d-sm-block" id="quickLinks" aria-labelledby="quickLinksHeading" data-bs-parent="#footerLinks">
+            <ul class="nav flex-column gap-2 pt-sm-1 pt-lg-2 pb-3 pb-sm-0 mt-n1 mb-1 mb-sm-0">
+              <li class="pt-1">
+                <a class="nav-link hover-effect-underline d-inline text-body fw-normal p-0" href="#!">Top cities</a>
+              </li>
+              <li class="pt-1">
+                <a class="nav-link hover-effect-underline d-inline text-body fw-normal p-0" href="#!">Accommodation</a>
+              </li>
+              <li class="pt-1">
+                <a class="nav-link hover-effect-underline d-inline text-body fw-normal p-0" href="#!">Cafes &amp; restaurants</a>
+              </li>
+              <li class="pt-1">
+                <a class="nav-link hover-effect-underline d-inline text-body fw-normal p-0" href="#!">Night clubs</a>
+              </li>
+              <li class="pt-1">
+                <a class="nav-link hover-effect-underline d-inline text-body fw-normal p-0" href="#!">Events &amp; meetups</a>
+              </li>
+              <li class="pt-1">
+                <a class="nav-link hover-effect-underline d-inline text-body fw-normal p-0" href="#!">Beauty salons</a>
+              </li>
+              <li class="pt-1">
+                <a class="nav-link hover-effect-underline d-inline text-body fw-normal p-0" href="#!">Pharmacies</a>
+              </li>
+            </ul>
+          </div>
+          <hr class="d-sm-none my-0">
+        </div>
+        <div class="accordion-item col-sm-3 col-lg-2 col-xxl-3 border-0">
+          <h6 class="accordion-header" id="profileLinksHeading">
+            <span class="h5 d-none d-sm-block">Profile</span>
+            <button type="button" class="accordion-button collapsed py-3 d-sm-none" data-bs-toggle="collapse" data-bs-target="#profileLinks" aria-expanded="false" aria-controls="profileLinks">Profile</button>
+          </h6>
+          <div class="accordion-collapse collapse d-sm-block" id="profileLinks" aria-labelledby="profileLinksHeading" data-bs-parent="#footerLinks">
+            <ul class="nav flex-column gap-2 pt-sm-1 pt-lg-2 pb-3 pb-sm-0 mt-n1 mb-1 mb-sm-0">
+              <li class="pt-1">
+                <a class="nav-link hover-effect-underline d-inline text-body fw-normal p-0" href="#!">My account</a>
+              </li>
+              <li class="pt-1">
+                <a class="nav-link hover-effect-underline d-inline text-body fw-normal p-0" href="#!">My listings</a>
+              </li>
+              <li class="pt-1">
+                <a class="nav-link hover-effect-underline d-inline text-body fw-normal p-0" href="#!">Gift cards</a>
+              </li>
+              <li class="pt-1">
+                <a class="nav-link hover-effect-underline d-inline text-body fw-normal p-0" href="#!">Help center</a>
+              </li>
+              <li class="pt-1">
+                <a class="nav-link hover-effect-underline d-inline text-body fw-normal p-0" href="#!">Taxes &amp; fees</a>
+              </li>
+              <li class="pt-1">
+                <a class="nav-link hover-effect-underline d-inline text-body fw-normal p-0" href="#!">Privacy policy</a>
+              </li>
+            </ul>
+          </div>
+          <hr class="d-sm-none my-0">
+        </div>
+
+        <!-- Subscription form -->
+        <div class="col-lg-4 col-xxl-3 pt-4 pt-md-5 pt-lg-0 mt-3 mt-md-0">
+          <h6 class="pb-1 pb-lg-0 mb-lg-4">
+            <span class="h5 d-none d-sm-block mb-0">Subscribe to our newsletter</span>
+            <span class="d-sm-none">Subscribe to our newsletter</span>
+          </h6>
+          <form class="d-flex flex-column flex-sm-row flex-lg-column gap-3 needs-validation" novalidate>
+            <div class="position-relative w-100">
+              <i class="fi-mail position-absolute top-50 start-0 translate-middle-y text-body ms-3"></i>
+              <input type="email" class="form-control form-icon-start text-start rounded-pill" placeholder="Your email" aria-label="Email input" required>
+            </div>
+            <button type="submit" class="btn btn-primary rounded-pill px-4">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Contact link + Social links + Copyright -->
+      <div class="border-top pt-2 pb-md-2">
+        <div class="row align-items-center py-4">
+          <div class="col-lg-4 text-center text-lg-start mb-3 mb-lg-0">
+            <div class="h5 d-none d-sm-block mb-0">
+              <span class="text-body-secondary fw-normal me-3">Need help?</span>
+              <a class="text-white text-decoration-none hover-effect-underline" href="#!">Contact us</a>
+            </div>
+            <div class="h6 d-sm-none mb-0">
+              <span class="text-body-secondary fw-normal me-2">Need help?</span>
+              <a class="text-white text-decoration-none hover-effect-underline" href="#!">Contact us</a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-xl-4 d-flex justify-content-center mb-3 mb-lg-0">
+            <a class="btn btn-icon fs-base btn-outline-secondary border-0" href="#!" data-bs-toggle="tooltip" data-bs-template='<div class="tooltip fs-xs mb-n2" role="tooltip"><div class="tooltip-inner bg-transparent text-white opacity-75 p-0"></div></div>' title="Instagram" aria-label="Follow us on Instagram">
+              <i class="fi-instagram"></i>
+            </a>
+            <a class="btn btn-icon fs-base btn-outline-secondary border-0" href="#!" data-bs-toggle="tooltip" data-bs-template='<div class="tooltip fs-xs mb-n2" role="tooltip"><div class="tooltip-inner bg-transparent text-white opacity-75 p-0"></div></div>' title="Facebook" aria-label="Follow us on Facebook">
+              <i class="fi-facebook"></i>
+            </a>
+            <a class="btn btn-icon fs-base btn-outline-secondary border-0" href="#!" data-bs-toggle="tooltip" data-bs-template='<div class="tooltip fs-xs mb-n2" role="tooltip"><div class="tooltip-inner bg-transparent text-white opacity-75 p-0"></div></div>' title="X (Twitter)" aria-label="Follow us on X (Twitter)">
+              <i class="fi-x"></i>
+            </a>
+          </div>
+          <div class="col-lg-5 col-xl-4 d-lg-flex justify-content-end">
+            <p class="text-body-secondary fs-sm text-center text-lg-start mb-0">&copy; All rights reserved. Made by <a class="text-body fw-medium text-decoration-none hover-effect-underline" href="https://createx.studio/" target="_blank" rel="noreferrer">Createx Studio</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional spacing to accommodate the sticky offcanvas toggle button -->
+    <div class="d-lg-none" style="height: 3.75rem"></div>
+  </footer>

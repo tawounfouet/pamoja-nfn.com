@@ -23,6 +23,10 @@ from datetime import timedelta
 # pip install dj-database-url
 import dj_database_url
 
+from import_export.formats.base_formats import CSV, XLSX
+IMPORT_FORMATS = [CSV, XLSX]
+EXPORT_FORMATS = [XLSX, CSV]
+# pip install "tablib[xlsx]"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -54,6 +58,7 @@ INSTALLED_APPS = [
     'taggit',
     'phonenumber_field',
     'django_countries',
+    'import_export',
     
     "authentication",
     "location",

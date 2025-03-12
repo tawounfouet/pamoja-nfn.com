@@ -3,7 +3,8 @@ import json
 from django import forms
 from django.forms import ModelForm, inlineformset_factory
 
-from .models import Listing, BusinessHours
+from .models import Listing
+# BusinessHours
 
 # class ListingForm(forms.ModelForm):
 #     class Meta:
@@ -82,54 +83,54 @@ class ListingForm(forms.ModelForm):
         }
 
 
-class BusinessHoursForm(forms.ModelForm):
-    class Meta:
-        model = BusinessHours
-        fields = [
-            'monday_open', 'monday_close', 'monday_closed',
-            'tuesday_open', 'tuesday_close', 'tuesday_closed',
-            'wednesday_open', 'wednesday_close', 'wednesday_closed',
-            'thursday_open', 'thursday_close', 'thursday_closed',
-            'friday_open', 'friday_close', 'friday_closed',
-            'saturday_open', 'saturday_close', 'saturday_closed',
-            'sunday_open', 'sunday_close', 'sunday_closed',
-        ]
-        widgets = {
-            'monday_open': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
-            'monday_close': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
-            'tuesday_open': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
-            'tuesday_close': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
-            'wednesday_open': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
-            'wednesday_close': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
-            'thursday_open': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
-            'thursday_close': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
-            'friday_open': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
-            'friday_close': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
-            'saturday_open': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
-            'saturday_close': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
-            'sunday_open': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
-            'sunday_close': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
-        }
+# class BusinessHoursForm(forms.ModelForm):
+#     class Meta:
+#         model = BusinessHours
+#         fields = [
+#             'monday_open', 'monday_close', 'monday_closed',
+#             'tuesday_open', 'tuesday_close', 'tuesday_closed',
+#             'wednesday_open', 'wednesday_close', 'wednesday_closed',
+#             'thursday_open', 'thursday_close', 'thursday_closed',
+#             'friday_open', 'friday_close', 'friday_closed',
+#             'saturday_open', 'saturday_close', 'saturday_closed',
+#             'sunday_open', 'sunday_close', 'sunday_closed',
+#         ]
+#         widgets = {
+#             'monday_open': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+#             'monday_close': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+#             'tuesday_open': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+#             'tuesday_close': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+#             'wednesday_open': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+#             'wednesday_close': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+#             'thursday_open': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+#             'thursday_close': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+#             'friday_open': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+#             'friday_close': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+#             'saturday_open': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+#             'saturday_close': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+#             'sunday_open': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+#             'sunday_close': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+#         }
 
-    def clean(self):
-        cleaned_data = super().clean()
-        days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+#     def clean(self):
+#         cleaned_data = super().clean()
+#         days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
         
-        for day in days:
-            is_closed = cleaned_data.get(f'{day}_closed')
-            opening = cleaned_data.get(f'{day}_open')
-            closing = cleaned_data.get(f'{day}_close')
+#         for day in days:
+#             is_closed = cleaned_data.get(f'{day}_closed')
+#             opening = cleaned_data.get(f'{day}_open')
+#             closing = cleaned_data.get(f'{day}_close')
             
-            if not is_closed and (not opening or not closing):
-                raise forms.ValidationError(f"Please specify both opening and closing times for {day} or mark it as closed")
-            if opening and closing and opening >= closing:
-                raise forms.ValidationError(f"Closing time must be later than opening time for {day}")
+#             if not is_closed and (not opening or not closing):
+#                 raise forms.ValidationError(f"Please specify both opening and closing times for {day} or mark it as closed")
+#             if opening and closing and opening >= closing:
+#                 raise forms.ValidationError(f"Closing time must be later than opening time for {day}")
 
-BusinessHoursFormSet = inlineformset_factory(
-    Listing,
-    BusinessHours,
-    form=BusinessHoursForm,
-    can_delete=False,
-    max_num=1,
-    extra=1
-)
+# BusinessHoursFormSet = inlineformset_factory(
+#     Listing,
+#     BusinessHours,
+#     form=BusinessHoursForm,
+#     can_delete=False,
+#     max_num=1,
+#     extra=1
+# )

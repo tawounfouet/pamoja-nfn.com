@@ -60,7 +60,10 @@ class SubCategory(models.Model):
     class Meta:
         verbose_name_plural = "2. Sous-categories"
         unique_together = ['category', 'name']
-        ordering = ['category', 'name']
+        # ordering = ['category', 'name']
+
+        #ordering by id
+        ordering = ['-id']
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -68,7 +71,8 @@ class SubCategory(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.category.name} - {self.name}"
+        #return f"{self.category.name} - {self.name}"
+        return f"{self.name}"
 
 # class Tag(models.Model):
 #     name = models.CharField(max_length=50, unique=True)
@@ -144,50 +148,50 @@ class SocialMediaLinks(models.Model):
     linkedin = models.URLField(blank=True, null=True, default=None)
 
 
-class BusinessHours(models.Model):
+# class BusinessHours(models.Model):
 
-    class Meta:
-        verbose_name_plural = "8. Horaires d'ouverture"
+#     class Meta:
+#         verbose_name_plural = "8. Horaires d'ouverture"
 
-    listing = models.OneToOneField('Listing', on_delete=models.CASCADE, related_name='operating_hours')
+#     listing = models.OneToOneField('Listing', on_delete=models.CASCADE, related_name='operating_hours')
     
-    # Monday
-    monday_open = models.TimeField(null=True, blank=True)
-    monday_close = models.TimeField(null=True, blank=True)
-    monday_closed = models.BooleanField(default=False)
+#     # Monday
+#     monday_open = models.TimeField(null=True, blank=True)
+#     monday_close = models.TimeField(null=True, blank=True)
+#     monday_closed = models.BooleanField(default=False)
     
-    # Tuesday
-    tuesday_open = models.TimeField(null=True, blank=True)
-    tuesday_close = models.TimeField(null=True, blank=True)
-    tuesday_closed = models.BooleanField(default=False)
+#     # Tuesday
+#     tuesday_open = models.TimeField(null=True, blank=True)
+#     tuesday_close = models.TimeField(null=True, blank=True)
+#     tuesday_closed = models.BooleanField(default=False)
     
-    # Wednesday
-    wednesday_open = models.TimeField(null=True, blank=True)
-    wednesday_close = models.TimeField(null=True, blank=True)
-    wednesday_closed = models.BooleanField(default=False)
+#     # Wednesday
+#     wednesday_open = models.TimeField(null=True, blank=True)
+#     wednesday_close = models.TimeField(null=True, blank=True)
+#     wednesday_closed = models.BooleanField(default=False)
     
-    # Thursday
-    thursday_open = models.TimeField(null=True, blank=True)
-    thursday_close = models.TimeField(null=True, blank=True)
-    thursday_closed = models.BooleanField(default=False)
+#     # Thursday
+#     thursday_open = models.TimeField(null=True, blank=True)
+#     thursday_close = models.TimeField(null=True, blank=True)
+#     thursday_closed = models.BooleanField(default=False)
     
-    # Friday
-    friday_open = models.TimeField(null=True, blank=True)
-    friday_close = models.TimeField(null=True, blank=True)
-    friday_closed = models.BooleanField(default=False)
+#     # Friday
+#     friday_open = models.TimeField(null=True, blank=True)
+#     friday_close = models.TimeField(null=True, blank=True)
+#     friday_closed = models.BooleanField(default=False)
     
-    # Saturday
-    saturday_open = models.TimeField(null=True, blank=True)
-    saturday_close = models.TimeField(null=True, blank=True)
-    saturday_closed = models.BooleanField(default=False)
+#     # Saturday
+#     saturday_open = models.TimeField(null=True, blank=True)
+#     saturday_close = models.TimeField(null=True, blank=True)
+#     saturday_closed = models.BooleanField(default=False)
     
-    # Sunday
-    sunday_open = models.TimeField(null=True, blank=True)
-    sunday_close = models.TimeField(null=True, blank=True)
-    sunday_closed = models.BooleanField(default=False)
+#     # Sunday
+#     sunday_open = models.TimeField(null=True, blank=True)
+#     sunday_close = models.TimeField(null=True, blank=True)
+#     sunday_closed = models.BooleanField(default=False)
 
-    def __str__(self):
-        return f"Business Hours for {self.listing}"
+#     def __str__(self):
+#         return f"Business Hours for {self.listing}"
 
 
 
@@ -226,14 +230,14 @@ class Listing(models.Model):
             "preferred_contact": "email"
         }
 
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='listings')
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='listings', null=True, blank=True, default=None)
     owner = models.CharField(max_length=200, default="Pamoja", blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     subcategory = models.ForeignKey(SubCategory, on_delete=models.SET_NULL, null=True)
-    type = models.CharField(max_length=3, choices=Types.choices)
+    type = models.CharField(max_length=3, choices=Types.choices, blank=True, null=True)
     title = models.CharField(max_length=200, default="")
     company_name = models.CharField(max_length=200, blank=True, null=True)
-    location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='listings', null=True)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='listings', null=True, blank=True)
     description = models.TextField(blank=True, null=True, default="")
     #contact_info = models.JSONField()
     # contact_info = models.JSONField(
@@ -311,7 +315,10 @@ class Listing(models.Model):
             models.Index(fields=['search_vector']),
             models.Index(fields=['slug']),
         ]
-        ordering = ['-created_at']
+        #ordering = ['-created_at']
+        # by Id descending
+        ordering = ['id']
+
 
     def get_cache_key(self):
         return f"listing_{self.id}_data"

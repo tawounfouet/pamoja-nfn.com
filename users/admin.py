@@ -17,19 +17,18 @@ class ProfileAdminForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if self.instance and self.instance.user:
+        if self.instance and hasattr(self.instance, 'user') and self.instance.user_id:
             self.fields['user_first_name'].initial = self.instance.user.first_name
             self.fields['user_last_name'].initial = self.instance.user.last_name
             self.fields['user_phone_number'].initial = self.instance.user.phone_number
 
     def save(self, commit=True):
         profile = super().save(commit=False)
-        user = profile.user
-        if user:
-            user.first_name = self.cleaned_data.get('user_first_name', user.first_name)
-            user.last_name = self.cleaned_data.get('user_last_name', user.last_name)
-            user.phone_number = self.cleaned_data.get('user_phone_number', user.phone_number)
-            user.save()
+        if profile.user:
+            profile.user.first_name = self.cleaned_data.get('user_first_name', profile.user.first_name)
+            profile.user.last_name = self.cleaned_data.get('user_last_name', profile.user.last_name)
+            profile.user.phone_number = self.cleaned_data.get('user_phone_number', profile.user.phone_number)
+            profile.user.save()
         if commit:
             profile.save()
         return profile
@@ -58,6 +57,9 @@ class ProfileAdmin(admin.ModelAdmin):
     readonly_fields = ('date_registered', 'verification_date', 'last_active')
     filter_horizontal = ('languages',)
     inlines = [ContactInfosInline, SocialinksInline]
+
+    def has_add_permission(self, request):
+        return False  # Désactive la possibilité d'ajouter de nouveaux profils
 
     def user_info(self, obj):
         return format_html(
