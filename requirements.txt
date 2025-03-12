@@ -34,5 +34,9 @@ whitenoise
 # django import export
 #pip install django-import-export
 django-import-export
+#pip install "tablib[xlsx]"
+#"tablib[xlsx]"
 
 # pip install -r requirements.txt
+cloudinary
+

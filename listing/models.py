@@ -17,13 +17,18 @@ from taggit.models import TagBase, GenericTaggedItemBase
 from taggit.managers import TaggableManager
 
 
-
 from authentication.models import User
 from users.models import Profile
 from location.models import Location
 
 
+from cloudinary.models import CloudinaryField
+from helpers.images import get_display_name, get_public_id_prefix
 
+from django.utils.functional import cached_property
+
+import helpers
+helpers.cloudinary_init()
 
 
 
@@ -246,7 +251,15 @@ class Listing(models.Model):
     #     blank=True,
     #     help_text="Contact information including phone, email, and social media links"
     # )
-    logo = models.ImageField(upload_to='listing_logos/', blank=True, null=True)
+    #logo = models.ImageField(upload_to='listing_logos/', blank=True, null=True)
+        # Version pour affichage principal (page de détail)
+    logo = CloudinaryField(
+        "listing_featured_image",
+        resource_type="image",
+        folder="listing_images/",
+        null=True,
+        blank=True
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     website_url = models.URLField(blank=True, null=True, default="")
