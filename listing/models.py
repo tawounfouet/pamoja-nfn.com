@@ -239,10 +239,11 @@ class Listing(models.Model):
     owner = models.CharField(max_length=200, default="Pamoja", blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     subcategory = models.ForeignKey(SubCategory, on_delete=models.SET_NULL, null=True)
-    type = models.CharField(max_length=3, choices=Types.choices, blank=True, null=True)
+    type = models.CharField(max_length=3, choices=Types.choices, blank=True, null=True, default=Types.INDIVIDUAL)
     title = models.CharField(max_length=200, default="")
     company_name = models.CharField(max_length=200, blank=True, null=True)
-    location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='listings', null=True, blank=True)
+    #location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='listings', null=True, blank=True)
+    location = models.TextField(blank=True, null=True, default="")
     description = models.TextField(blank=True, null=True, default="")
     #contact_info = models.JSONField()
     # contact_info = models.JSONField(
