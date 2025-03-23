@@ -242,8 +242,8 @@ class Listing(models.Model):
     type = models.CharField(max_length=3, choices=Types.choices, blank=True, null=True, default=Types.INDIVIDUAL)
     title = models.CharField(max_length=200, default="")
     company_name = models.CharField(max_length=200, blank=True, null=True)
-    #location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='listings', null=True, blank=True)
-    location = models.TextField(blank=True, null=True, default="")
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='listings', null=True, blank=True)
+    #location = models.TextField(blank=True, null=True, default="")
     description = models.TextField(blank=True, null=True, default="")
     #contact_info = models.JSONField()
     # contact_info = models.JSONField(
