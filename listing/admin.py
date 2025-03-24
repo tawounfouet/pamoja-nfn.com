@@ -220,13 +220,15 @@ class SocialMediaLinksInline(admin.StackedInline):
 @admin.register(Listing)
 class ListingAdmin(ImportExportModelAdmin):
     resource_class = ListingResource
-    list_display = ('title',  'category', 'subcategory', 'get_contact_email',
-        'get_phone', 'average_rating', 'get_tags', 'created_at')
-    list_filter = ('status', 'type', 'category', 'created_at')
+    list_display = ('title',  'category', 'subcategory', 
+        'get_phone', 'updated_at',  'created_at')
+    list_filter = ('status', 'type', 'category', 'created_at', 'updated_at')
     search_fields = ('title', 'description')
     readonly_fields = ('created_at', 'average_rating')
     inlines = [ContactInformationInline, SocialMediaLinksInline, MediaInline, ReviewInline, AnalyticsInline]
     actions = ['activate_listings', 'deactivate_listings']
+    
+  
 
     def get_contact_email(self, obj):
         if hasattr(obj, 'contact_details'):
