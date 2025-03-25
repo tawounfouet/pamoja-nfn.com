@@ -99,7 +99,7 @@ class Profile(models.Model):
         related_name='verified_profiles'
     )
     languages = models.ManyToManyField(Language)
-    location = models.ForeignKey('location.Location', on_delete=models.SET_NULL, null=True)
+    #location = models.ForeignKey('location.Location', on_delete=models.SET_NULL, null=True)
     last_active = models.DateTimeField(auto_now=True)
     reputation_score = models.IntegerField(default=0)
     is_public = models.BooleanField(default=True)

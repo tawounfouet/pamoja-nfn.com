@@ -83,9 +83,7 @@ class ProfileAdmin(admin.ModelAdmin):
         ('Vérification', {
             'fields': ('verified', 'verification_date', 'verified_by')
         }),
-        ('Détails', {
-            'fields': ('location',)
-        }),
+     
 
         ('Statistiques', {
             'fields': ('reputation_score', 'date_registered', 'last_active')
