@@ -1,5 +1,6 @@
 import uuid
 from django.db import models
+from django.conf import settings
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
@@ -263,6 +264,14 @@ class Listing(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    last_updated_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='updated_listings'
+    )
     website_url = models.URLField(blank=True, null=True, default="")
     #business_hours = models.JSONField(default=None, blank=True, null=True)
     status = models.CharField(
@@ -331,7 +340,8 @@ class Listing(models.Model):
         ]
         #ordering = ['-created_at']
         # by Id descending
-        ordering = ['id']
+        #ordering = ['id']
+        ordering = ['title']
 
 
     def get_cache_key(self):

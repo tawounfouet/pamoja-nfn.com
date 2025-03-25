@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib import admin
 from taggit.admin import TagAdmin
+from django.utils.html import format_html
 
 
 from import_export import fields, widgets
@@ -224,15 +225,36 @@ class SocialMediaLinksInline(admin.StackedInline):
 @admin.register(Listing)
 class ListingAdmin(ImportExportModelAdmin):
     resource_class = ListingResource
-    list_display = ('title',  'category', 'subcategory', 
-        'get_phone', 'updated_at',  'created_at')
+    list_display = ('title', 'image_thumbnail',  'category', 'subcategory', 
+        'get_phone', 'updated_at', 'get_last_updated_by',  'created_at')
     list_filter = ('status', 'type', 'category', 'created_at', 'updated_at')
     search_fields = ('title', 'description')
     readonly_fields = ('created_at', 'average_rating')
     inlines = [ContactInformationInline, SocialMediaLinksInline, MediaInline, ReviewInline, AnalyticsInline]
     actions = ['activate_listings', 'deactivate_listings']
     
-  
+    
+    
+    def get_last_updated_by(self, obj):
+        if hasattr(obj, 'last_updated_by') and obj.last_updated_by:
+            return obj.last_updated_by.username
+        return '-'
+    get_last_updated_by.short_description = 'Last Updated By'
+    
+    def save_model(self, request, obj, form, change):
+        """
+        Enregistre automatiquement l'utilisateur qui effectue la modification
+        dans le champ last_updated_by
+        """
+        obj.last_updated_by = request.user
+        super().save_model(request, obj, form, change)
+    
+
+    def image_thumbnail(self, obj):
+        if obj.logo:
+            return format_html('<img src="{}" width="50" height="50" style="object-fit: cover; " />', obj.logo.url)
+        return format_html('<span>No Image</span>')
+    image_thumbnail.short_description = 'Image'
 
     def get_contact_email(self, obj):
         if hasattr(obj, 'contact_details'):
