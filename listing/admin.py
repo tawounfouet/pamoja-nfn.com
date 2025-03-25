@@ -8,10 +8,14 @@ from import_export import fields, widgets
 from .models import (
     Category, SubCategory, CustomTag, TaggedListing, 
     Listing, ContactInformation, SocialMediaLinks,
-    Review, Media, Analytics
+    Review, Media, Analytics, Location
 )
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
+
+
+# register Location model
+
 
 # Define resources for each model
 class CategoryResource(resources.ModelResource):
