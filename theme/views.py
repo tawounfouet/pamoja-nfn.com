@@ -68,3 +68,25 @@ def home3(request):
     listings = Listing.objects.filter(category__slug__in=person_list_category_slug)
 
     return render(request, 'theme/home3.html', {'listings': listings})
+
+
+
+
+
+
+
+def home4(request):
+    #person_list_category_slug = ['Santé', 'Avocats']
+    person_list_category_slug = ['sante', 'avocats']
+
+
+    #filter listing excluding those with category in person_list_category_slug
+    #listings = Listing.objects.exclude(category__slug__in=person_list_category_slug)
+    listings = Listing.objects.exclude(category__slug__in=person_list_category_slug)
+
+    print(listings)
+
+    context = {
+        'listings': listings
+    }
+    return render(request, 'theme/home4.html', context)
