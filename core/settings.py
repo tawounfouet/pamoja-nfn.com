@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+
 import os
 from pathlib import Path
 
@@ -24,6 +25,7 @@ from datetime import timedelta
 import dj_database_url
 
 from import_export.formats.base_formats import CSV, XLSX
+
 IMPORT_FORMATS = [CSV, XLSX]
 EXPORT_FORMATS = [XLSX, CSV]
 # pip install "tablib[xlsx]"
@@ -32,7 +34,7 @@ EXPORT_FORMATS = [XLSX, CSV]
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(x5_^%xb^0f^3f0e_2$i!!8gup^+sruewtd_y)zg$em$*(mfgt'
+SECRET_KEY = "django-insecure-(x5_^%xb^0f^3f0e_2$i!!8gup^+sruewtd_y)zg$em$*(mfgt"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -44,22 +46,23 @@ ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     # For Custom Admin Interface
-    'admin_interface',
-    'colorfield',
-    #----------------#
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-
+    "admin_interface",
+    "colorfield",
+    # ----------------#
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
     # Third-party apps
-    'taggit',
-    'phonenumber_field',
-    'django_countries',
-    'import_export',
-    
+    "taggit",
+    "phonenumber_field",
+    "django_countries",
+    "import_export",
+    "rest_framework",
+    "corsheaders",
+    "django_filters",
     "authentication",
     "location",
     "messaging",
@@ -67,62 +70,57 @@ INSTALLED_APPS = [
     "listing",
     "search",
     "theme",
-    'pages',
-
+    "pages",
     "users",
-   
     # Django Allauth
-    'django.contrib.sites',  # Obligatoire pour django-allauth
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.facebook',
-    'allauth.socialaccount.providers.github',
-    'allauth.socialaccount.providers.linkedin_oauth2',
-    
+    "django.contrib.sites",  # Obligatoire pour django-allauth
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
+    "allauth.socialaccount.providers.facebook",
+    "allauth.socialaccount.providers.github",
+    "allauth.socialaccount.providers.linkedin_oauth2",
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', # for production static files 
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',  # middleware
-   
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # for production static files
+    "corsheaders.middleware.CorsMiddleware",  # CORS middleware should be at the top
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "allauth.account.middleware.AccountMiddleware",  # middleware
 ]
 
-ROOT_URLCONF = 'core.urls'
+ROOT_URLCONF = "core.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
         #'DIRS': [BASE_DIR / 'templates'],
-        'DIRS': [
-            os.path.join(BASE_DIR, 'templates'),
-            os.path.join(BASE_DIR, 'templates', 'allauth'),
+        "DIRS": [
+            os.path.join(BASE_DIR, "templates"),
+            os.path.join(BASE_DIR, "templates", "allauth"),
         ],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
                 # Custom context processors for listing app / categories & subcategories
-                'listing.context_processors.categories_processor',
-
+                "listing.context_processors.categories_processor",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'core.wsgi.application'
+WSGI_APPLICATION = "core.wsgi.application"
 
 
 # Database
@@ -142,12 +140,10 @@ WSGI_APPLICATION = 'core.wsgi.application'
 #         default= ''
 #     )
 
-DATABASE_URL='sqlite:///db.sqlite3'
+DATABASE_URL = "sqlite:///db.sqlite3"
 DATABASES = {
-    'default': dj_database_url.parse(
-        DATABASE_URL,
-        conn_max_age=600,
-        conn_health_checks=True
+    "default": dj_database_url.parse(
+        DATABASE_URL, conn_max_age=600, conn_health_checks=True
     )
 }
 
@@ -156,16 +152,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
@@ -173,9 +169,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -185,22 +181,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
-#STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
-#STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = "static/"
+# STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_ROOT = BASE_DIR / "assets"
 
 # for production static files
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 # Media files (Images, Videos, etc)
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 # MEDIA_URL = '/uploads/'
@@ -208,11 +201,11 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 # Custom User Model
-AUTH_USER_MODEL = 'authentication.User'
+AUTH_USER_MODEL = "authentication.User"
 
 
 # Make tags case insensitive
@@ -225,82 +218,83 @@ TAGGIT_CASE_INSENSITIVE = True
 # TAGGIT_STRING_FROM_TAGS = 'custom_tags.tag_joiner'    # Your custom joining function
 
 # Configuration pour phonenumber_field
-PHONENUMBER_DB_FORMAT = "E164"     # Format de stockage en base
+PHONENUMBER_DB_FORMAT = "E164"  # Format de stockage en base
 
 # Configuration Django Allauth
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
 SITE_ID = 1
 
 # Paramètres de configuration Allauth
-ACCOUNT_AUTHENTICATION_METHOD = 'email'  # Utiliser l'email pour l'authentification
+ACCOUNT_AUTHENTICATION_METHOD = "email"  # Utiliser l'email pour l'authentification
 ACCOUNT_EMAIL_REQUIRED = True
-#ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # ou 'optional' ou 'none'
+# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # ou 'optional' ou 'none'
 ACCOUNT_USERNAME_REQUIRED = False
-LOGIN_REDIRECT_URL = '/'  # Redirection après connexion
-LOGOUT_REDIRECT_URL = '/'  # Redirection après déconnexion
+LOGIN_REDIRECT_URL = "/"  # Redirection après connexion
+LOGOUT_REDIRECT_URL = "/"  # Redirection après déconnexion
 
 # Configuration email (à adapter selon votre configuration)
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Pour le développement
+EMAIL_BACKEND = (
+    "django.core.mail.backends.console.EmailBackend"  # Pour le développement
+)
 
 # Configuration des providers sociaux
 SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'APP': {
-            'client_id': config('GOOGLE_CLIENT_ID'),
-            'secret': config('GOOGLE_SECRET'),
-            'key': ''
+    "google": {
+        "APP": {
+            "client_id": config("GOOGLE_CLIENT_ID"),
+            "secret": config("GOOGLE_SECRET"),
+            "key": "",
         },
-        'SCOPE': [
-            'profile',
-            'email',
+        "SCOPE": [
+            "profile",
+            "email",
         ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        }
-    },
-    'facebook': {
-        'APP': {
-            'client_id': config('FACEBOOK_CLIENT_ID'),
-            'secret': config('FACEBOOK_SECRET'),
-            'key': ''
+        "AUTH_PARAMS": {
+            "access_type": "online",
         },
-        'METHOD': 'oauth2',
-        'SCOPE': ['email', 'public_profile'],
-        'VERSION': 'v15.0'
     },
-    'github': {
-        'APP': {
-            'client_id': config('GITHUB_CLIENT_ID'),
-            'secret': config('GITHUB_SECRET'),
-            'key': ''
-            
+    "facebook": {
+        "APP": {
+            "client_id": config("FACEBOOK_CLIENT_ID"),
+            "secret": config("FACEBOOK_SECRET"),
+            "key": "",
         },
-        'SCOPE': [
-            'user',
-            'repo',
-            'read:org',
+        "METHOD": "oauth2",
+        "SCOPE": ["email", "public_profile"],
+        "VERSION": "v15.0",
+    },
+    "github": {
+        "APP": {
+            "client_id": config("GITHUB_CLIENT_ID"),
+            "secret": config("GITHUB_SECRET"),
+            "key": "",
+        },
+        "SCOPE": [
+            "user",
+            "repo",
+            "read:org",
         ],
     },
-    'linkedin_oauth2': {
-        'APP': {
-            'client_id': config('LINKEDIN_CLIENT_ID'),
-            'secret': config('LINKEDIN_SECRET'),
-            'key': ''
+    "linkedin_oauth2": {
+        "APP": {
+            "client_id": config("LINKEDIN_CLIENT_ID"),
+            "secret": config("LINKEDIN_SECRET"),
+            "key": "",
         },
-        'SCOPE': ['r_liteprofile', 'r_emailaddress'],
-        'PROFILE_FIELDS': [
-            'id',
-            'first-name',
-            'last-name',
-            'email-address',
-            'picture-url',
-            'public-profile-url',
-        ]
-    }
+        "SCOPE": ["r_liteprofile", "r_emailaddress"],
+        "PROFILE_FIELDS": [
+            "id",
+            "first-name",
+            "last-name",
+            "email-address",
+            "picture-url",
+            "public-profile-url",
+        ],
+    },
 }
 
 
@@ -309,9 +303,39 @@ SOCIALACCOUNT_PROVIDERS = {
 # print(f"Secret Google : {config('GOOGLE_SECRET')}")
 
 
+# Cloudinary Setup
+CLOUDINARY_CLOUD_NAME = config("CLOUDINARY_CLOUD_NAME", default="default_cloud_name")
+CLOUDINARY_PUBLIC_API_KEY = config(
+    "CLOUDINARY_PUBLIC_API_KEY", default="default_public_api_key"
+)
+CLOUDINARY_SECRET_API_KEY = config(
+    "CLOUDINARY_SECRET_API_KEY", default="default_secret_api_key"
+)
+CLOUDINARY_URL = config(
+    "CLOUDINARY_URL",
+    default="cloudinary://596271478687376:d@default_secret_api_key@default_cloud_name",
+)
 
-# Cloudinary Setup 
-# cloudinary video config
-CLOUDINARY_CLOUD_NAME = config("CLOUDINARY_CLOUD_NAME", default="")
-CLOUDINARY_PUBLIC_API_KEY = config("CLOUDINARY_PUBLIC_API_KEY", default="")
-CLOUDINARY_SECRET_API_KEY= config("CLOUDINARY_SECRET_API_KEY",  default="")
+# Django REST Framework settings
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
+    ],
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
+}
+
+# CORS settings
+CORS_ALLOW_ALL_ORIGINS = (
+    True  # Set to False in production and use CORS_ALLOWED_ORIGINS instead
+)
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # React default port
+    "http://127.0.0.1:3000",
+]
+CORS_ALLOW_CREDENTIALS = True
