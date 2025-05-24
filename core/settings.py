@@ -318,8 +318,10 @@ CLOUDINARY_URL = config(
 
 # Django REST Framework settings
 REST_FRAMEWORK = {
+    # Utiliser par défaut une permission qui permet à tous d'accéder en lecture
+    # mais qui exige l'authentification pour les requêtes d'écriture
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAuthenticated",
+        "listing.permissions.IsAuthenticatedForWriteOrReadOnly",
     ],
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.SessionAuthentication",

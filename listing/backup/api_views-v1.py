@@ -3,7 +3,6 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Category, SubCategory, Listing, Review, Media
-from .permissions import IsAuthenticatedForWriteOrReadOnly
 from .serializers import (
     CategorySerializer,
     SubCategorySerializer,
@@ -21,7 +20,7 @@ class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
 
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = [permissions.AllowAny]  # Permet l'accès à tous
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [filters.SearchFilter]
     search_fields = ["name", "slug"]
 
@@ -33,7 +32,7 @@ class SubCategoryViewSet(viewsets.ReadOnlyModelViewSet):
 
     queryset = SubCategory.objects.all()
     serializer_class = SubCategorySerializer
-    permission_classes = [permissions.AllowAny]  # Permet l'accès à tous
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     search_fields = ["name", "slug"]
     filterset_fields = ["category"]
@@ -45,9 +44,7 @@ class ListingViewSet(viewsets.ModelViewSet):
     """
 
     queryset = Listing.objects.all()
-    permission_classes = [
-        IsAuthenticatedForWriteOrReadOnly
-    ]  # Notre permission personnalisée
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     search_fields = ["title", "description", "company_name"]
     filterset_fields = ["category", "subcategory", "type", "status"]
@@ -100,9 +97,7 @@ class ReviewViewSet(viewsets.ModelViewSet):
 
     queryset = Review.objects.filter(is_visible=True)
     serializer_class = ReviewSerializer
-    permission_classes = [
-        IsAuthenticatedForWriteOrReadOnly
-    ]  # Notre permission personnalisée
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ["listing", "rating"]
 
@@ -117,8 +112,6 @@ class MediaViewSet(viewsets.ModelViewSet):
 
     queryset = Media.objects.all()
     serializer_class = MediaSerializer
-    permission_classes = [
-        IsAuthenticatedForWriteOrReadOnly
-    ]  # Notre permission personnalisée
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ["listing", "type"]
