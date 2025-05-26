@@ -233,8 +233,8 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = "/"  # Redirection après connexion
-LOGOUT_REDIRECT_URL = "/"  # Redirection après déconnexion
+LOGIN_REDIRECT_URL = "/admin"  # Redirection après connexion
+LOGOUT_REDIRECT_URL = "/accounts/signup"  # Redirection après déconnexion
 
 # Configuration email (à adapter selon votre configuration)
 EMAIL_BACKEND = (
