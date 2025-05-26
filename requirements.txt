@@ -48,4 +48,4 @@ django-cors-headers
 
 djangorestframework-simplejwt 
 djoser 
-"dj-rest-auth[with_social]"
+dj-rest-auth[with_social]
