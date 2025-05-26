@@ -339,7 +339,6 @@ CORS_ALLOW_ALL_ORIGINS = (
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # React default port
     "http://127.0.0.1:3000",
-    "http://localhost:5173",
 ]
 CORS_ALLOW_CREDENTIALS = True
 

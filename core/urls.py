@@ -30,6 +30,7 @@ urlpatterns = [
     path("users/", include("users.urls")),
     # API endpoints
     path("api/listing/", include("listing.api_urls")),
+    path("api/auth/", include("authentication.api_urls")),
     path("api-auth/", include("rest_framework.urls")),
     # url for django-allauth
     path("accounts/", include("allauth.urls")),
